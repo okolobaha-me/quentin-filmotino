@@ -1,7 +1,11 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
+//utils imports
+@import './utils/normalize';
+@import './utils/variables';
+@import './utils/placeholders';
 
-// Стили для файла с примером HTML-фрагмента
-@import './example';
+//partials imposts
+@import './partials/header';
+@import './partials/filmList';
+@import './partials/footer';
+@import './partials/filmModal';
+@import './partials/teamModal';
