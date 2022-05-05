@@ -182,7 +182,9 @@ line-height: 35px;
 }
 
 .btn{
-    width: 110px;
+    
+    padding: 4px;
+    min-width: 110px;
     height: 44px; 
     border-radius: 5px;
 text-transform: uppercase;
@@ -192,6 +194,10 @@ font-style: normal;
 font-weight: 500;
 font-size: 12px;
 line-height: 1.33;
+
+
+
+    
 }
 
 .btn-white{
@@ -201,5 +207,7 @@ line-height: 1.33;
 }
 .btn-orange{
     background: #FF6B01;
+    margin-right: 13px;
+  
 }
  
