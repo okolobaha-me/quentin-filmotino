@@ -1,11 +1,11 @@
 //utils imports
 @import './utils/normalize';
 @import './utils/variables';
+@import './utils/breakpoints';
+@import './utils/container';
 @import './utils/placeholders';
 @import './utils/mixinFont';
 @import './utils/visually-hidden';
-@import './utils/breakpoints';
-@import './utils/container';
 
 //partials imposts
 @import './partials/header';
