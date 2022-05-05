@@ -8,12 +8,16 @@ const refs = {
 refs.openModalCardBtn.addEventListener('click', e => {
   const cardItem = e.target.closest('.filmList__item');
   if (cardItem) {
-    toggleModal();
+    addModal();
   }
 });
-refs.openModalBtn.addEventListener('click', toggleModal);
-refs.closeModalBtn.addEventListener('click', toggleModal);
+refs.openModalBtn.addEventListener('click', addModal);
+refs.closeModalBtn.addEventListener('click', removeModal);
 
-function toggleModal() {
-  refs.modal.classList.toggle('is-hidden');
+function addModal() {
+  refs.modal.classList.remove('is-hidden');
+}
+
+function removeModal() {
+  refs.modal.classList.add('is-hidden');
 }
