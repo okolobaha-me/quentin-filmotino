@@ -14,11 +14,11 @@
 
 //paginationBtn
 
-@mixin pageBtnStyle($color) {
+@mixin pageBtnStyle($color) {          //       <------------aboveFooter !
     min-height: 40px;
     min-width: 40px;
 
-    border-radius: 5px; //    <------------aboveFooter!
+    border-radius: 5px;   
     border-color: getColor('transparent-color');
 
     background-color: $color;
