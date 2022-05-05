@@ -1,0 +1,25 @@
+// btnStylization
+
+@mixin btnStyle($color, $border-color, $width) {
+    min-height: 42px;
+    min-width: $width;
+
+    border-radius: 5px;
+    border-color: $border-color;
+
+    background-color: $color;
+}
+
+;
+
+//paginationBtn
+
+@mixin pageBtnStyle($color) {          //       <------------aboveFooter !
+    min-height: 40px;
+    min-width: 40px;
+
+    border-radius: 5px;   
+    border-color: getColor('transparent-color');
+
+    background-color: $color;
+}
