@@ -16,6 +16,4 @@ $colors: (accent-color: #FF6B08,
 
 @function getColor($key) {
     @return map-get($colors, $key);
-}
-
-;
+};
