@@ -34,7 +34,10 @@
 
 .filmList__poster {
   //   width: 280px;
-  height: 398px;
+
+  @media screen and (min-width: 320px) {
+    height: 398px;
+  }
 
   @media screen and (min-width: 768px) {
     height: 455px;
