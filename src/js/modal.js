@@ -1,41 +1,38 @@
+// const refs = {
+//   openModalCardBtn: document.querySelector('[data-modal-card-open]'),
+//   openModalBtn: document.querySelector('[data-modal-open]'),
+//   closeModalBtn: document.querySelector('[data-modal-close]'),
+//   modal: document.querySelector('[data-modal]'),
+//   modalCard: document.querySelector('[data-modal-card]'),
+//   body: document.querySelector('body'),
+// };
+
 const refs = {
-  openModalCardBtn: document.querySelector('[data-modal-card-open]'),
-  openModalBtn: document.querySelector('[data-modal-open]'),
-  closeModalBtn: document.querySelector('[data-modal-close]'),
-  modal: document.querySelector('[data-modal]'),
-  modalCard: document.querySelector('[data-modal-card]'),
-  body: document.querySelector('body'),
+  openModalBtn: document.querySelectorAll('[data-modal-open]'),
+  closeModalBtn: document.querySelectorAll('[data-modal-close]'),
 };
 
-const values = Object.values(refs);
-
-if (!values.includes(null)) {
-  refs.openModalCardBtn.addEventListener('click', e => {
-    const cardItem = e.target.closest('.filmList__item');
-    if (cardItem) {
-      refs.modalCard.classList.remove('is-hidden');
-      // addModal();
-    }
+refs.closeModalBtn.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const backdrop = btn.closest('[data-modal]');
+    backdrop.classList.add('is-hidden');
   });
-  refs.openModalBtn.addEventListener('click', addModal);
-  refs.closeModalBtn.addEventListener('click', removeModal);
+});
 
-  function addModal() {
-    // if (refs.modal) {
-    refs.modal.classList.remove('is-hidden');
-    // }
-  }
+refs.openModalBtn.forEach(btn => {
+  btn.addEventListener('click', e => {
+    if (btn.nodeName === 'UL') {
+      const cardItem = e.target.closest('.filmList__item');
 
-  function removeModal() {
-    // if (refs.modal) {
-    refs.modal.classList.add('is-hidden');
-    // }
-  }
-}
+      if (!cardItem) {
+        return;
+      }
+    }
 
-// function bodyLock() {
-//   const lockPaddingValue = window.innerWidth - modal.offsetWidth + 'px';
-// }
+    const backdrop = document.querySelector(btn.dataset.target);
+    backdrop.classList.remove('is-hidden');
+  });
+});
 
 // забрати можливість скролити
 // табом проходитися
