@@ -36,12 +36,21 @@ window.onclick = event => {
 };
 
 function bodyLock() {
-  // const lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
-  // refs.body.style.paddingRight = lockPaddingValue;
+  const lockPaddingValue = window.innerWidth - refs.body.offsetWidth + 'px';
+  refs.body.style.paddingRight = lockPaddingValue;
   refs.body.classList.add('lock');
 }
 
 function bodyUnlock() {
-  // refs.body.style.paddingRight = '0px';
+  refs.body.style.paddingRight = '0px';
   refs.body.classList.remove('lock');
+}
+
+window.addEventListener('keydown', onKeypress);
+
+function onKeypress(e) {
+  if (e.code === 'Escape') {
+    refs.modal.classList.add('is-hidden');
+    bodyUnlock();
+  }
 }
