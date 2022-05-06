@@ -52,5 +52,5 @@ body {
   font-size: 12px;
   font-weight: 500;
   line-height: calc(16 / 12);
-  color: getColor(second-text-color);
+  color: getColor('second-text-color');
 }
