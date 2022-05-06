@@ -1,3 +1,5 @@
+@import './variables';
+
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -43,4 +45,12 @@ ul {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: calc(16 / 12);
+  color: getColor(second-text-color);
 }
