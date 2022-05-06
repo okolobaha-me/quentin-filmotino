@@ -1,1 +1,42 @@
-<p>hello from header</p>
+<header class="header">
+    <div class="container">
+        <!--#region LOGO #-->
+        <a href="../index.html" class="logo">
+            <svg class="logo-icon">
+                <use href="../images/sprite/sprite.svg#logo" aria-label="Логотип" width="24" height="24"></use>
+            </svg>
+            <span class="logo-title visually-hidden">Filmoteka</span>
+        </a>
+        <!--#endregion #-->
+        
+        <!--#region NAVIGATION #-->
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" aria-label="посилання на початкову сторінку">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" aria-label="посилання на мою бібліотеку">My library</a>
+                </li>
+            </ul>
+        </nav>
+        <!--#endregion #-->
+        
+        <!--#region SEARCH #-->
+        <form class="search-form" id="search-form">
+            <input
+                class="search-input"
+                type="text"
+                name="searchFilm" 
+                autocomplete="off" 
+                placeholder="Поиск фильмов"
+            />
+            <button class="search-btn" aria-label="кнопка пошуку фільму" type="submit">
+                <svg class="search-btn-icon">
+                    <use href="../images/sprite/sprite.svg#search" width="12" height="12"></use>
+                </svg>
+            </button>
+        </form>
+        <!--#endregion #-->
+    </div>
+</header>
