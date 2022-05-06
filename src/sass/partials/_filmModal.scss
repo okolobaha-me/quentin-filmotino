@@ -23,7 +23,7 @@
     overflow-y: auto;
     position: relative;
     height: 96%;
-    width: 280px;
+    width: 279px;
 
     @media screen and (min-width:768px) {
         padding: 40px 72px  40px 36px;
@@ -42,12 +42,19 @@
 }
 
 .modal__btn {
+    width: 14px;
+    height: 14px;
     position: absolute;
     top: 8px;
     right: 8px;
     border: none;
     border-radius: 50%;
     cursor: pointer;
+    
+}
+.cross{
+    width: 14px;
+    height: 14px;
 }
 
 .modal__img-wrapper {
