@@ -22,7 +22,7 @@ refs.openModalBtn.forEach(btn => {
         return;
       }
     }
-    bodyLock()
+    bodyLock();
     const backdrop = document.querySelector(btn.dataset.target);
     backdrop.classList.remove('is-hidden');
   });
@@ -31,17 +31,17 @@ refs.openModalBtn.forEach(btn => {
 window.onclick = event => {
   if (event.target === refs.modal) {
     refs.modal.classList.add('is-hidden');
-    bodyUnlock()
+    bodyUnlock();
   }
 };
 
-function bodyLock(){
+function bodyLock() {
   // const lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
   // refs.body.style.paddingRight = lockPaddingValue;
-	refs.body.classList.add('lock');
+  refs.body.classList.add('lock');
 }
 
-function bodyUnlock(){
+function bodyUnlock() {
   // refs.body.style.paddingRight = '0px';
   refs.body.classList.remove('lock');
 }
