@@ -1,9 +1,12 @@
 .container {
-  display: block;
   margin: 0 auto;
-  width: $mobile;
   padding: 0 20px;
 
+  //MOBILE
+
+  @media screen and (min-width: $mobile) {
+    width: $mobile;
+  }
   //TABLET
 
   @media screen and (min-width: $tablet) {
