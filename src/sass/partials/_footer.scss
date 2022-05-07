@@ -44,6 +44,14 @@ body {
     margin-bottom: 10px;
 };
 
+.footer_mobile-custom-div {
+    display: flex;
+
+    @media screen and (max-width: $pre-tablet) {
+        justify-content: center;
+    };
+}
+
 // bg-img
 
 .footer_icon {

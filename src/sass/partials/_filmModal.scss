@@ -142,7 +142,6 @@
 
 .btn {
     @include font(12px, 16px, 500);
-    @include btnStyle(getColor(page-btn-color), getColor(second-border-color), 110px, );
     min-height: 44px;
 
 
@@ -160,6 +159,7 @@
 }
 
 .btn-white {
+    @include btnStyle(getColor(page-btn-color), getColor(second-border-color), 110px, );
     padding: 13px 7px;
 
 
@@ -171,9 +171,8 @@
 
 
 .btn-orange {
-    border-color: transparent;
+    @include btnStyle(getColor(accent-color), transparent, 110px, );
     color: getColor(primary-text-color);
-    background: getColor(accent-color);
     padding: 6px 27px;
 
     @media screen and (min-width:768px) {
