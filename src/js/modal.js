@@ -3,50 +3,9 @@ const refs = {
   closeModalBtn: document.querySelectorAll('[data-modal-close]'),
   modals: document.querySelectorAll('[data-modal]'),
   body: document.querySelector('body'),
-  team: document.querySelector('.modal-team'),
-  film: document.querySelector('.film-modal'),
 };
 
-// function closeModal(){
-
-//   refs.closeModalBtn.forEach(btn => {
-//     btn.addEventListener('click', () => {
-//       const backdrop = btn.closest('[data-modal]');
-//       backdrop.classList.add('is-hidden');
-//       bodyUnlock();
-//     });
-//   });
-
-//   window.onclick = event => {
-//     refs.modals.forEach(modal => {
-//       if (event.target === modal) {
-//         if (!modal.classList.contains('is-hidden')) {
-//           modal.classList.add('is-hidden');
-//           bodyUnlock();
-//         }
-//       }
-//     });
-//   };
-
-//   function onKeypress(e) {
-//     if (e.code === 'Escape') {
-//       refs.modals.forEach(modal => {
-//         if (!modal.classList.contains('is-hidden')) {
-//           modal.classList.add('is-hidden');
-//           bodyUnlock();
-//         }
-//       });
-//     }
-//   }
-// }
-
-refs.closeModalBtn.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const backdrop = btn.closest('[data-modal]');
-    backdrop.classList.add('is-hidden');
-    bodyUnlock();
-  });
-});
+window.addEventListener('keydown', onKeypress);
 
 refs.openModalButtons.forEach(button => {
   button.addEventListener('click', e => {
@@ -61,63 +20,55 @@ refs.openModalButtons.forEach(button => {
   });
 });
 
-function openModal(button) {
-  const backdrop = document.querySelector(button.dataset.target);
-  backdrop.classList.remove('is-hidden');
-  bodyLock();
-}
+refs.closeModalBtn.forEach(button => {
+  button.addEventListener('click', () => {
+    refs.modals.forEach(modal => {
+      if (modal === button.closest('[data-modal]')) {
+        closeModal(modal);
+      }
+    });
+  });
+});
 
-window.onclick = event => {
+window.onclick = e => {
   refs.modals.forEach(modal => {
-    if (event.target === modal) {
+    if (e.target === modal) {
       if (!modal.classList.contains('is-hidden')) {
-        modal.classList.add('is-hidden');
-        bodyUnlock();
+        closeModal(modal);
       }
     }
   });
 };
 
+function onKeypress(e) {
+  if (e.code === 'Escape') {
+    refs.modals.forEach(modal => {
+      if (!modal.classList.contains('is-hidden')) {
+        closeModal(modal);
+      }
+    });
+  }
+}
+
+function openModal(button) {
+  const modal = document.querySelector(button.dataset.target);
+  modal.classList.remove('is-hidden');
+  bodyLock();
+}
+
+function closeModal(modal) {
+  modal.classList.add('is-hidden');
+  bodyUnlock();
+}
+
 function bodyLock() {
   const lockPaddingValue = window.innerWidth - refs.body.offsetWidth + 'px';
-
-  // refs.modals.forEach(modal => {
-  //   if (!modal.classList.contains('is-hidden')) {
-  //     modal.style.paddingRight = lockPaddingValue;
-  //   }
-  // });
-  refs.team.style.paddingRight = lockPaddingValue;
-  // refs.film.style.paddingRight = lockPaddingValue;
 
   refs.body.style.paddingRight = lockPaddingValue;
   refs.body.classList.add('lock');
 }
 
 function bodyUnlock() {
-  // refs.modals.forEach(modal => {
-  //   if (modal.classList.contains('is-hidden')) {
-  //     modal.style.paddingRight = '0px';
-  //   }
-  // });
-  refs.team.style.paddingRight = '0px';
-  // refs.film.style.paddingRight = '0px';
-
   refs.body.style.paddingRight = '0px';
   refs.body.classList.remove('lock');
 }
-
-window.addEventListener('keydown', onKeypress);
-
-function onKeypress(e) {
-  if (e.code === 'Escape') {
-    refs.modals.forEach(modal => {
-      if (!modal.classList.contains('is-hidden')) {
-        modal.classList.add('is-hidden');
-        bodyUnlock();
-      }
-    });
-  }
-}
-
-// добавити клас lock і залишити id="team-modal" почистити слухача
-// 64 рядочки
