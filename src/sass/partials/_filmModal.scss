@@ -8,7 +8,7 @@
     position: relative;
     max-height: 96%;
     width: 279px;
-
+    box-shadow: 5px 10px 15px 0 rgba(0, 0, 0, 0.6);
     @media screen and (min-width:768px) {
         padding: 40px 72px 40px 36px;
         display: flex;
@@ -29,11 +29,38 @@
     position: absolute;
     top: 8px;
     right: 8px;
+
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+
+            color: getColor(second-text-color);
+            
+                transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    padding: 0;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+            border-radius: 50%;
+
+
+            &:hover,
+                &:focus {
+                    border-color: getColor(accent-color);
+                    fill: getColor(accent-color);
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);;
+                }
+   
+    
 }
 
 .cross {
     width: 14px;
     height: 14px;
+ 
 }
 
 .modal__img-wrapper {
