@@ -1,15 +1,17 @@
 .modal-film {
 
     background-color: aliceblue;
-    padding: 48px 20px;
+    padding: 48px 19px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) scale(1);
     overflow-y: auto;
     position: relative;
     max-height: 96%;
-    width: 279px;
+   width: 279px;
     box-shadow: 5px 10px 15px 0 rgba(0, 0, 0, 0.6);
+
+
     @media screen and (min-width:768px) {
         padding: 40px 72px 40px 36px;
         display: flex;
@@ -44,12 +46,13 @@
     padding: 0;
         width: 20px;
         height: 20px;
-        border: 1px solid #000;
+        border:none;
             border-radius: 50%;
 
 
             &:hover,
                 &:focus {
+                  border: 1px solid #000;
                     border-color: getColor(accent-color);
                     fill: getColor(accent-color);
                         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);;
