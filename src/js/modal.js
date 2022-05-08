@@ -1,47 +1,74 @@
 const refs = {
-  openModalBtn: document.querySelectorAll('[data-modal-open]'),
+  openModalButtons: document.querySelectorAll('[data-modal-open]'),
   closeModalBtn: document.querySelectorAll('[data-modal-close]'),
-  modal: document.querySelector('[data-modal]'),
+  modals: document.querySelectorAll('[data-modal]'),
   body: document.querySelector('body'),
 };
 
-refs.closeModalBtn.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const backdrop = btn.closest('[data-modal]');
-    backdrop.classList.add('is-hidden');
-    bodyUnlock();
-  });
-});
+window.addEventListener('keydown', onKeypress);
 
-refs.openModalBtn.forEach(btn => {
-  btn.addEventListener('click', e => {
-    if (btn.nodeName === 'UL') {
+refs.openModalButtons.forEach(button => {
+  button.addEventListener('click', e => {
+    if (button.nodeName === 'UL') {
       const cardItem = e.target.closest('.filmList__item');
 
       if (!cardItem) {
         return;
       }
     }
-    bodyLock();
-    const backdrop = document.querySelector(btn.dataset.target);
-    backdrop.classList.remove('is-hidden');
+    openModal(button);
   });
 });
 
-window.onclick = event => {
-  if (event.target === refs.modal) {
-    refs.modal.classList.add('is-hidden');
-    bodyUnlock();
-  }
+refs.closeModalBtn.forEach(button => {
+  button.addEventListener('click', () => {
+    refs.modals.forEach(modal => {
+      if (modal === button.closest('[data-modal]')) {
+        closeModal(modal);
+      }
+    });
+  });
+});
+
+window.onclick = e => {
+  refs.modals.forEach(modal => {
+    if (e.target === modal) {
+      if (!modal.classList.contains('is-hidden')) {
+        closeModal(modal);
+      }
+    }
+  });
 };
 
+function onKeypress(e) {
+  if (e.code === 'Escape') {
+    refs.modals.forEach(modal => {
+      if (!modal.classList.contains('is-hidden')) {
+        closeModal(modal);
+      }
+    });
+  }
+}
+
+function openModal(button) {
+  const modal = document.querySelector(button.dataset.target);
+  modal.classList.remove('is-hidden');
+  bodyLock();
+}
+
+function closeModal(modal) {
+  modal.classList.add('is-hidden');
+  bodyUnlock();
+}
+
 function bodyLock() {
-  // const lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
-  // refs.body.style.paddingRight = lockPaddingValue;
+  const lockPaddingValue = window.innerWidth - refs.body.offsetWidth + 'px';
+
+  refs.body.style.paddingRight = lockPaddingValue;
   refs.body.classList.add('lock');
 }
 
 function bodyUnlock() {
-  // refs.body.style.paddingRight = '0px';
+  refs.body.style.paddingRight = '0px';
   refs.body.classList.remove('lock');
 }

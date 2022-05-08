@@ -1,26 +1,28 @@
 <header class="header">
     <div class="container">
-        <!--#region LOGO #-->
-        <a href="../index.html" class="logo">
-            <svg class="logo-icon">
-                <use href="../images/sprite/sprite.svg#logo" aria-label="Логотип" width="24" height="24"></use>
-            </svg>
-            <span class="logo-title visually-hidden">Filmoteka</span>
-        </a>
-        <!--#endregion #-->
-        
-        <!--#region NAVIGATION #-->
-        <nav>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" aria-label="посилання на початкову сторінку">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" aria-label="посилання на мою бібліотеку">My library</a>
-                </li>
-            </ul>
-        </nav>
-        <!--#endregion #-->
+        <div class="header-box">
+            <!--#region LOGO #-->
+            <a href="../src/index.html" class="logo">
+                <svg width="24" height="24">
+                    <use href="./images/sprite/sprite.svg#logo" aria-label="Логотип"></use>
+                </svg>
+                <span class="logo-title">Filmoteka</span>
+            </a>
+            <!--#endregion #-->
+            
+            <!--#region NAVIGATION #-->
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-current" href="#" aria-label="посилання на початкову сторінку">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" aria-label="посилання на мою бібліотеку">My library</a>
+                    </li>
+                </ul>
+            </nav>
+            <!--#endregion #-->
+        </div>
         
         <!--#region SEARCH #-->
         <form class="search-form" id="search-form">
@@ -29,11 +31,11 @@
                 type="text"
                 name="searchFilm" 
                 autocomplete="off" 
-                placeholder="Поиск фильмов"
+                placeholder="Пошук фільмів"
             />
-            <button class="search-btn" aria-label="кнопка пошуку фільму" type="submit">
-                <svg class="search-btn-icon">
-                    <use href="../images/sprite/sprite.svg#search" width="12" height="12"></use>
+            <button class="search-btn" aria-label="кнопка пошуку фільму" type="submit" width="12" heght="12">
+                <svg class="search-btn-icon" width="12" height="12">
+                    <use href="./images/sprite/sprite.svg#search"></use>
                 </svg>
             </button>
         </form>
