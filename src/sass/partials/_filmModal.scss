@@ -1,0 +1,195 @@
+.modal-film {
+
+    background-color: aliceblue;
+    padding: 48px 20px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    overflow-y: auto;
+    position: relative;
+    max-height: 96%;
+    width: 279px;
+    box-shadow: 5px 10px 15px 0 rgba(0, 0, 0, 0.6);
+    @media screen and (min-width:768px) {
+        padding: 40px 72px 40px 36px;
+        display: flex;
+        justify-content: space-between;
+        width: 704px;
+        max-height: 552px;
+    }
+
+    @media screen and (min-width:1024px) {
+        padding: 40px 16px;
+        width: 814px;
+        max-height: 558px;
+
+    }
+}
+
+.modal__btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+
+            color: getColor(second-text-color);
+            
+                transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    padding: 0;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+            border-radius: 50%;
+
+
+            &:hover,
+                &:focus {
+                    border-color: getColor(accent-color);
+                    fill: getColor(accent-color);
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);;
+                }
+   
+    
+}
+
+.cross {
+    width: 14px;
+    height: 14px;
+}
+
+.modal__img-wrapper {
+  margin-bottom: 20px;
+  width: 240px;
+  height: 357px;
+  border-radius: 5px;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    width: 264px;
+    height: 373px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 375px;
+    height: 478px;
+  }
+}
+
+.modal__img-wrapper-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 280px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 265px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    max-width: 375px;
+  }
+}
+
+.modal__tittle {
+  @include font(20px, 23px, 500);
+
+  @media screen and (min-width: 1024px) {
+    @include font(30px, 35px, 500);
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.movie-description {
+  max-width: 235px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orange {
+  padding: 1px 10px;
+  background: getColor(accent-color);
+  border-radius: 5px;
+  margin-right: 2px;
+  color: getColor(primary-text-color);
+}
+
+.movie-description__options-grey {
+  color: getColor(four-text-color);
+}
+
+.movie-description__left,
+.movie-description__right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.movie-description__options {
+  @include font(12px, 16px, 500);
+}
+
+.view__tittle {
+  @include font(12px, 16px, 500);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.view__text {
+  @include font(12px, 20px, 500);
+}
+
+.btn-wrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  @include font(12px, 16px, 500);
+  min-height: 44px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 125px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    min-width: 136px;
+  }
+}
+
+.btn-white {
+  @include btnStyle(getColor(page-btn-color), getColor(second-border-color), 110px);
+  padding: 13px 7px;
+
+  @media screen and (min-width: 1024px) {
+    padding: 13px 8px;
+  }
+}
+
+.btn-orange {
+  @include btnStyle(getColor(accent-color), transparent, 110px);
+  color: getColor(primary-text-color);
+  padding: 6px 27px;
+
+  @media screen and (min-width: 768px) {
+    padding: 13px 9px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 13px 10px;
+  }
+}

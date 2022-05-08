@@ -1,7 +1,14 @@
 //utils imports
 @import './utils/normalize';
 @import './utils/variables';
+@import './utils/breakpoints';
+@import './utils/container';
 @import './utils/placeholders';
+@import './utils/mixinFont';
+@import './utils/visually-hidden';
+@import './utils/mixinBtn';
+@import './utils/variables';
+
 
 //partials imposts
 @import './partials/header';
@@ -9,3 +16,6 @@
 @import './partials/footer';
 @import './partials/filmModal';
 @import './partials/teamModal';
+
+//components imports
+@import './components/section';
