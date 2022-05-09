@@ -96,4 +96,4 @@ module.exports=require("./lib/axios");
 },{"./main-render-logic":"x2ER","./render-film-list":"qH72"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/modal"),require("./js/API/module"),require("./js/render/module");
 },{"./sass/main.scss":"clu1","./js/modal":"RSqK","./js/API/module":"qGZX","./js/render/module":"Ef63"}]},{},["Focm"], null)
-//# sourceMappingURL=/quentin-filmotino/src.10b21108.js.map
+//# sourceMappingURL=/quentin-filmotino/src.ce80b809.js.map
