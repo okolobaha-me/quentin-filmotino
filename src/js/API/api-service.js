@@ -11,9 +11,10 @@ export default class {
                 api_key: API_KEY,
             },
         });
+
         this.options = {
             urlPath: '',
-        }
+        };
     };
 
     getFilms = async () => {

@@ -29,6 +29,6 @@
 //#region SEARCH #
 .search-form { background-color: inherit;}
 .search-input { background-color: inherit;}
-.search-btn { background-color: inherit;}
+.search-btn { @include btnStyle(getColor(accent-color), getColor(first-border-color), 100px);}
 .search-btn-icon { background-color: inherit;}
 //#endregion #
