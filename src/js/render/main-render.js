@@ -18,9 +18,10 @@ function onFormSubmit(e) {
 }
 
 function onSiteLoad(e) {
-    console.log('Фильмы, приходящие, при загрузке страницы')
+    console.log('Фильмы, приходящие, при загрузке страницы');
     getFilmsByUrl('/3/trending/all/day'); 
 };
+
 
 function getFilmsByUrl(url) {
     service.urlPath = url;
