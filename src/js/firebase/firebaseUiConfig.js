@@ -5,6 +5,10 @@ import 'firebaseui/dist/firebaseui.css';
 import { refs } from './firebaseRefs';
 const { firebaseuiAuthContainer, signInBtn, signOutBtn } = refs();
 
+import { auth } from './firebase';
+import { db } from './firebase';
+import { ref, update } from 'firebase/database';
+
 export const uiConfig = {
   signInOptions: [
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -20,7 +24,18 @@ export const uiConfig = {
       var operationType = authResult.operationType;
 
       if (isNewUser) {
-        // Если новый пользователь можно создать ячейку в базе данных
+        function createNewUser() {
+          const userObj = {
+            ID: user.uid,
+            email: user.email,
+            name: user.displayName,
+          };
+          const updates = {};
+
+          updates['users/' + user.uid + '/userInfo/'] = userObj;
+          update(ref(db), updates);
+        }
+        createNewUser();
       }
 
       //===========Сюда запихать визуальные изменения при успешном входе/регистрации
@@ -36,7 +51,7 @@ export const uiConfig = {
     },
     uiShown: function () {
       // можно выключить спинер, если он включается при открытии модалки или еще что-то придумать)
-      console.log('uiShown');
+      // console.log('uiShown');
     },
   },
 };
