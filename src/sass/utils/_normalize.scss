@@ -27,7 +27,7 @@ img {
   height: auto;
 }
 
-button { 
+button {
   padding: 0;
   border: none;
   font: inherit;
@@ -53,8 +53,4 @@ body {
   font-weight: 500;
   line-height: calc(16 / 12);
   color: getColor('second-text-color');
-}
-
-.lock{
-  overflow: hidden;
 }
