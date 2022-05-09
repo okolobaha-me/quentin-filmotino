@@ -11,7 +11,9 @@
 }
 
 .filmList__item {
-  margin-bottom: 20px;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
 
   @media screen and (min-width: $tablet) {
     flex-basis: calc((100% - 16px * 4) / 2);
