@@ -1,5 +1,5 @@
 <header class="header">
-    <div class="container">
+    <div class="container header-container">
         <div class="header-box">
             <!--#region LOGO #-->
             <a href="../src/index.html" class="logo">
@@ -9,30 +9,28 @@
                 <span class="logo-title">Filmoteka</span>
             </a>
             <!--#endregion #-->
-            
+
             <!--#region NAVIGATION #-->
             <nav>
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link nav-link-current" href="#" aria-label="посилання на початкову сторінку">Home</a>
+                        <button class="nav-btn header-btn-current"
+                            aria-label="Кнопка на початкову сторінку">Home</button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" aria-label="посилання на мою бібліотеку">My library</a>
+                        <button class="nav-btn" aria-label="Кнопка на мою бібліотеку">My library</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-btn" aria-label="Кнопка на реєстрацію">Sign in</button>
                     </li>
                 </ul>
             </nav>
             <!--#endregion #-->
         </div>
-        
+
         <!--#region SEARCH #-->
         <form class="search-form" id="search-form">
-            <input
-                class="search-input"
-                type="text"
-                name="searchFilm" 
-                autocomplete="off" 
-                placeholder="Пошук фільмів"
-            />
+            <input class="search-input" type="text" name="searchFilm" autocomplete="off" placeholder="Пошук фільмів" />
             <button class="search-btn" aria-label="кнопка пошуку фільму" type="submit" width="12" heght="12">
                 <svg class="search-btn-icon" width="12" height="12">
                     <use href="./images/sprite/sprite.svg#search"></use>
@@ -40,5 +38,18 @@
             </button>
         </form>
         <!--#endregion #-->
+
+        <!--  -->
+        <nav>
+            <ul class="lang">
+                <li class="lang-item">
+                    <button class="lang-btn header-btn-current" aria-label="Кнопка включає українську мову">Ua</button>
+                </li>
+                <li class="lang-item">
+                    <button class="lang-btn" aria-label="Кнопка включає англійську мову">En</button>
+                </li>
+            </ul>
+        </nav>
+        <!--  -->
     </div>
 </header>
