@@ -1,9 +1,13 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import { getFilmsByUrl } from '../render/main-render-logic';
+import ApiService from '../API/api-service';
+const service = new ApiService();
 
 const container = document.getElementById('tui-pagination-container');
 
 const options = {
+  page: 1,
   totalItems: '',
   itemsPerPage: 20,
   visiblePages: 5,
@@ -60,10 +64,17 @@ const options = {
   },
 };
 
-function makePagination(response) {
+export function makePagination(response) {
   options.totalPages = response.totalPage;
   options.totalItems = response.totalItems;
+
   const pagination = new Pagination(container, options);
-  //pagination.on('afterMove', event => {});
+  pagination.on('afterMove', event => {
+    options.page = event.page;
+    onPaginClick(event.page);
+  });
 }
-makePagination({ totalItems: 5, totalPages: 25 });
+
+function onPaginClick(pages) {
+  getFilmsByUrl(`/3/trending/all/day?page=${pages}`);
+}
