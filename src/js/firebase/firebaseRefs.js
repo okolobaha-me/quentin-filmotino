@@ -5,5 +5,6 @@ export function refs() {
     signOutBtn: document.querySelector('.signOut'),
     addToWatchedBtn: document.querySelector('[data-action="addToWatched"]'),
     addToQueueBtn: document.querySelector('[data-action="addToQueue"]'),
+    libraryBtn: document.querySelector('[aria-label="Кнопка на мою бібліотеку"]'),
   };
 }
