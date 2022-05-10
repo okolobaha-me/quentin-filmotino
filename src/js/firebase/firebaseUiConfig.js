@@ -42,7 +42,7 @@ export const uiConfig = {
       // закрываем модалку с регистрацией
       // меняем кнопку signIn => signOut
       // добавляем слушателя событий на кнопку signOut (callback: onSignOutBtn)
-      firebaseuiAuthContainer.classList.toggle('visually-hidden');
+      firebaseuiAuthContainer.classList.toggle('is-hidden');
       signInBtn.classList.toggle('visually-hidden');
       signOutBtn.classList.toggle('visually-hidden');
     },
