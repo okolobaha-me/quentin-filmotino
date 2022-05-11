@@ -19,6 +19,8 @@ export default class {
         };
     };
 
+    // **getFilm-funcs**
+
     getFilms = async () => {
         const response = await this.service.get(this.options.urlPath);
         
@@ -28,9 +30,27 @@ export default class {
         return response.data;
     };
 
+    getPopularFilms() {
+        this.changeUrlPath('/3/trending/all/day');
+        return this.getFilms();
+    };
+
+    getFilmsByQuery(q) {
+        this.changeUrlPath(`3/search/movie?query=${q}`);
+        return this.getFilms();
+    };
+
+    // **url-funcs**
+
+    changeUrlPath(newPath) {
+        this.options.urlPath = newPath;
+    };
+
     resetUrlPath() {
         this.options.urlPath = '';
     };
+
+    // **pag-funcs**
 
     increasePage() {
         this.options.page += 1;
@@ -43,7 +63,9 @@ export default class {
     resetPage() {
         this.options.page = 1;
     };
-    
+
+    // **get-set**
+
     
     get page() {
         return this.options.page;

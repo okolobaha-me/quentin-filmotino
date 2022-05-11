@@ -12,29 +12,17 @@ refs.formRef.addEventListener('submit', onFormSubmit);
 function onFormSubmit(e) {
     e.preventDefault();
     const query = e.target.elements.searchFilm.value;
-    const url = `3/search/movie?query=${query}`;
     
     resetMarkup();
-    refs.galleryRef.innerHTML = '<h1>здесь будут приходящие фильмы ;)</h1>';    // **delete**
     console.log('Фильмы по запросу');
-    getFilmsByUrl(url);
+    service.getFilmsByQuery(query).then(console.log);
 }
 
 function onSiteLoad(e) {
-    const url = '/3/trending/all/day';
-
     resetMarkup();
     refs.galleryRef.innerHTML = '<h1>здесь будут популярные за день фильмы ;)</h1>'
     console.log('Фильмы, приходящие, при загрузке страницы');
-    getFilmsByUrl(url); 
-};
-
-
-function getFilmsByUrl(url) {
-    service.urlPath = url;
-    service.getFilms().then((data) => {
-        console.log(data);
-    });
+    service.getPopularFilms().then(console.log);
 };
 
 function resetMarkup() {
