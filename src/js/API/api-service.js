@@ -14,19 +14,43 @@ export default class {
 
         this.options = {
             urlPath: '',
+            page: 1,
+            perPage: 20,
         };
     };
 
     getFilms = async () => {
         const response = await this.service.get(this.options.urlPath);
+        
+        response.data.page = this.options.page;
+        response.data.results.length = this.options.perPage;
+
         return response.data;
     };
 
-    getFilmsByQuery(q) {
+    resetUrlPath() {
+        this.options.urlPath = '';
     };
 
-    resetUrlPath() {
-        this.options.urlPath = ''
+    increasePage() {
+        this.options.page += 1;
+    };
+
+    decreasePage() {
+        this.options.page -= 1;
+    };
+
+    resetPage() {
+        this.options.page = 1;
+    };
+    
+    
+    get page() {
+        return this.options.page;
+    };
+
+    set page(newPage) {
+        this.options.page = newPage;
     };
 
     get urlPath() {
