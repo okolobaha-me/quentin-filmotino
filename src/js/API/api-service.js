@@ -4,7 +4,7 @@ const API_KEY = '79fb62b7e77dc5ee41dd0c1332d74198';
 const BASE_URL = 'https://api.themoviedb.org';
 
 export default class {
-    constructor(elements = 20) {
+    constructor() {
         this.service = axios.create({
             baseURL: BASE_URL,
             params: {
@@ -15,7 +15,7 @@ export default class {
         this.options = {
             urlPath: '',
             page: 1,
-            perPage: elements,
+            perPage: 20,
         };
     };
 
