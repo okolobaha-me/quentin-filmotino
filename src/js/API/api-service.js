@@ -14,19 +14,65 @@ export default class {
 
         this.options = {
             urlPath: '',
+            page: 1,
+            perPage: 20,
         };
     };
 
+    // **getFilm-funcs**
+
     getFilms = async () => {
         const response = await this.service.get(this.options.urlPath);
+        
+        response.data.page = this.options.page;
+        response.data.results.length = this.options.perPage;
+
         return response.data;
     };
 
+    getPopularFilms() {
+        this.changeUrlPath('/3/trending/all/day');
+        return this.getFilms();
+    };
+
     getFilmsByQuery(q) {
+        this.changeUrlPath(`3/search/movie?query=${q}`);
+        return this.getFilms();
+    };
+
+    // **url-funcs**
+
+    changeUrlPath(newPath) {
+        this.options.urlPath = newPath;
     };
 
     resetUrlPath() {
-        this.options.urlPath = ''
+        this.options.urlPath = '';
+    };
+
+    // **pag-funcs**
+
+    increasePage() {
+        this.options.page += 1;
+    };
+
+    decreasePage() {
+        this.options.page -= 1;
+    };
+
+    resetPage() {
+        this.options.page = 1;
+    };
+
+    // **get-set**
+
+    
+    get page() {
+        return this.options.page;
+    };
+
+    set page(newPage) {
+        this.options.page = newPage;
     };
 
     get urlPath() {

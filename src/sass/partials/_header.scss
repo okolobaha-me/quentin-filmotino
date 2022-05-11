@@ -4,8 +4,8 @@
 }
 .header-container {
     padding-top: 40px;
-    padding-bottom: 40px;
-
+    // padding-bottom: 40px;
+    padding-bottom: 55px;
 
     background-color: rgba(0, 0, 0, 0.56);
     background-size: cover;
@@ -130,7 +130,8 @@
     display: flex;
     width: 280px;
     margin-top: 42px;
-    margin-bottom: 43px;
+    // margin-bottom: 43px;
+    margin-bottom: 28px;
 
     margin-left: auto;
     margin-right: auto;
@@ -172,3 +173,114 @@
 }
 
 //#endregion #
+
+
+
+
+
+//DROPOUT LANGUAGE MENU 
+
+.lang__dropout{
+    display: flex;
+    list-style: none;
+    justify-content: end;
+
+    
+    position: relative;
+    box-sizing: border-box;
+}
+
+.lang__select{
+    background: inherit;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px #9fa5b5 solid;
+    border-radius: 0.5em;
+    padding: 7.5px 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover{
+        background: #ff6b08b0;
+        border: 1px getColor(accent-color) solid;
+    }
+}
+
+.lang__selected{
+    margin-right: 5px;
+}
+
+.lang__select-clicked{
+    border: 1px getColor(accent-color) solid;
+    box-shadow: 0 0 3px getColor(accent-color);
+
+    transform: translate(-80px, 0);
+    transition: 0.7s ;
+}
+
+.back{
+    transform: translate(0, 0);
+    transition: 0.7s ;
+}
+
+.caret{
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #fff;
+    transition: 0.5s;
+    margin-left: 5px;
+}
+
+.caret-rotate{
+    transform: rotate(-90deg);
+}
+
+.lang__menu{
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.534);
+    backdrop-filter: blur(2px);
+    border: 1px #363a43 solid;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    border-radius: 0.5em;
+    color: #9fa5b5;
+    position: absolute;
+    top: 0px;
+    width: auto;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    transition: 0.5s;
+    z-index: 1;
+    pointer-events: none;
+
+    & li{
+        margin: 5px;
+        padding: 5px;
+        border-radius: 0.5em;
+        text-align: center;
+        width: 50px;
+
+        color: #fff;
+        cursor: pointer;
+
+        &:hover{
+            background: #ff6b08b0;
+        }
+    }
+}
+
+.lang__active{
+    border: 1px getColor(accent-color) solid;
+}
+
+.lang__menu-open{
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    pointer-events: all;
+}
