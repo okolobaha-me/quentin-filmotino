@@ -3,78 +3,45 @@ import 'tui-pagination/dist/tui-pagination.css';
 import { getFilmsByUrl } from '../render/main-render-logic';
 import ApiService from '../API/api-service';
 const service = new ApiService();
+import { refs } from '../render/refs';
 
-const container = document.getElementById('tui-pagination-container');
+const { formRef, inputRef, btnRef, containerRef } = refs();
 
-const options = {
-  page: 1,
-  totalItems: '',
-  itemsPerPage: 20,
-  visiblePages: 5,
-  centerAlign: true,
-  totalPages: '',
-  firstItemClassName: 'tui-first-child',
-  lastItemClassName: 'tui-last-child',
-  usageStatistics: false,
-  template: {
-    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-    moveButton: type => {
-      let template = '';
-
-      if (type.type === 'first') {
-        template =
-          '<a href="#" class=" tui-page-btn tui-first custom-class-first">' +
-          '<span class="tui-ico-first">1</span>' +
-          '</a>';
-      }
-      if (type.type === 'prev') {
-        template =
-          '<a href="#" class="arrow tui-page-btn tui-prev custom-class-prev tui-first-child">' +
-          '<span class="material-icons">arrow_back</span>' +
-          '</a>';
-      }
-
-      if (type.type === 'next') {
-        template =
-          '<a href="#" class="arrow tui-page-btn tui-next custom-class-next">' +
-          '<span class="material-icons">arrow_forward</span>' +
-          '</a>';
-      }
-
-      if (type.type === 'last') {
-        template =
-          '<a href="#" class=" tui-page-btn tui-last custom-class-last">' +
-          '<span class="tui-ico-last">' +
-          options.totalPages +
-          '</span>' +
-          '</a>';
-      }
-
-      return template;
+export function createPagination(totalItems, itemsPerPage, page, query) {
+  const options = {
+    totalItems: totalItems,
+    itemsPerPage: itemsPerPage,
+    visiblePages: 5,
+    page: page,
+    centerAlign: true,
+    firstItemClassName: 'tui-first-child',
+    template: {
+      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      moveButton:
+        '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</a>',
+      disabledMoveButton:
+        '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</span>',
+      moreButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
+        '<span class="tui-ico-ellip">...</span>' +
+        '</a>',
     },
-    disabledMoveButton:
-      '<span class=" visually-hidden tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
-      '</span>',
-    moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip dots">' +
-      '<span class="material-icons">more_horiz</span>' +
-      '</a>',
-  },
-};
-
-export function makePagination(response) {
-  options.totalPages = response.totalPage;
-  options.totalItems = response.totalItems;
-
-  const pagination = new Pagination(container, options);
-  pagination.on('afterMove', event => {
-    options.page = event.page;
-    onPaginClick(event.page);
-  });
-}
-
-function onPaginClick(pages) {
-  getFilmsByUrl(`/3/trending/all/day?page=${pages}`);
+  };
+  const pagination = new Pagination(containerRef, options);
+  if (request === 'query') {
+    pagination.on('afterMove', event => {
+      const currentPage = event.page;
+      //дальше делаем запрос на сервер с currentPage и query(что вводится в инпут) и отрисовываем разметку
+    });
+  } else {
+    pagination.on('afterMove', event => {
+      const currentPage = event.page;
+      //дальше делаем запрос на сервер с currentPage и отрисовываем разметку
+    });
+  }
 }
