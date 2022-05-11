@@ -7,9 +7,7 @@ export function onAddToQueueBtn(e) {
     alert('signIn, please');
     return;
   }
-  const filmId = e.target.id;
-  // console.log(auth.currentUser.uid);
-  const saveFilmsRef = ref(db, 'users/' + auth.uid + '/films/queue');
+  const filmId = e.target.dataset.id;
 
   function addFilmToWatched(filmId) {
     const filmObj = { info: 'ТУТ БУДЕТ РЕЗУЛЬТАТ ОТ ЗАПРОСА ПО ID' };

@@ -7,9 +7,7 @@ export function onAddToWatchedBtn(e) {
     alert('signIn, please');
     return;
   }
-  const filmId = e.target.id;
-
-  const saveFilmsRef = ref(db, 'users/' + auth.uid + '/films/watched');
+  const filmId = e.target.dataset.id;
 
   function addFilmToWatched(filmId) {
     const filmObj = { info: 'ТУТ БУДЕТ РЕЗУЛЬТАТ ОТ ЗАПРОСА ПО ID' };
