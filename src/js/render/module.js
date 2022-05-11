@@ -1,2 +1,2 @@
-// import './main-render-logic';
-// import './render-film-list';
+import './main-render-logic';
+import './render-film-list';
