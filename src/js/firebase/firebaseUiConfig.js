@@ -3,7 +3,7 @@ import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
 import { refs } from './firebaseRefs';
-const { firebaseuiAuthContainer, signInBtn, signOutBtn } = refs();
+const { firebaseuiAuthContainer, signInBtn, signOutBtn, libraryBtn } = refs();
 
 import { auth } from './firebase';
 import { db } from './firebase';
@@ -42,9 +42,10 @@ export const uiConfig = {
       // закрываем модалку с регистрацией
       // меняем кнопку signIn => signOut
       // добавляем слушателя событий на кнопку signOut (callback: onSignOutBtn)
-      firebaseuiAuthContainer.classList.toggle('visually-hidden');
+      firebaseuiAuthContainer.classList.toggle('is-hidden');
       signInBtn.classList.toggle('visually-hidden');
       signOutBtn.classList.toggle('visually-hidden');
+      libraryBtn.classList.toggle('visually-hidden');
     },
     signInFailure: function (error) {
       // Ошибка при регистрации/аутентификации

@@ -48,10 +48,10 @@ signInBtn.addEventListener('click', onSignInBtn);
 signOutBtn.addEventListener('click', onSignOutBtn);
 
 // DELETE
-document.querySelector('.statusBtn').addEventListener('click', onStatusBtn);
-function onStatusBtn(e) {
-  console.log(auth.currentUser);
-}
+// document.querySelector('.statusBtn').addEventListener('click', onStatusBtn);
+// function onStatusBtn(e) {
+//   console.log(auth.currentUser);
+// }
 
 // Проверка статуса аутентификации при загрузке
 window.addEventListener('load', checkAuthOnLoad);

@@ -1,59 +1,61 @@
 <header class="header">
-    <div class="container header-container">
-        <div class="header-box">
-            <!--#region LOGO #-->
-            <a href="../src/index.html" class="logo">
-                <svg width="24" height="24">
-                    <use href="./images/sprite/sprite.svg#logo" aria-label="Логотип"></use>
-                </svg>
-                <span class="logo-title">Filmoteka</span>
-            </a>
-            <!--#endregion #-->
+  <div class="container header-container">
+    <div class="header-box">
+      <!--#region LOGO #-->
+      <a href="../src/index.html" class="logo">
+        <svg width="24" height="24">
+          <use href="./images/sprite/sprite.svg#logo" aria-label="Логотип"></use>
+        </svg>
+        <span class="logo-title">Filmoteka</span>
+      </a>
+      <!--#endregion #-->
 
-            <!--#region NAVIGATION #-->
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item">
-                        <button class="nav-btn header-btn-current"
-                            aria-label="Кнопка на початкову сторінку">Home</button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-btn" aria-label="Кнопка на мою бібліотеку">My library</button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-btn" aria-label="Кнопка на реєстрацію">Sign in</button>
-                    </li>
-                </ul>
-            </nav>
-            <!--#endregion #-->
-        </div>
-
-        <!--#region SEARCH #-->
-        <form class="search-form" id="search-form">
-
-            <input class="search-input" type="text" name="searchFilm" autocomplete="off" placeholder="Пошук фільмів" />
-
-            <button class="search-btn" aria-label="кнопка пошуку фільму" type="submit" width="12" heght="12">
-                <svg class="search-btn-icon" width="12" height="12">
-                    <use href="./images/sprite/sprite.svg#search"></use>
-                </svg>
+      <!--#region NAVIGATION #-->
+      <nav>
+        <ul class="nav">
+          <li class="nav-item">
+            <button class="nav-btn header-btn-current" aria-label="Кнопка на початкову сторінку">
+              Home
             </button>
-        </form>
-        <!--#endregion #-->
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn visually-hidden" aria-label="Кнопка на мою бібліотеку">
+              My library
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn signIn" aria-label="Кнопка на реєстрацію">Sign in</button>
+            <button class="nav-btn signOut visually-hidden" aria-label="Кнопка на реєстрацію">
+              Sign out
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <!--#endregion #-->
+    </div>
 
-        <!--  -->
+    <!--#region SEARCH #-->
+    <form class="search-form" id="search-form">
+      <input
+        class="search-input"
+        type="text"
+        name="searchFilm"
+        autocomplete="off"
+        placeholder="Пошук фільмів"
+      />
 
-        <!-- <nav>
-            <ul class="lang">
-                <li class="lang-item">
-                    <button class="lang-btn header-btn-current" aria-label="Кнопка включає українську мову">Ua</button>
-                </li>
-                <li class="lang-item">
-                    <button class="lang-btn" aria-label="Кнопка включає англійську мову">En</button>
-                </li>
-            </ul>
-        </nav> -->
-
+      <button
+        class="search-btn"
+        aria-label="кнопка пошуку фільму"
+        type="submit"
+        width="12"
+        heght="12"
+      >
+        <svg class="search-btn-icon" width="12" height="12">
+          <use href="./images/sprite/sprite.svg#search"></use>
+        </svg>
+      </button>
+    </form>
         <div class="lang__dropout">
             <div class="lang__select">
                 <span class="lang__selected">Ukr</span>
@@ -64,6 +66,5 @@
                 <li>Eng</li>
             </ul>
         </div>
-        <!--  -->
     </div>
 </header>
