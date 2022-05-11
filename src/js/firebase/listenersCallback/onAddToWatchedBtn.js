@@ -16,14 +16,16 @@ export function onAddToWatchedBtn(e) {
     const updates = {};
 
     updates['users/' + `${auth.currentUser.uid}` + '/films/watched/' + filmId] = filmObj;
-    update(ref(db), updates).catch(e => console.log('update error'));
+    update(ref(db), updates)
+      .then(success => {
+        e.target.removeEventListener('click', onAddToWatchedBtn);
+        e.target.textContent = 'remove from watched';
+        e.target.addEventListener('click', onRemoveFromWatched);
+        console.log('сохранили');
+      })
+      .catch(error => console.log(error));
   }
   addFilmToWatched(filmId);
-  console.log('сохранили');
-
-  e.target.removeEventListener('click', onAddToWatchedBtn);
-  e.target.textContent = 'remove from watched';
-  e.target.addEventListener('click', onRemoveFromWatched);
 }
 
 // remove from watched

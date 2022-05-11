@@ -16,12 +16,14 @@ export function onAddToQueueBtn(e) {
     const updates = {};
 
     updates['users/' + `${auth.currentUser.uid}` + '/films/queue/' + filmId] = filmObj;
-    update(ref(db), updates);
+    update(ref(db), updates)
+      .then(success => {
+        e.target.removeEventListener('click', onAddToQueueBtn);
+        e.target.textContent = 'remove from queue';
+        e.target.addEventListener('click', onRemoveFromQueue);
+        console.log('сохранили');
+      })
+      .catch(error => console.log(error));
   }
   addFilmToWatched(filmId);
-  console.log('сохранили');
-  // Добавить стили после добавления фильма
-  e.target.removeEventListener('click', onAddToQueueBtn);
-  e.target.textContent = 'remove from queue';
-  e.target.addEventListener('click', onRemoveFromQueue);
 }

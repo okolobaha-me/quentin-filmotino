@@ -11,10 +11,12 @@ export function onRemoveFromWatched(e) {
   const filmId = e.target.dataset.id;
 
   const removeFilmRef = ref(db, 'users/' + `${auth.currentUser.uid}` + '/films/watched/' + filmId);
-  remove(removeFilmRef);
-  console.log('удалили');
-
-  e.target.removeEventListener('click', onRemoveFromWatched);
-  e.target.textContent = 'add to watched';
-  e.target.addEventListener('click', onAddToWatchedBtn);
+  remove(removeFilmRef)
+    .then(success => {
+      e.target.removeEventListener('click', onRemoveFromWatched);
+      e.target.textContent = 'add to watched';
+      e.target.addEventListener('click', onAddToWatchedBtn);
+      console.log('удалили');
+    })
+    .catch(error => console.log(error));
 }

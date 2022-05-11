@@ -11,10 +11,12 @@ export function onRemoveFromQueue(e) {
   const filmId = e.target.dataset.id;
 
   const removeFilmRef = ref(db, 'users/' + `${auth.currentUser.uid}` + '/films/queue/' + filmId);
-  remove(removeFilmRef);
-  console.log('удалили');
-
-  e.target.removeEventListener('click', onRemoveFromQueue);
-  e.target.textContent = 'add to watched';
-  e.target.addEventListener('click', onAddToQueueBtn);
+  remove(removeFilmRef)
+    .then(success => {
+      e.target.removeEventListener('click', onRemoveFromQueue);
+      e.target.textContent = 'add to watched';
+      e.target.addEventListener('click', onAddToQueueBtn);
+      console.log('удалили');
+    })
+    .catch(error => console.log(error));
 }
