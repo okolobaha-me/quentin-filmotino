@@ -1,42 +1,18 @@
-import refs from './refs';
-
-import ApiService from '../API/api-service';
-
-//
 const API_KEY = 'api_key=79fb62b7e77dc5ee41dd0c1332d74198';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' +API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500'
-// import renderFilmList from './render-film-list.js';
 
-const service = new ApiService;
-
-window.addEventListener('load', onSiteLoad);
-refs.formRef.addEventListener('submit', onFormSubmit);
-
-function onFormSubmit(e) {
-    e.preventDefault();
-    const query = e.target.elements.searchFilm.value;
-   
-    console.log('Фильмы по запросу');
-    getFilmsByUrl(`3/search/movie?query=${query}`);
-}
-
-function onSiteLoad(e) {
-    console.log('Фильмы, приходящие, при загрузке страницы');
-    getFilmsByUrl('/3/trending/all/day'); 
-};
-
-
-function getFilmsByUrl(url) {
-    service.urlPath = url;
-    service.getFilms().then((data) => {
-        console.log(data.results);
-        showMovies(data.results);
-    });
-};
+const main = document.getElementsByClassName('filmList');
 
 getMovies(API_URL);
+
+function getMovies(url){
+    fetch(url).then(res => res.json()).then(data => {
+        console.log(data);
+        // showMovies(data.results);
+    })
+}
 
 function showMovies(data){
     main.innerHTML = '';
@@ -69,3 +45,4 @@ function showMovies(data){
         main.appendChild(movieEl);
     })
 }
+
