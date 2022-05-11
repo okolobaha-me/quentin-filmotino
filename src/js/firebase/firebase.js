@@ -83,17 +83,17 @@ addToQueueBtn.addEventListener('click', onAddToQueueBtn);
 //   });
 // });
 
-setTimeout(e => {
-  if (checkQueueFilmById(111111)) {
-    console.log('111111');
-  }
-  if (checkQueueFilmById(222222)) {
-    console.log('222222');
-  }
-  if (checkQueueFilmById(221222)) {
-    console.log('221222');
-  }
-}, 1000);
+// setTimeout(e => {
+//   if (checkQueueFilmById(111111)) {
+//     console.log('111111');
+//   }
+//   if (checkQueueFilmById(222222)) {
+//     console.log('222222');
+//   }
+//   if (checkQueueFilmById(221222)) {
+//     console.log('221222');
+//   }
+// }, 1000);
 
 // if (checkQueueFilmById(111111)) {
 //   console.log('111111');
