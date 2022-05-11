@@ -19,12 +19,13 @@ function onFormSubmit(e) {
     
     resetMarkup();
     console.log(`Фильмы по запросу ${query}:`);
+    refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'
     service.getFilmsByQuery(query).then(data => {
         if (data.total_results === 0) {
             console.log('запросов не найдено')
             return
         };
-        console.log(data)
+        console.log(data);
     });
 }
 
