@@ -1,7 +1,7 @@
 import { auth } from '../firebase';
 import { db } from '../firebase';
 import { ref, get } from 'firebase/database';
-
+// Возвращает массив фильмов
 export async function onGetQueueFilms(e) {
   if (!auth.currentUser) {
     return alert('signIn, please');
@@ -15,4 +15,5 @@ export async function onGetQueueFilms(e) {
     }
   });
   console.log(filmsArray);
+  return filmsArray;
 }

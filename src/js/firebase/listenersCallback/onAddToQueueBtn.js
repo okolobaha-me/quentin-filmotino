@@ -1,6 +1,7 @@
 import { auth } from '../firebase';
 import { db } from '../firebase';
 import { ref, update } from 'firebase/database';
+import { onRemoveFromQueue } from './onRemoveFromQueue';
 
 export function onAddToQueueBtn(e) {
   if (!auth.currentUser) {
@@ -20,4 +21,7 @@ export function onAddToQueueBtn(e) {
   addFilmToWatched(filmId);
   console.log('сохранили');
   // Добавить стили после добавления фильма
+  e.target.removeEventListener('click', onAddToQueueBtn);
+  e.target.textContent = 'remove from queue';
+  e.target.addEventListener('click', onRemoveFromQueue);
 }

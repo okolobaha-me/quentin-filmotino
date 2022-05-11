@@ -28,6 +28,7 @@ import { onAddToWatchedBtn } from './listenersCallback/onAddToWatchedBtn';
 import { onAddToQueueBtn } from './listenersCallback/onAddToQueueBtn';
 import { onGetWatchedFilms } from './listenersCallback/onGetWatchedFilms';
 import { onGetQueueFilms } from './listenersCallback/onGetQueueFilms';
+import { async } from '@firebase/util';
 // создание приложения firebase
 const app = initializeApp(firebaseConfig);
 // подключение аутентификации
@@ -69,3 +70,13 @@ addToQueueBtn.addEventListener('click', onAddToQueueBtn);
 // Получаем фильмы из очереди на просмотреных
 // onGetQueueFilms
 // document.querySelector('.testBtn').addEventListener('click', onGetQueueFilms);
+
+// document.querySelector('.testBtn').addEventListener('click', e => {
+//   onGetQueueFilms().then(filmArray => {
+//     function renderFilms(arrayFilms) {
+//       console.log(arrayFilms);
+//       console.log('рендер карточек');
+//     }
+//     renderFilms(filmArray);
+//   });
+// });

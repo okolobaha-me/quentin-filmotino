@@ -8,6 +8,8 @@ export async function onCheckWatchedFilmById(e) {
   //   }
 
   // Нужно получить id фильма
+  const filmId = 'тут должен быть путь на ID фильма'; // filmId = e.target.dataset.id;
+
   const watchedFilmsRef = ref(db, 'users/' + auth.currentUser.uid + '/films/watched');
   const idFilmsArray = await get(watchedFilmsRef).then(snapshot => {
     if (snapshot.exists()) {
@@ -18,7 +20,8 @@ export async function onCheckWatchedFilmById(e) {
     }
   });
   console.log(idFilmsArray);
-  if (idFilmsArray.includes('id фильма')) {
-    // добавить стили на кнопку, если такой фильм уже есть в списке
+  if (idFilmsArray.includes(filmId)) {
+    return true;
   }
+  return false;
 }
