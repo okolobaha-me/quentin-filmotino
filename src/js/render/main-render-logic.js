@@ -12,20 +12,35 @@ refs.formRef.addEventListener('submit', onFormSubmit);
 function onFormSubmit(e) {
     e.preventDefault();
     const query = e.target.elements.searchFilm.value;
-   
-    console.log('Фильмы по запросу');
-    getFilmsByUrl(`3/search/movie?query=${query}`);
+
+    if (query.trim() === '') {
+        return;
+    }
+    
+    resetMarkup();
+    console.log(`Фильмы по запросу ${query}:`);
+    service.getFilmsByQuery(query).then(data => {
+        if (data.total_results === 0) {
+            console.log('запросов не найдено')
+            return
+        };
+        console.log(data)
+    });
 }
 
 function onSiteLoad(e) {
+    resetMarkup();
+    refs.galleryRef.innerHTML = '<h1>здесь будут популярные за день фильмы ;)</h1>'
     console.log('Фильмы, приходящие, при загрузке страницы');
-    getFilmsByUrl('/3/trending/all/day'); 
-};
-
-
-function getFilmsByUrl(url) {
-    service.urlPath = url;
-    service.getFilms().then((data) => {
+    service.getPopularFilms().then(data => {
+        if (data.total_results === 0) {
+            console.log('запросов не найдено')
+            return
+        };
         console.log(data);
     });
+};
+
+function resetMarkup() {
+    refs.galleryRef.innerHTML = '';
 };
