@@ -28,6 +28,8 @@ import { onAddToWatchedBtn } from './listenersCallback/onAddToWatchedBtn';
 import { onAddToQueueBtn } from './listenersCallback/onAddToQueueBtn';
 import { onGetWatchedFilms } from './listenersCallback/onGetWatchedFilms';
 import { onGetQueueFilms } from './listenersCallback/onGetQueueFilms';
+import { checkQueueFilmById } from './listenersCallback/checkQueueFilmById';
+import { checkWatchedFilmById } from './listenersCallback/checkWatchedFilmById';
 import { async } from '@firebase/util';
 // создание приложения firebase
 const app = initializeApp(firebaseConfig);
@@ -80,3 +82,25 @@ addToQueueBtn.addEventListener('click', onAddToQueueBtn);
 //     renderFilms(filmArray);
 //   });
 // });
+
+setTimeout(e => {
+  if (checkQueueFilmById(111111)) {
+    console.log('111111');
+  }
+  if (checkQueueFilmById(222222)) {
+    console.log('222222');
+  }
+  if (checkQueueFilmById(221222)) {
+    console.log('221222');
+  }
+}, 1000);
+
+// if (checkQueueFilmById(111111)) {
+//   console.log('111111');
+// }
+// if (checkQueueFilmById(222222)) {
+//   console.log('222222');
+// }
+// if (checkQueueFilmById(221222)) {
+//   console.log('221222');
+// }

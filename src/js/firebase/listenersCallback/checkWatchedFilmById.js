@@ -2,14 +2,9 @@ import { auth } from '../firebase';
 import { db } from '../firebase';
 import { ref, get } from 'firebase/database';
 
-export async function onCheckWatchedFilmById(e) {
-  //   if (!auth.currentUser) {
-  //     return alert('signIn, please');
-  //   }
+// Принимает id фильма, который нужно проверить
 
-  // Нужно получить id фильма
-  const filmId = 'тут должен быть путь на ID фильма'; // filmId = e.target.dataset.id;
-
+export async function checkWatchedFilmById(id) {
   const watchedFilmsRef = ref(db, 'users/' + auth.currentUser.uid + '/films/watched');
   const idFilmsArray = await get(watchedFilmsRef).then(snapshot => {
     if (snapshot.exists()) {
@@ -20,7 +15,7 @@ export async function onCheckWatchedFilmById(e) {
     }
   });
   console.log(idFilmsArray);
-  if (idFilmsArray.includes(filmId)) {
+  if (idFilmsArray.includes(id)) {
     return true;
   }
   return false;
