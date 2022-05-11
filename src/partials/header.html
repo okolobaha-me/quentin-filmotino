@@ -14,7 +14,10 @@
       <nav>
         <ul class="nav">
           <li class="nav-item">
-            <button class="nav-btn header-btn-current" aria-label="Кнопка на початкову сторінку">
+            <button
+              class="nav-btn header-btn-current lng-home"
+              aria-label="Кнопка на початкову сторінку"
+            >
               Home
             </button>
           </li>
@@ -24,8 +27,13 @@
             </button>
           </li>
           <li class="nav-item">
-            <button class="nav-btn signIn" aria-label="Кнопка на реєстрацію">Sign in</button>
-            <button class="nav-btn signOut visually-hidden" aria-label="Кнопка на реєстрацію">
+            <button class="nav-btn signIn lng-signIn" aria-label="Кнопка на реєстрацію">
+              Sign in
+            </button>
+            <button
+              class="nav-btn signOut visually-hidden lng-signOut"
+              aria-label="Кнопка на реєстрацію"
+            >
               Sign out
             </button>
           </li>
@@ -58,12 +66,12 @@
     </form>
     <div class="lang__dropout">
       <div class="lang__select">
-        <span class="lang__selected">Ukr</span>
+        <span class="lang__selected lng-uaS">Ukr</span>
         <div class="caret"></div>
       </div>
       <ul class="lang__menu">
-        <li class="lang__active">Ukr</li>
-        <li>Eng</li>
+        <li class="lang__active lng-ua" data-lang title="ua">Ukr</li>
+        <li class="lng-en" data-lang title="en">Eng</li>
       </ul>
     </div>
   </div>
