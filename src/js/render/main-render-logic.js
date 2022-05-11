@@ -25,7 +25,7 @@ function onFormSubmit(e) {
             console.log('запросов не найдено')
             return
         };
-        console.log(data)
+        console.log(data);
     });
 }
 
