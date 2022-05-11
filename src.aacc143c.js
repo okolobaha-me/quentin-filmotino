@@ -172,7 +172,9 @@ module.exports=require("./lib/axios");
 "use strict";var e=n(require("./refs")),t=n(require("../API/api-service"));function n(e){return e&&e.__esModule?e:{default:e}}const o=new t.default;function r(e){e.preventDefault();const t=e.target.elements.searchFilm.value;console.log("Фильмы по запросу"),i(`3/search/movie?query=${t}`)}function l(e){console.log("Фильмы, приходящие, при загрузке страницы"),i("/3/trending/all/day")}function i(e){o.urlPath=e,o.getFilms().then(e=>{console.log(e)})}window.addEventListener("load",l),e.default.formRef.addEventListener("submit",r);
 },{"./refs":"oVz8","../API/api-service":"oY3H"}],"Ef63":[function(require,module,exports) {
 "use strict";require("./main-render-logic"),require("./render-film-list");
-},{"./main-render-logic":"x2ER","./render-film-list":"yZP9"}],"Focm":[function(require,module,exports) {
-"use strict";require("./sass/main.scss"),require("./js/modal"),require("./js/scroll-up"),require("./js/firebase/firebase"),require("./js/API/module"),require("./js/render/module");
-},{"./sass/main.scss":"clu1","./js/modal":"RSqK","./js/scroll-up":"GVd3","./js/firebase/firebase":"rwYf","./js/API/module":"qGZX","./js/render/module":"Ef63"}]},{},["Focm"], null)
-//# sourceMappingURL=/quentin-filmotino/src.a5e3d1ef.js.map
+},{"./main-render-logic":"x2ER","./render-film-list":"yZP9"}],"lPng":[function(require,module,exports) {
+const e=document.querySelectorAll(".lang__dropout");e.forEach(e=>{const l=e.querySelector(".lang__select"),c=e.querySelector(".caret"),t=e.querySelector(".lang__menu"),s=e.querySelectorAll(".lang__menu li"),a=e.querySelector(".lang__selected");l.addEventListener("click",()=>{l.classList.toggle("lang__select-clicked"),l.classList.remove("back"),c.classList.toggle("caret-rotate"),t.classList.toggle("lang__menu-open")}),s.forEach(e=>{e.addEventListener("click",()=>{a.innerText=e.innerText,l.classList.remove("lang__select-clicked"),c.classList.remove("caret-rotate"),t.classList.remove("lang__menu-open"),s.forEach(e=>{e.classList.remove("lang__active"),l.classList.add("back")}),e.classList.add("lang__active"),l.classList.add("back")})})});
+},{}],"Focm":[function(require,module,exports) {
+"use strict";require("./sass/main.scss"),require("./js/modal"),require("./js/scroll-up"),require("./js/firebase/firebase"),require("./js/API/module"),require("./js/render/module"),require("./js/dropout");
+},{"./sass/main.scss":"clu1","./js/modal":"RSqK","./js/scroll-up":"GVd3","./js/firebase/firebase":"rwYf","./js/API/module":"qGZX","./js/render/module":"Ef63","./js/dropout":"lPng"}]},{},["Focm"], null)
+//# sourceMappingURL=/quentin-filmotino/src.aacc143c.js.map
