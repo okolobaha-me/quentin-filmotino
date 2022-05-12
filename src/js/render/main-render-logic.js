@@ -1,7 +1,6 @@
 import refs from './refs';
 
 import ApiService from '../API/api-service';
-
 // import renderFilmList from './render-film-list.js';
 
 const service = new ApiService;
@@ -33,15 +32,18 @@ function onSiteLoad(e) {
     resetMarkup();
     refs.galleryRef.innerHTML = '<h1>здесь будут популярные за день фильмы ;)</h1>'   // <========== удалить после рендера
     console.log('Фильмы, приходящие, при загрузке страницы');
-    service.getPopularFilms({}).then(data => {
+    service.getPopularFilms({}).then((data) => {
         if (data.total_results === 0) {
             console.log('запросов не найдено')
             return
         };
-        console.log(data)                                     // <========== подставить рендер renderFilmList(data)
+        console.log(data);                                 // <========== подставить рендер renderFilmList(data)
     });
 };
+
 
 function resetMarkup() {
     refs.galleryRef.innerHTML = '';
 };
+
+

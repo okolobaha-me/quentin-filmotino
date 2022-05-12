@@ -5,3 +5,5 @@ import './js/firebase/firebase';
 import './js/firebase/firebase';
 import './js/API/module';
 import './js/render/module';
+import './js/dropout';
+import './js/localization/app';
