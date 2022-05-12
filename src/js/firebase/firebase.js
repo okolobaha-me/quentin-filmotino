@@ -23,7 +23,6 @@ const { signInBtn, firebaseuiAuthContainer, signOutBtn, addToWatchedBtn, addToQu
 // listeners import -----------------------------------------
 import { onSignOutBtn } from './listenersCallback/onSignOutBtn';
 import { onSignInBtn } from './listenersCallback/onSignInBtn';
-import { checkAuthOnLoad } from './listenersCallback/checkAuthOnLoad';
 import { onAddToWatchedBtn } from './listenersCallback/onAddToWatchedBtn';
 import { onAddToQueueBtn } from './listenersCallback/onAddToQueueBtn';
 import { onGetWatchedFilms } from './listenersCallback/onGetWatchedFilms';
@@ -57,7 +56,13 @@ signOutBtn.addEventListener('click', onSignOutBtn);
 // }
 
 // Проверка статуса аутентификации при загрузке
-window.addEventListener('load', checkAuthOnLoad);
+// window.addEventListener('load', checkAuthOnLoad);
+onAuthStateChanged(auth, function (user) {
+  if (user) {
+    signInBtn.classList.toggle('visually-hidden');
+    signOutBtn.classList.toggle('visually-hidden');
+  }
+});
 
 // Добавление фильма к списку просмотреных
 addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
@@ -104,3 +109,11 @@ addToQueueBtn.addEventListener('click', onAddToQueueBtn);
 // if (checkQueueFilmById(221222)) {
 //   console.log('221222');
 // }
+
+// let hash = window.location.hash;
+// hash = hash.substring(1);
+// console.log(hash);
+// function qwe() {
+//   onGetQueueFilms();
+// }
+// setTimeout(qwe, 1000);
