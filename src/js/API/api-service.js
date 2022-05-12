@@ -15,13 +15,13 @@ export default class {
         this.options = {
             urlPath: '',
             page: 1,
-            perPage: 20,
+            perPage: 16,
         };
     };
 
     // **getFilm-funcs**
 
-    getFilms = async () => {
+    async getFilms() {
         const response = await this.service.get(this.options.urlPath);
         
         response.data.page = this.options.page;
@@ -38,6 +38,13 @@ export default class {
     getFilmsByQuery(q) {
         this.changeUrlPath(`3/search/movie?query=${q}`);
         return this.getFilms();
+    };
+
+    async getFilmById(id) {
+        this.changeUrlPath(`/3/movie/${id}`);
+
+        const response = await this.service.get(this.options.urlPath);
+        return response.data;
     };
 
     // **url-funcs**
@@ -83,3 +90,4 @@ export default class {
         this.options.urlPath = newPath;
     };
 };
+
