@@ -29,15 +29,15 @@ export default class {
         return response.data;
     };
 
-    getPopularFilms(page = 1) {
-        const url = `/3/trending/all/day?page=${page}`
+    getPopularFilms({ page = this.options.page, language = 'en' } = {}) {
+        const url = `/3/trending/all/day?page=${page}&language=${language}`
 
         this.changeUrlPath(url);
         return this.getFilms();
     };
 
-    getFilmsByQuery(q, page = this.options.page) {
-        const url = `3/search/movie?query=${q}&page=${page}`;
+    getFilmsByQuery({ query = '', page = this.options.page, language = 'en' } = {}) {
+        const url = `3/search/movie?query=${query}&page=${page}&language=${language}`;
         this.changeUrlPath(url);
         return this.getFilms();
     };
