@@ -17,9 +17,9 @@ function onFormSubmit(e) {
         return;
     }
     
-    resetMarkup();
-    console.log(`Фильмы по запросу ${query}:`);
+    // resetMarkup();
     refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'          // <========== удалить после рендера
+    console.log(`Фильмы по запросу ${query}:`);
     service.getFilmsByQuery({query: query}).then(data => {
         if (data.total_results === 0) {
             console.log('запросов не найдено')
