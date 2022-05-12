@@ -1,14 +1,20 @@
-/*import Pagination from 'tui-pagination';
+import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import ApiService from '../API/api-service';
-const service = new ApiService();
+const servicePagination = new ApiService();
 import refs from '../render/refs';
+refs.formRef.addEventListener('submit', onFormSubmit);
 
-export function createPagination(request, totalPages, query) {
+function onFormSubmit(e) {
+  //e.preventDefault();
+  return e.target.elements.searchFilm.value;
+}
+
+export function createPagination(request /*totalPages,*/) {
   //request заполняется вручную и используется для логики
   const options = {
-    totalItems: totalPages,
-    itemsPerPage: 20,
+    totalItems: /*totalPages*/ 20000,
+    itemsPerPage: 16,
     visiblePages: 5,
     page: 1,
     centerAlign: true,
@@ -21,12 +27,13 @@ export function createPagination(request, totalPages, query) {
   if (request === 'query') {
     pagination.on('afterMove', event => {
       const currentPage = event.page;
-      service./*будет твоя функция*/ /*(currentPage, query).then(r => console.log(r));
+      const q = onFormSubmit();
+      servicePagination.getFilmsByQuery(currentPage, { query: q }).then(r => console.log(r));
     });
   } else {
     pagination.on('afterMove', event => {
       const currentPage = event.page;
-      service.getPopularFilms(currentPage).then(r => console.log(r));
+      servicePagination.getPopularFilms({ page: currentPage }).then(r => console.log(r));
     });
   }
-}*/
+}

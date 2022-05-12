@@ -3,4 +3,5 @@ export default {
   inputRef: document.querySelector('.search-input'),
   btnRef: document.querySelector('.search-btn'),
   containerRef: document.getElementById('tui-pagination-container'),
+  galleryRef: document.querySelector('.filmList'),
 };
