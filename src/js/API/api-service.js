@@ -14,18 +14,76 @@ export default class {
 
     this.options = {
       urlPath: '',
+      page: 1,
+      perPage: 16,
     };
   }
 
-  getFilms = async () => {
+  // **getFilm-funcs**
+
+  async getFilms() {
+    const response = await this.service.get(this.options.urlPath);
+
+    response.data.results.length = this.options.perPage;
+
+    return response.data;
+  }
+
+  getPopularFilms({ page = this.options.page, language = 'en' } = {}) {
+    const url = `/3/trending/all/day?page=${page}&language=${language}`;
+
+    this.changeUrlPath(url);
+    return this.getFilms();
+  }
+
+  getFilmsByQuery({ query = '', page = this.options.page, language = 'en' } = {}) {
+    const url = `3/search/movie?query=${query}&page=${page}&language=${language}`;
+
+    this.changeUrlPath(url);
+    return this.getFilms();
+  }
+
+  async getFilmById({ id = null, language = 'en' } = {}) {
+    const url = `/3/movie/${id}?language=${language}`;
+
+    this.changeUrlPath(url);
+
     const response = await this.service.get(this.options.urlPath);
     return response.data;
-  };
+  }
 
-  getFilmsByQuery(q) {}
+  // **url-funcs**
+
+  changeUrlPath(newPath) {
+    this.options.urlPath = newPath;
+  }
 
   resetUrlPath() {
     this.options.urlPath = '';
+  }
+
+  // **pag-funcs**
+
+  increasePage() {
+    this.options.page += 1;
+  }
+
+  decreasePage() {
+    this.options.page -= 1;
+  }
+
+  resetPage() {
+    this.options.page = 1;
+  }
+
+  // **get-set**
+
+  get page() {
+    return this.options.page;
+  }
+
+  set page(newPage) {
+    this.options.page = newPage;
   }
 
   get urlPath() {
