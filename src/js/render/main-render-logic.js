@@ -1,5 +1,5 @@
 import refs from './refs';
-import { createPagination } from '../tui.pagination/tui.pagination';
+import { createPagination, createPaginationBySearch } from '../tui.pagination/tui.pagination';
 
 import ApiService from '../API/api-service';
 // import renderFilmList from './render-film-list.js';
@@ -26,8 +26,8 @@ function onFormSubmit(e) {
       return;
     }
     console.log(data); // <========== подставить рендер renderFilmList(data)
+    createPagination(query);
   });
-  createPagination('query');
 }
 
 function onSiteLoad(e) {
@@ -41,7 +41,7 @@ function onSiteLoad(e) {
     }
     console.log(data); // <========== подставить рендер renderFilmList(data)
   });
-  createPagination('popular');
+  createPagination();
 }
 
 function resetMarkup() {
