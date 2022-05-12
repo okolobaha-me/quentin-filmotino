@@ -38,12 +38,15 @@ export default class {
 
     getFilmsByQuery({ query = '', page = this.options.page, language = 'en' } = {}) {
         const url = `3/search/movie?query=${query}&page=${page}&language=${language}`;
+
         this.changeUrlPath(url);
         return this.getFilms();
     };
 
-    async getFilmById(id) {
-        this.changeUrlPath(`/3/movie/${id}`);
+    async getFilmById({ id = null, language = 'en' } = {}) {
+        const url = `/3/movie/${id}?language=${language}`;
+
+        this.changeUrlPath(url);
 
         const response = await this.service.get(this.options.urlPath);
         return response.data;
