@@ -15,29 +15,41 @@ export default class {
         this.options = {
             urlPath: '',
             page: 1,
-            perPage: 20,
+            perPage: 16,
         };
     };
 
     // **getFilm-funcs**
 
-    getFilms = async () => {
+    async getFilms() {
         const response = await this.service.get(this.options.urlPath);
-        
-        response.data.page = this.options.page;
+         
         response.data.results.length = this.options.perPage;
 
         return response.data;
     };
 
-    getPopularFilms() {
-        this.changeUrlPath('/3/trending/all/day');
+    getPopularFilms({ page = this.options.page, language = 'en' } = {}) {
+        const url = `/3/trending/all/day?page=${page}&language=${language}`
+
+        this.changeUrlPath(url);
         return this.getFilms();
     };
 
-    getFilmsByQuery(q) {
-        this.changeUrlPath(`3/search/movie?query=${q}`);
+    getFilmsByQuery({ query = '', page = this.options.page, language = 'en' } = {}) {
+        const url = `3/search/movie?query=${query}&page=${page}&language=${language}`;
+
+        this.changeUrlPath(url);
         return this.getFilms();
+    };
+
+    async getFilmById({ id = null, language = 'en' } = {}) {
+        const url = `/3/movie/${id}?language=${language}`;
+
+        this.changeUrlPath(url);
+
+        const response = await this.service.get(this.options.urlPath);
+        return response.data;
     };
 
     // **url-funcs**
@@ -83,3 +95,4 @@ export default class {
         this.options.urlPath = newPath;
     };
 };
+
