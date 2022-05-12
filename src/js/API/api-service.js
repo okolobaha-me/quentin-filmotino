@@ -23,20 +23,22 @@ export default class {
 
     async getFilms() {
         const response = await this.service.get(this.options.urlPath);
-        
-        response.data.page = this.options.page;
+         
         response.data.results.length = this.options.perPage;
 
         return response.data;
     };
 
-    getPopularFilms() {
-        this.changeUrlPath('/3/trending/all/day');
+    getPopularFilms(page = 1) {
+        const url = `/3/trending/all/day?page=${page}`
+
+        this.changeUrlPath(url);
         return this.getFilms();
     };
 
-    getFilmsByQuery(q) {
-        this.changeUrlPath(`3/search/movie?query=${q}`);
+    getFilmsByQuery(q, page = this.options.page) {
+        const url = `3/search/movie?query=${q}&page=${page}`;
+        this.changeUrlPath(url);
         return this.getFilms();
     };
 
