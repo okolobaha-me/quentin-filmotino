@@ -1,10 +1,12 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import Api from '../API/api-service';
-// import checkQueueFilmById from '../firebase/listenersCallback/checkQueueFilmById';
-// import checkWatchedFilmById from '../firebase/listenersCallback/checkWatchedFilmById';
-// import onAddToQueueBtn from '../firebase/listenersCallback/onAddToQueueBtn';
-// import onAddToWatchedBtn from '../firebase/listenersCallback/onAddToWatchedBtn';
-// import onRemoveFromQueue from '../firebase/listenersCallback/onRemoveFromQueue';
-// import onRemoveFromWatched from '../firebase/listenersCallback/onRemoveFromWatched';
+// import {checkQueueFilmById} from '../firebase/listenersCallback/checkQueueFilmById';
+// import {checkWatchedFilmById} from '../firebase/listenersCallback/checkWatchedFilmById';
+// import {onAddToQueueBtn} from '../firebase/listenersCallback/onAddToQueueBtn';
+// import {onAddToWatchedBtn} from '../firebase/listenersCallback/onAddToWatchedBtn';
+// import {onRemoveFromQueue} from '../firebase/listenersCallback/onRemoveFromQueue';
+// import {onRemoveFromWatched} from '../firebase/listenersCallback/onRemoveFromWatched';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const api = new Api();
@@ -29,7 +31,7 @@ function onCheckClickUl(e) {
   onOpenModal(id);
 }
 
-function onOpenModal(id) {
+async function onOpenModal(id) {
   api
     .getFilmById({ id })
     .then(renderModal)
@@ -42,31 +44,32 @@ function onOpenModal(id) {
       addListenerToCloseBtn();
       // checkFilm(id);
     });
+  // .catch(() => Notify.info("Unfortunately, this movie hasn't description yet"));
 }
 
-function checkFilm(id) {
-  const isWatched = checkWatchedFilmById(id);
-  const isQueue = checkQueueFilmById(id);
+// function checkFilm(id) {
+//   const isWatched = checkWatchedFilmById(id);
+//   const isQueue = checkQueueFilmById(id);
 
-  const addToQueueBtn = document.querySelector('[data-action="addToQueue"]');
-  const addToWatchedBtn = document.querySelector('[data-action="addToWatched"]');
+//   const addToQueueBtn = document.querySelector('[data-action="addToQueue"]');
+//   const addToWatchedBtn = document.querySelector('[data-action="addToWatched"]');
 
-  if (isWatched) {
-    addToWatchedBtn.addEventListener('click', onRemoveFromWatched);
-    addToWatchedBtn.textContent = 'remove from watched';
-  } else {
-    addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
-    addToWatchedBtn.textContent = 'add to watched';
-  }
+//   if (isWatched) {
+//     addToWatchedBtn.addEventListener('click', onRemoveFromWatched);
+//     addToWatchedBtn.textContent = 'remove from watched';
+//   } else {
+//     addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
+//     addToWatchedBtn.textContent = 'add to watched';
+//   }
 
-  if (isQueue) {
-    addToQueueBtn.addEventListener('click', onRemoveFromQueue);
-    addToQueueBtn.textContent = 'remove from queue';
-  } else {
-    addToQueueBtn.addEventListener('click', onAddToQueueBtn);
-    addToQueueBtn.textContent = 'add to queue';
-  }
-}
+//   if (isQueue) {
+//     addToQueueBtn.addEventListener('click', onRemoveFromQueue);
+//     addToQueueBtn.textContent = 'remove from queue';
+//   } else {
+//     addToQueueBtn.addEventListener('click', onAddToQueueBtn);
+//     addToQueueBtn.textContent = 'add to queue';
+//   }
+// }
 
 function onCloseModal() {
   refs.modal.innerHTML = '';
@@ -115,9 +118,16 @@ function renderModal({
   original_title,
   overview,
   id,
+  genres,
 }) {
-  refs.listGenres = document.querySelector('.filmList__genge');
-  const genres = refs.listGenres.textContent;
+  let filmGenres = '';
+
+  genres.map(genre => {
+    filmGenres += `${genre.name}, `;
+  });
+
+  filmGenres = filmGenres.slice(0, -2);
+
   const markup = `
   <div class="modal-film">
     <button class="modal__btn" data-film-modal-close type="button">
@@ -148,7 +158,7 @@ function renderModal({
           <p class="movie-description__options"><span class="orange">${vote_average} </span> / ${vote_count}</p>
           <p class="movie-description__options">${popularity}</p>
           <p class="movie-description__options uppercase">${original_title}</p>
-          <p class="movie-description__options">${genres}</p>
+          <p class="movie-description__options">${filmGenres}</p>
         </div>
       </div>
       <div class="view">
