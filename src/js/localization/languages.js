@@ -80,8 +80,8 @@ export const languages = {
     ua: 'Команда',
   },
   evgeny: {
-    en: 'Evgeny Onishchenko',
-    ua: 'Євгеній Оніщенко',
+    en: 'Yevheniy Onyshchenko',
+    ua: 'Євгеній Онищенко',
   },
   anna: {
     en: 'Anna Miklukha',
@@ -92,7 +92,7 @@ export const languages = {
     ua: 'Борис Корсун',
   },
   denis: {
-    en: 'Denis Kochergin',
+    en: 'Denys Kochergin',
     ua: 'Денис Кочергін',
   },
   victoria: {
@@ -101,7 +101,7 @@ export const languages = {
   },
   vlad: {
     en: 'Vlad Pomynchuk',
-    ua: 'Влад Помінчук',
+    ua: 'Влад Поминчук',
   },
   vladyslav: {
     en: 'Vladyslav Kruchok',
