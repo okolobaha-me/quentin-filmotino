@@ -1,19 +1,20 @@
-function showMovies(data){
-    main.innerHTML = '';
-  
-    data.forEach(movie => {
-        const {title, poster_path, vote_average, release_date, genre_ids} = movie;
+import {convertIdInGenre, movieGenresIfEmpty} from '../API/convertIdtoGenre';
+const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+
+
+  export default function showMovies(data){
+    console.log('data', data);
+    const arr = data.results
+    return arr.map(
+         ({title, name, poster_path, vote_average, release_date, genre_ids}) => {
   
         let movieGenres = [];
         for (let i = 0; i < genre_ids.length; i += 1) {
         let genre = convertIdInGenre(genre_ids[i]);
         movieGenres.push(genre);
         };
-  
-  
-        const movieEl = document.createElement('li');
-        movieEl.classList.add('filmList__item');
-        movieEl.innerHTML = `
+        return `
+        <li class="filmList__item">
         <div class="filmList__link">
           <div class="filmList__poster">
             <picture>
@@ -23,19 +24,18 @@ function showMovies(data){
               />
             </picture>
           </div>
-          <h2 class="filmList__title">${title}</h2>
+          <h2 class="filmList__title">${title||name}</h2>
           <div class="filmList__info">
             <p class="filmList__text">
-              <span class="filmList__genge">${movieGenres}</span> |
-              <span class="filmList__releaseDate">${release_date}</span>
+              <span class="filmList__genge">${movieGenresIfEmpty(movieGenres)}</span> |
+              <span class="filmList__releaseDate">${release_date ? release_date.slice(0, 4):''}</span>
             </p>
             <p class="filmList__voteAverage">${vote_average}</p>
           </div>
         </div>
-        `
-  
-        main.appendChild(movieEl);
-    })
+        </li>
+        `;
+    },) .join('');
   }
 
-  export default function () {}
+  

@@ -2,7 +2,7 @@ import refs from './refs';
 
 import ApiService from '../API/api-service';
 // import renderFilmList from './render-film-list.js';
-// import render-film-list2 from './render-film-list2.js';
+import showMovies from './render-film-list2.js';
 
 const service = new ApiService;
 
@@ -25,21 +25,22 @@ function onFormSubmit(e) {
             console.log('запросов не найдено')
             return
         };
-        console.log(data)                                   // <========== подставить рендер renderFilmList(data)
+        console.log(data);                                   // <========== подставить рендер renderFilmList(data)
     });
 }
 
 function onSiteLoad(e) {
     resetMarkup();
-    refs.galleryRef.innerHTML = '<h1>здесь будут популярные за день фильмы ;)</h1>'   // <========== удалить после рендера
+      // <========== удалить после рендера
     console.log('Фильмы, приходящие, при загрузке страницы');
     service.getPopularFilms({}).then((data) => {
         if (data.total_results === 0) {
             console.log('запросов не найдено')
             return
         };
-        console.log(data);                                 // <========== подставить рендер renderFilmList(data)
-
+        console.log(data);
+        const markup = showMovies(data);
+        refs.galleryRef.insertAdjacentHTML('beforeend' , markup);                                 // <========== подставить рендер renderFilmList(data)
     });
 };
 
