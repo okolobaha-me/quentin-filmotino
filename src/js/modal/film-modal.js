@@ -53,18 +53,18 @@
 
 //   if (isWatched) {
 //     addToWatchedBtn.addEventListener('click', onRemoveFromWatched);
-//     addToWatchedBtn.textContent = 'remove from watched';
+//     addToWatchedBtn.textContent = 'Remove from watched';
 //   } else {
 //     addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
-//     addToWatchedBtn.textContent = 'add to watched';
+//     addToWatchedBtn.textContent = 'Add to watched';
 //   }
 
 //   if (isQueue) {
 //     addToQueueBtn.addEventListener('click', onRemoveFromQueue);
-//     addToQueueBtn.textContent = 'remove from queue';
+//     addToQueueBtn.textContent = 'Remove from queue';
 //   } else {
 //     addToQueueBtn.addEventListener('click', onAddToQueueBtn);
-//     addToQueueBtn.textContent = 'add to queue';
+//     addToQueueBtn.textContent = 'Add to queue';
 //   }
 // }
 
@@ -157,10 +157,10 @@
 //       </div>
 //       <div class="btn-wrapper">
 //         <!-- В кнопки нужно добавлять ID фильма  -->
-//         <button class="btn btn-orange" type="button" data-action="addToWatched" data-id="${id}">
+//         <button class="btn btn-orange lng-addToWatched" type="button" data-action="addToWatched" data-id="${id}">
 //           add to Watched
 //         </button>
-//         <button class="btn btn-white" type="button" data-action="addToQueue" data-id="${id}">
+//         <button class="btn btn-white lng-addToQueue" type="button" data-action="addToQueue" data-id="${id}">
 //           add to queue
 //         </button>
 //       </div>

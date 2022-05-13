@@ -35,13 +35,21 @@ export const languages = {
     en: 'queue',
     ua: 'черга',
   },
-  toWatched: {
+  addToWatched: {
     en: 'Add to watched',
     ua: 'Додати до переглянутих',
   },
-  toQueue: {
+  addToQueue: {
     en: 'Add to queue',
     ua: 'Додати до черги',
+  },
+  removeFromWatched: {
+    en: 'Remove from watched',
+    ua: 'Видалити з переглянутих',
+  },
+  removeFromQueue: {
+    en: 'Remove from queue',
+    ua: 'Видалити з черги',
   },
   vote: {
     en: 'Vote',
@@ -139,4 +147,5 @@ export const languages = {
     en: 'Sign out',
     ua: 'Вихід',
   },
+
 };
