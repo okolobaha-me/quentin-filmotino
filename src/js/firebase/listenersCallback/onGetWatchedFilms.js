@@ -15,5 +15,22 @@ export async function onGetWatchedFilms(e) {
     }
   });
   console.log(filmsArray);
-  return filmsArray;
+  const uaFilms = [];
+  const enFilms = [];
+  filmsArray.forEach(id => {
+    uaFilms.push(id.ua);
+  });
+  filmsArray.forEach(id => {
+    enFilms.push(id.en);
+  });
+
+  let hash = window.location.hash;
+  hash = hash.substring(1);
+
+  if (hash === 'en') {
+    console.log(enFilms);
+    return enFilms;
+  }
+  console.log(uaFilms);
+  return uaFilms;
 }
