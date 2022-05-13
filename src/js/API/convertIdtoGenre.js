@@ -31,3 +31,17 @@ export function convertIdInGenre(id) {
         };
     };
 };
+
+export function movieGenresIfEmpty(arr) {
+    let string = ', Other';
+    if (arr) {
+        if (arr.length === 0) {
+        return 'Genre unavailable';
+    }   else 
+        if (arr.length <= 2) {
+        return arr.slice().join(', ');
+    } else {
+        return arr.slice(0, 2).join(', ') + string.toLowerCase();
+        };
+    }  
+};
