@@ -1,4 +1,5 @@
 import refs from './refs';
+import { createPagination, hidePagination, showPagination } from '../tui.pagination/tui.pagination';
 
 import ApiService from '../API/api-service';
 import renderFilmList from './render-film-list.js';
@@ -22,9 +23,14 @@ function onFormSubmit(e) {
   service.getFilmsByQuery({ query: query }).then(data => {
     if (data.total_results === 0) {
       console.log('запросов не найдено');
+      hidePagination();
       return;
     }
-    console.log(data); // <========== подставить рендер renderFilmList(data)
+
+    console.log(data);
+    showPagination(); // <========== подставить рендер renderFilmList(data)
+    createPagination(query);
+
   });
 }
 
@@ -35,10 +41,13 @@ function onSiteLoad(e) {
   service.getPopularFilms({}).then(data => {
     if (data.total_results === 0) {
       console.log('запросов не найдено');
+      hidePagination();
       return;
     }
     console.log(data); // <========== подставить рендер renderFilmList(data)
   });
+
+  createPagination();
 }
 
 function resetMarkup() {
