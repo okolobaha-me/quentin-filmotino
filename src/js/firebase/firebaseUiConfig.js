@@ -45,7 +45,7 @@ export const uiConfig = {
       firebaseuiAuthContainer.classList.toggle('is-hidden');
       // signInBtn.classList.toggle('visually-hidden');
       // signOutBtn.classList.toggle('visually-hidden');
-      libraryBtn.classList.toggle('visually-hidden');
+      // libraryBtn.classList.toggle('visually-hidden');
     },
     signInFailure: function (error) {
       // Ошибка при регистрации/аутентификации

@@ -19,7 +19,14 @@ import { getDatabase, ref, set, push, get, update, remove, onValue, off } from '
 
 // refs import -----------------------------------------
 import { refs } from './firebaseRefs';
-const { signInBtn, firebaseuiAuthContainer, signOutBtn, addToWatchedBtn, addToQueueBtn } = refs();
+const {
+  signInBtn,
+  firebaseuiAuthContainer,
+  signOutBtn,
+  addToWatchedBtn,
+  addToQueueBtn,
+  libraryBtn,
+} = refs();
 // listeners import -----------------------------------------
 import { onSignOutBtn } from './listenersCallback/onSignOutBtn';
 import { onSignInBtn } from './listenersCallback/onSignInBtn';
@@ -61,14 +68,15 @@ onAuthStateChanged(auth, function (user) {
   if (user) {
     signInBtn.classList.toggle('visually-hidden');
     signOutBtn.classList.toggle('visually-hidden');
+    libraryBtn.classList.toggle('visually-hidden');
   }
 });
 
 // Добавление фильма к списку просмотреных
-addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
+// addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
 
 // Добавление фильма к очереди на просмотр
-addToQueueBtn.addEventListener('click', onAddToQueueBtn);
+// addToQueueBtn.addEventListener('click', onAddToQueueBtn);
 
 // Получаем фильмы из списка просмотреных
 // onGetWatchedFilms
