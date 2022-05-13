@@ -73,10 +73,10 @@ onAuthStateChanged(auth, function (user) {
 });
 
 // Добавление фильма к списку просмотреных
-addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
+// addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
 
 // Добавление фильма к очереди на просмотр
-addToQueueBtn.addEventListener('click', onAddToQueueBtn);
+// addToQueueBtn.addEventListener('click', onAddToQueueBtn);
 
 // Получаем фильмы из списка просмотреных
 // onGetWatchedFilms
