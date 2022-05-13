@@ -2,7 +2,7 @@ import refs from './refs';
 import { createPagination, hidePagination, showPagination } from '../tui.pagination/tui.pagination';
 
 import ApiService from '../API/api-service';
-// import renderFilmList from './render-film-list.js';
+import renderFilmList from './render-film-list.js';
 
 const service = new ApiService();
 
@@ -30,6 +30,7 @@ function onFormSubmit(e) {
     console.log(data);
     showPagination(); // <========== подставить рендер renderFilmList(data)
     createPagination(query);
+
   });
 }
 

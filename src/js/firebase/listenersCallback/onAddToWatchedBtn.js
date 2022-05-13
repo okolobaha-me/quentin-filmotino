@@ -2,20 +2,25 @@ import { auth } from '../firebase';
 import { db } from '../firebase';
 import { ref, update } from 'firebase/database';
 import { onRemoveFromWatched } from './onRemoveFromWatched';
+import ApiService from '../../API/api-service';
 
-export function onAddToWatchedBtn(e) {
+const service = new ApiService();
+
+export async function onAddToWatchedBtn(e) {
   if (!auth.currentUser) {
     alert('signIn, please');
     return;
   }
   const filmId = e.target.dataset.id;
 
-  function addFilmToWatched(filmId) {
-    const filmObj = { info: 'ТУТ БУДЕТ РЕЗУЛЬТАТ ОТ ЗАПРОСА ПО ID' };
+  async function addFilmToWatched(filmId) {
+    const filmObjEn = await service.getFilmById({ id: filmId, language: 'en' });
+    const filmObjUa = await service.getFilmById({ id: filmId, language: 'uk' });
 
     const updates = {};
 
-    updates['users/' + `${auth.currentUser.uid}` + '/films/watched/' + filmId] = filmObj;
+    updates['users/' + `${auth.currentUser.uid}` + '/films/watched/' + filmId + '/en'] = filmObjEn;
+    updates['users/' + `${auth.currentUser.uid}` + '/films/watched/' + filmId + '/ua'] = filmObjUa;
     update(ref(db), updates)
       .then(success => {
         e.target.removeEventListener('click', onAddToWatchedBtn);
@@ -29,3 +34,9 @@ export function onAddToWatchedBtn(e) {
 }
 
 // remove from watched
+
+// document.querySelector('.testBtn').addEventListener('click', e => {
+//   const filmObj = service.getFilmById({ id: 752623, language: 'en' }).then(e => {
+//     console.log(e);
+//   });
+// });
