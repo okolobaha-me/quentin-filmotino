@@ -36,6 +36,9 @@ function createPaginationByLoad(currentPage) {
   servicePagination.getPopularFilms({ page: currentPage }).then(r => console.log(r));
 }
 
-export function statePagination() {
-  refs.containerRef.classList.toggle('hide');
+export function hidePagination() {
+  refs.containerRef.classList.add('hide');
+}
+export function showPagination() {
+  refs.containerRef.classList.remove('hide');
 }
