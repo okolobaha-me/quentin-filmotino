@@ -1,5 +1,6 @@
 import Pagination from 'tui-pagination';
 import ApiService from '../API/api-service';
+import showMovies from '../render/render-film-list2.js';
 
 const servicePagination = new ApiService();
 
@@ -7,7 +8,7 @@ console.log(servicePagination);
 
 import refs from '../render/refs';
 
-export function createPagination(q, total_results = 20000) {
+export function createPagination(q, total_results = 300) {
   const options = {
     totalItems: total_results,
     itemsPerPage: 20,
@@ -33,11 +34,19 @@ export function createPagination(q, total_results = 20000) {
 }
 
 function createPaginationBySearch(q, currentPage) {
-  servicePagination.getFilmsByQuery({ page: currentPage, query: q }).then(r => console.log(r));
+  servicePagination.getFilmsByQuery({ page: currentPage, query: q }).then(data => {
+    /*const markup = showMovies(data);
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup)*/ console.log(data);
+  });
+  //refs.galleryRef.innerHTML = '';
 }
 
 function createPaginationByLoad(currentPage) {
-  servicePagination.getPopularFilms({ page: currentPage }).then(r => console.log(r));
+  servicePagination.getPopularFilms({ page: currentPage }).then(data => {
+    const markup = showMovies(data);
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
+  });
+  refs.galleryRef.innerHTML = '';
 }
 
 export function hidePagination() {
