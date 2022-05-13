@@ -1,12 +1,15 @@
 import Pagination from 'tui-pagination';
-//import 'tui-pagination/dist/tui-pagination.css';
 import ApiService from '../API/api-service';
+
 const servicePagination = new ApiService();
+
+console.log(servicePagination);
+
 import refs from '../render/refs';
 
-export function createPagination(q) {
+export function createPagination(q, total_results = 20000) {
   const options = {
-    totalItems: 20000,
+    totalItems: total_results,
     itemsPerPage: 20,
     visiblePages: 5,
     page: 1,
@@ -14,6 +17,7 @@ export function createPagination(q) {
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
   };
+  console.log(options);
 
   const pagination = new Pagination(refs.containerRef, options);
 
