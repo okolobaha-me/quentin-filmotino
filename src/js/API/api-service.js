@@ -4,95 +4,93 @@ const API_KEY = '79fb62b7e77dc5ee41dd0c1332d74198';
 const BASE_URL = 'https://api.themoviedb.org';
 
 export default class {
-    constructor() {
-        this.service = axios.create({
-            baseURL: BASE_URL,
-            params: {
-                api_key: API_KEY,
-            },
-        });
+  constructor() {
+    this.service = axios.create({
+      baseURL: BASE_URL,
+      params: {
+        api_key: API_KEY,
+      },
+    });
 
-        this.options = {
-            urlPath: '',
-            page: 1,
-            perPage: 16,
-        };
+    this.options = {
+      urlPath: '',
+      page: 1,
+      perPage: 16,
     };
+  }
 
-    // **getFilm-funcs**
+  // **getFilm-funcs**
 
-    async getFilms() {
-        const response = await this.service.get(this.options.urlPath);
-         
-        response.data.results.length = this.options.perPage;
+  async getFilms() {
+    const response = await this.service.get(this.options.urlPath);
 
-        return response.data;
-    };
+    response.data.results.length = this.options.perPage;
 
-    getPopularFilms({ page = this.options.page, language = 'en' } = {}) {
-        const url = `/3/trending/all/day?page=${page}&language=${language}`
+    return response.data;
+  }
 
-        this.changeUrlPath(url);
-        return this.getFilms();
-    };
+  getPopularFilms({ page = this.options.page, language = 'en' } = {}) {
+    const url = `/3/trending/all/day?page=${page}&language=${language}`;
 
-    getFilmsByQuery({ query = '', page = this.options.page, language = 'en' } = {}) {
-        const url = `3/search/movie?query=${query}&page=${page}&language=${language}`;
+    this.changeUrlPath(url);
+    return this.getFilms();
+  }
 
-        this.changeUrlPath(url);
-        return this.getFilms();
-    };
+  getFilmsByQuery({ query = '', page = this.options.page, language = 'en' } = {}) {
+    const url = `3/search/movie?query=${query}&page=${page}&language=${language}`;
 
-    async getFilmById({ id = null, language = 'en' } = {}) {
-        const url = `/3/movie/${id}?language=${language}`;
+    this.changeUrlPath(url);
+    return this.getFilms();
+  }
 
-        this.changeUrlPath(url);
+  async getFilmById({ id = null, language = 'en' } = {}) {
+    const url = `/3/movie/${id}?language=${language}`;
 
-        const response = await this.service.get(this.options.urlPath);
-        return response.data;
-    };
+    this.changeUrlPath(url);
 
-    // **url-funcs**
+    const response = await this.service.get(this.options.urlPath);
+    return response.data;
+  }
 
-    changeUrlPath(newPath) {
-        this.options.urlPath = newPath;
-    };
+  // **url-funcs**
 
-    resetUrlPath() {
-        this.options.urlPath = '';
-    };
+  changeUrlPath(newPath) {
+    this.options.urlPath = newPath;
+  }
 
-    // **pag-funcs**
+  resetUrlPath() {
+    this.options.urlPath = '';
+  }
 
-    increasePage() {
-        this.options.page += 1;
-    };
+  // **pag-funcs**
 
-    decreasePage() {
-        this.options.page -= 1;
-    };
+  increasePage() {
+    this.options.page += 1;
+  }
 
-    resetPage() {
-        this.options.page = 1;
-    };
+  decreasePage() {
+    this.options.page -= 1;
+  }
 
-    // **get-set**
+  resetPage() {
+    this.options.page = 1;
+  }
 
-    
-    get page() {
-        return this.options.page;
-    };
+  // **get-set**
 
-    set page(newPage) {
-        this.options.page = newPage;
-    };
+  get page() {
+    return this.options.page;
+  }
 
-    get urlPath() {
-        return this.options.urlPath;
-    };
+  set page(newPage) {
+    this.options.page = newPage;
+  }
 
-    set urlPath(newPath) {
-        this.options.urlPath = newPath;
-    };
-};
+  get urlPath() {
+    return this.options.urlPath;
+  }
 
+  set urlPath(newPath) {
+    this.options.urlPath = newPath;
+  }
+}
