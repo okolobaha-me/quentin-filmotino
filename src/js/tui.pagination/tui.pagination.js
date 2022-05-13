@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+//import 'tui-pagination/dist/tui-pagination.css';
 import ApiService from '../API/api-service';
 const servicePagination = new ApiService();
 import refs from '../render/refs';
@@ -7,7 +7,7 @@ import refs from '../render/refs';
 export function createPagination(q) {
   const options = {
     totalItems: 20000,
-    itemsPerPage: 16,
+    itemsPerPage: 20,
     visiblePages: 5,
     page: 1,
     centerAlign: true,
@@ -19,6 +19,7 @@ export function createPagination(q) {
 
   pagination.on('afterMove', event => {
     const currentPage = event.page;
+
     if (q) {
       createPaginationBySearch(q, currentPage);
     } else {
@@ -33,4 +34,8 @@ function createPaginationBySearch(q, currentPage) {
 
 function createPaginationByLoad(currentPage) {
   servicePagination.getPopularFilms({ page: currentPage }).then(r => console.log(r));
+}
+
+export function statePagination() {
+  refs.containerRef.classList.toggle('hide');
 }
