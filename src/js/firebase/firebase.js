@@ -19,11 +19,17 @@ import { getDatabase, ref, set, push, get, update, remove, onValue, off } from '
 
 // refs import -----------------------------------------
 import { refs } from './firebaseRefs';
-const { signInBtn, firebaseuiAuthContainer, signOutBtn, addToWatchedBtn, addToQueueBtn } = refs();
+const {
+  signInBtn,
+  firebaseuiAuthContainer,
+  signOutBtn,
+  addToWatchedBtn,
+  addToQueueBtn,
+  libraryBtn,
+} = refs();
 // listeners import -----------------------------------------
 import { onSignOutBtn } from './listenersCallback/onSignOutBtn';
 import { onSignInBtn } from './listenersCallback/onSignInBtn';
-import { checkAuthOnLoad } from './listenersCallback/checkAuthOnLoad';
 import { onAddToWatchedBtn } from './listenersCallback/onAddToWatchedBtn';
 import { onAddToQueueBtn } from './listenersCallback/onAddToQueueBtn';
 import { onGetWatchedFilms } from './listenersCallback/onGetWatchedFilms';
@@ -57,13 +63,20 @@ signOutBtn.addEventListener('click', onSignOutBtn);
 // }
 
 // Проверка статуса аутентификации при загрузке
-window.addEventListener('load', checkAuthOnLoad);
+// window.addEventListener('load', checkAuthOnLoad);
+onAuthStateChanged(auth, function (user) {
+  if (user) {
+    signInBtn.classList.toggle('visually-hidden');
+    signOutBtn.classList.toggle('visually-hidden');
+    libraryBtn.classList.toggle('visually-hidden');
+  }
+});
 
 // Добавление фильма к списку просмотреных
-addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
+// addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
 
 // Добавление фильма к очереди на просмотр
-addToQueueBtn.addEventListener('click', onAddToQueueBtn);
+// addToQueueBtn.addEventListener('click', onAddToQueueBtn);
 
 // Получаем фильмы из списка просмотреных
 // onGetWatchedFilms
@@ -104,3 +117,11 @@ addToQueueBtn.addEventListener('click', onAddToQueueBtn);
 // if (checkQueueFilmById(221222)) {
 //   console.log('221222');
 // }
+
+// let hash = window.location.hash;
+// hash = hash.substring(1);
+// console.log(hash);
+// function qwe() {
+//   onGetQueueFilms();
+// }
+// setTimeout(qwe, 1000);

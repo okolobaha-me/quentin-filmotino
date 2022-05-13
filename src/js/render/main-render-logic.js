@@ -1,21 +1,35 @@
 import refs from './refs';
+import { createPagination, hidePagination, showPagination } from '../tui.pagination/tui.pagination';
 
 import ApiService from '../API/api-service';
+
 // import renderFilmList from './render-film-list.js';
 import showMovies from './render-film-list2.js';
 
-const service = new ApiService;
+
+const service = new ApiService();
 
 window.addEventListener('load', onSiteLoad);
 refs.formRef.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(e) {
-    e.preventDefault();
-    const query = e.target.elements.searchFilm.value;
+  e.preventDefault();
+  const query = e.target.elements.searchFilm.value;
 
-    if (query.trim() === '') {
-        return;
+  if (query.trim() === '') {
+    return;
+  }
+
+  // resetMarkup();
+  refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'; // <========== удалить после рендера
+  console.log(`Фильмы по запросу ${query}:`);
+  service.getFilmsByQuery({ query: query }).then(data => {
+    if (data.total_results === 0) {
+      console.log('запросов не найдено');
+      hidePagination();
+      return;
     }
+
     
     // resetMarkup();
     refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'          // <========== удалить после рендера
@@ -45,8 +59,9 @@ function onSiteLoad(e) {
 };
 
 
+  createPagination();
+}
+
 function resetMarkup() {
-    refs.galleryRef.innerHTML = '';
-};
-
-
+  refs.galleryRef.innerHTML = '';
+}
