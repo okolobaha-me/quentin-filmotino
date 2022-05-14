@@ -2,11 +2,16 @@ import genres from './getGenres';
 
 export const getGenresNames = function (genreIds) {
   const genresNames = [];
+  let language = window.location.hash;
+  language = language.substring(1);
   console.log(genreIds);
   for (let genreId of Object.values(genreIds)) {
     genres.genres.forEach(genre => {
-      if (genreId === genre.id) {
-        genresNames.push(genre.name);
+      if (language === 'uk') {
+        genresNames.push(genre.nameUk);
+      }
+      if (language === 'en') {
+        genresNames.push(genre.nameEn);
       }
     });
   }
