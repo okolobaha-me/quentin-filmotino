@@ -3,7 +3,6 @@ import { createPagination, hidePagination, showPagination } from '../tui.paginat
 
 import ApiService from '../API/api-service';
 
-// import renderFilmList from './render-film-list.js';
 import showMovies from './render-film-list2.js';
 
 const service = new ApiService();
@@ -18,7 +17,6 @@ function onFormSubmit(e) {
   if (query.trim() === '') {
     return;
   }
-
   // resetMarkup();
   refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'; // <========== удалить после рендера
   console.log(`Фильмы по запросу ${query}:`);
@@ -28,17 +26,9 @@ function onFormSubmit(e) {
       hidePagination();
       return;
     }
-  });
-
-  // resetMarkup();
-  refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'; // <========== удалить после рендера
-  console.log(`Фильмы по запросу ${query}:`);
-  service.getFilmsByQuery({ query: query }).then(data => {
-    if (data.total_results === 0) {
-      console.log('запросов не найдено');
-      return;
-    }
-    console.log(data); // <========== подставить рендер renderFilmList(data)
+    console.log(data);
+    showPagination(); // <========== подставить рендер renderFilmList(data)
+    createPagination(query);
   });
 }
 
@@ -55,10 +45,9 @@ function onSiteLoad(e) {
     const markup = showMovies(data);
     refs.galleryRef.insertAdjacentHTML('beforeend', markup); // <========== подставить рендер renderFilmList(data)
   });
-
   createPagination();
 }
 
-function resetMarkup() {
+export function resetMarkup() {
   refs.galleryRef.innerHTML = '';
 }
