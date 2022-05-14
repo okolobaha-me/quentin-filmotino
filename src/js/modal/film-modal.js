@@ -145,23 +145,31 @@ function renderModal({
       />
     </div>
     <div class="modal__content-wrapper">
-      <h2 class="modal__tittle">${title}</h2>
-      <div class="movie-description">
-        <div class="movie-description__left">
-          <p class="movie-description__options movie-description__options-grey">Vote / Votes</p>
-          <p class="movie-description__options movie-description__options-grey">Popularity</p>
-          <p class="movie-description__options movie-description__options-grey">Original Title</p>
-          <p class="movie-description__options movie-description__options-grey">Genre</p>
-        </div>
-
-        <div class="movie-description__right">
-          <p class="movie-description__options"><span class="orange">${vote_average} </span> / ${vote_count}</p>
-          <p class="movie-description__options">${popularity}</p>
-          <p class="movie-description__options uppercase">${original_title}</p>
-          <p class="movie-description__options">${filmGenres}</p>
-        </div>
+      <h2 class="modal__tittle">${title}</h2>  
+      <table>
+  <tr class="modal__param">
+    <td class="modal__param-tittle">Vote / Votes</td>
+    <td class="modal__param-value">
+      <div class="modal__film-votes">
+        <span class="param__value-vote">${vote_average}</span> /
+        <span class="param__value-votes">${vote_count}</span>
       </div>
-      <div class="view">
+    </td>
+  </tr>
+  <tr class="modal__param">
+    <td class="modal__param-tittle">Popularity</td>
+    <td class="modal__param-value">${popularity}</td>
+  </tr>
+  <tr class="modal__param">
+    <td class="modal__param-tittle">Original Title</td>
+    <td class="modal__param-value  uppercase">${original_title}</td>
+  </tr>
+  <tr class="modal__param">
+    <td class="modal__param-tittle">Genre</td>
+    <td class="modal__param-value">${genres}</td>
+  </tr>
+</table>
+     <div class="view">
         <h3 class="view__tittle">About</h3>
         <p class="view__text">
           ${overview}
@@ -176,8 +184,24 @@ function renderModal({
           add to queue
         </button>
       </div>
+
+
+      </div>
+     
     </div>
-  </div>
 `;
   refs.modal.innerHTML = markup;
 }
+
+/*
+ <div class="movie-description__left">
+          <p class="movie-description__options movie-description__options-grey">Vote / Votes</p>
+          <p class="movie-description__options movie-description__options-grey">Popularity</p>
+          <p class="movie-description__options movie-description__options-grey">Original Title</p>
+          <p class="movie-description__options movie-description__options-grey">Genre</p>
+        </div>
+        < class="movie-description__right">
+          <p class="movie-description__options"><span class="orange">${vote_average} </span> / ${vote_count}</p>
+          <p class="movie-description__options">${popularity}</p>
+          <p class="movie-description__options uppercase">${original_title}</p>
+          <p class="movie-description__options">${genres}</p>*/
