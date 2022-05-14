@@ -1,5 +1,6 @@
 import Pagination from 'tui-pagination';
 import refs from '../render/refs';
+import showMovies from '../render/render-film-list2.js';
 
 function createPaginationFB(arr) {
   const options = {
@@ -18,7 +19,8 @@ function createPaginationFB(arr) {
 
     const listMovie = newPageArr(arr, currentPage);
 
-    //renderListMovie(listMovie);
+    const markup = showMovies(listMovie);
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
   });
 }
 
