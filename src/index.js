@@ -8,5 +8,6 @@ import './js/render/module';
 import './js/dropout';
 import './js/localization/app';
 import './js/modal/film-modal';
+import './js/spinner';
 import './js/header/header-switch'
 import './js/tui.pagination/tui.pagination';
