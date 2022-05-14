@@ -74,6 +74,10 @@ export default class {
     this.options.page = 1;
   }
 
+  getTotalResults(obj) {
+    return obj.total_results;
+  }
+
   // **get-set**
 
   get page() {
