@@ -1,4 +1,5 @@
 import Api from '../API/api-service';
+import { changeLanguage } from '../localization/app';
 import { checkQueueFilmById } from '../firebase/listenersCallback/checkQueueFilmById';
 import { checkWatchedFilmById } from '../firebase/listenersCallback/checkWatchedFilmById';
 import { onAddToQueueBtn } from '../firebase/listenersCallback/onAddToQueueBtn';
@@ -31,8 +32,11 @@ function onCheckClickUl(e) {
 }
 
 async function onOpenModal(id) {
+  let language = window.location.hash;
+  language = language.substring(1);
+
   api
-    .getFilmById({ id })
+    .getFilmById({ id, language })
     .then(renderModal)
     .then(() => {
       refs.modal.classList.remove('is-hidden');
@@ -41,6 +45,7 @@ async function onOpenModal(id) {
       window.addEventListener('keydown', onEscKeyPress);
       window.addEventListener('click', onCheckClickBody);
       addListenerToCloseBtn();
+      changeLanguage();
     })
     .catch(console.log);
 }
@@ -171,10 +176,10 @@ function renderModal({
       />
     </div>
     <div class="modal__content-wrapper">
-      <h2 class="modal__tittle">${title}</h2>
+      <h2 class="modal__tittle">${title || name}</h2>
       <table>
   <tr class="modal__param">
-    <td class="modal__param-tittle">Vote / Votes</td>
+    <td class="modal__param-tittle lng-vote">Vote / Votes</td>
     <td class="modal__param-value">
       <div class="modal__film-votes">
         <span class="param__value-vote">${vote_average}</span> /
@@ -183,30 +188,30 @@ function renderModal({
     </td>
   </tr>
   <tr class="modal__param">
-    <td class="modal__param-tittle">Popularity</td>
+    <td class="modal__param-tittle lng-popularity">Popularity</td>
     <td class="modal__param-value">${popularity}</td>
   </tr>
   <tr class="modal__param">
-    <td class="modal__param-tittle">Original Title</td>
+    <td class="modal__param-tittle lng-titleFilm">Original Title</td>
     <td class="modal__param-value  uppercase">${original_title || name}</td>
   </tr>
   <tr class="modal__param">
-    <td class="modal__param-tittle">Genre</td>
+    <td class="modal__param-tittle lng-genre">Genre</td>
     <td class="modal__param-value">${filmGenres}</td>
   </tr>
 </table>
      <div class="view">
-        <h3 class="view__tittle">About</h3>
+        <h3 class="view__tittle lng-about">About</h3>
         <p class="view__text">
           ${overview}
         </p>
       </div>
       <div class="btn-wrapper">
         <!-- В кнопки нужно добавлять ID фильма  -->
-        <button class="btn btn-orange" type="button" data-action="addToWatched" data-id="${id}">
+        <button class="btn btn-orange lng-addToWatched" type="button" data-action="addToWatched" data-id="${id}">
           add to Watched
         </button>
-        <button class="btn btn-white" type="button" data-action="addToQueue" data-id="${id}">
+        <button class="btn btn-white lng-addToQueue" type="button" data-action="addToQueue" data-id="${id}">
           add to queue
         </button>
       </div>
@@ -219,16 +224,3 @@ function renderModal({
 
   checkFilm(id);
 }
-
-/*
- <div class="movie-description__left">
-          <p class="movie-description__options movie-description__options-grey">Vote / Votes</p>
-          <p class="movie-description__options movie-description__options-grey">Popularity</p>
-          <p class="movie-description__options movie-description__options-grey">Original Title</p>
-          <p class="movie-description__options movie-description__options-grey">Genre</p>
-        </div>
-        < class="movie-description__right">
-          <p class="movie-description__options"><span class="orange">${vote_average} </span> / ${vote_count}</p>
-          <p class="movie-description__options">${popularity}</p>
-          <p class="movie-description__options uppercase">${original_title}</p>
-          <p class="movie-description__options">${genres}</p>*/

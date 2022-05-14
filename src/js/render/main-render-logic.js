@@ -38,7 +38,10 @@ function onSiteLoad(e) {
   resetMarkup();
   // <========== удалить после рендера
   console.log('Фильмы, приходящие, при загрузке страницы');
-  service.getPopularFilms({}).then(data => {
+  let language = window.location.hash;
+  language = language.substring(1);
+
+  service.getPopularFilms({ language }).then(data => {
     if (data.total_results === 0) {
       console.log('запросов не найдено');
       return;

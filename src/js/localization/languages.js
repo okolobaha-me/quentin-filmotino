@@ -1,142 +1,146 @@
 export const languages = {
   input: {
     en: 'Search',
-    ua: 'Пошук фільмів',
+    uk: 'Пошук фільмів',
   },
   home: {
     en: 'Home',
-    ua: 'Головна',
+    uk: 'Головна',
   },
   library: {
     en: 'My library',
-    ua: 'Моя бібліотека',
+    uk: 'Моя бібліотека',
   },
   rights: {
     en: 'All Rights Reserved',
-    ua: 'Всі права захищені',
+    uk: 'Всі права захищені',
   },
   developers: {
     en: '&nbsp Developed with',
-    ua: '&nbsp Розроблено',
+    uk: '&nbsp Розроблено',
   },
   by: {
     en: 'by',
-    ua: '',
+    uk: '',
   },
   students: {
     en: 'GoIT Students',
-    ua: 'студентами GoIT',
+    uk: 'студентами GoIT',
   },
   watched: {
     en: 'watched',
-    ua: 'переглянуті',
+    uk: 'переглянуті',
   },
   queue: {
     en: 'queue',
-    ua: 'черга',
+    uk: 'черга',
   },
-  toWatched: {
+  addToWatched: {
     en: 'Add to watched',
-    ua: 'Додати до переглянутих',
+    uk: 'Додати до переглянутих',
   },
-  toQueue: {
+  addToQueue: {
     en: 'Add to queue',
-    ua: 'Додати до черги',
+    uk: 'Додати до черги',
+  },
+  removeFromWatched: {
+    en: 'Remove from watched',
+    uk: 'Видалити з переглянутих',
+  },
+  removeFromQueue: {
+    en: 'Remove from queue',
+    uk: 'Видалити з черги',
   },
   vote: {
-    en: 'Vote',
-    ua: 'оцінка',
-  },
-  votes: {
-    en: 'Votes',
-    ua: 'голосів',
+    en: 'Vote / Votes',
+    uk: 'Оцінка / Голосів',
   },
   popularity: {
     en: 'Popularity',
-    ua: 'Популярність',
+    uk: 'Популярність',
   },
   titleFilm: {
     en: 'Original Title',
-    ua: 'Оригінальна Назва',
+    uk: 'Оригінальна Назва',
   },
   genre: {
     en: 'Genre',
-    ua: 'Жанр',
+    uk: 'Жанр',
   },
   about: {
     en: 'About',
-    ua: 'Опис',
+    uk: 'Опис',
   },
   team: {
     en: 'Team',
-    ua: 'Команда',
+    uk: 'Команда',
   },
   evgeny: {
-    en: 'Evgeny Onishchenko',
-    ua: 'Євгеній Оніщенко',
+    en: 'Yevheniy Onyshchenko',
+    uk: 'Євгеній Онищенко',
   },
   anna: {
     en: 'Anna Miklukha',
-    ua: 'Анна Міклуха',
+    uk: 'Анна Міклуха',
   },
   boris: {
     en: 'Boris Korsun',
-    ua: 'Борис Корсун',
+    uk: 'Борис Корсун',
   },
   denis: {
-    en: 'Denis Kochergin',
-    ua: 'Денис Кочергін',
+    en: 'Denys Kochergin',
+    uk: 'Денис Кочергін',
   },
   victoria: {
     en: 'Victoria Fenota',
-    ua: 'Вікторія Фенота',
+    uk: 'Вікторія Фенота',
   },
   vlad: {
     en: 'Vlad Pomynchuk',
-    ua: 'Влад Помінчук',
+    uk: 'Влад Поминчук',
   },
   vladyslav: {
     en: 'Vladyslav Kruchok',
-    ua: 'Владислав Кручок',
+    uk: 'Владислав Кручок',
   },
   volodymyr: {
     en: 'Volodymyr Savranskyi',
-    ua: 'Володимир Савранський',
+    uk: 'Володимир Савранський',
   },
   olexander: {
     en: 'Olexander Zabolotnyi',
-    ua: 'Олександр Заболотний',
+    uk: 'Олександр Заболотний',
   },
   scrum: {
     en: 'Scrum master',
-    ua: 'Scrum майстер',
+    uk: 'Scrum майстер',
   },
   student: {
     en: 'Student',
-    ua: 'Студент',
+    uk: 'Студент',
   },
-  ua: {
+  uk: {
     en: 'Ukr',
-    ua: 'Укр',
+    uk: 'Укр',
   },
   en: {
     en: 'Eng',
-    ua: 'Англ',
+    uk: 'Англ',
   },
-  uaS: {
+  ukS: {
     en: 'Ukr',
-    ua: 'Укр',
+    uk: 'Укр',
   },
   enS: {
     en: 'Eng',
-    ua: 'Англ',
+    uk: 'Англ',
   },
   signIn: {
     en: 'Sign in',
-    ua: 'Вхід',
+    uk: 'Вхід',
   },
   signOut: {
     en: 'Sign out',
-    ua: 'Вихід',
+    uk: 'Вихід',
   },
 };

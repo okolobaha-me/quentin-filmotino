@@ -4,7 +4,7 @@ const selectLng = document.querySelectorAll('[data-lang]');
 const selected = document.querySelector('.lang__selected');
 const searchInput = document.querySelector('.search-input');
 
-const allLang = ['en', 'ua'];
+const allLang = ['en', 'uk'];
 
 selectLng.forEach(lng => {
   lng.addEventListener('click', e => {
@@ -17,12 +17,12 @@ function changeURLLanguage(lang) {
   location.reload();
 }
 
-function changeLanguage() {
+export function changeLanguage() {
   let hash = window.location.hash;
   hash = hash.substring(1);
 
   if (!allLang.includes(hash)) {
-    location.href = `${window.location.pathname}#ua`;
+    location.href = `${window.location.pathname}#uk`;
     location.reload();
   }
 
