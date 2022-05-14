@@ -1,10 +1,11 @@
 import { auth } from '../firebase';
 import { db } from '../firebase';
 import { ref, get } from 'firebase/database';
-// Возвращает массив фильмов в зависимости от языка страниц
+
 export async function onGetQueueFilms(e) {
   if (!auth.currentUser) {
-    return alert('signIn, please');
+    Notify.failure('SignIn, please.');
+    return;
   }
 
   const queueFilmsRef = ref(db, 'users/' + auth.currentUser.uid + '/films/queue');

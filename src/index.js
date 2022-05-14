@@ -12,3 +12,5 @@ import './js/spinner';
 import './js/header/header-switch';
 import './js/tui.pagination/tui.pagination';
 import './js/tui.pagination/fb.pagination';
+import './js/library/myLibraryRender';
+import './js/modal/singIn-modal';

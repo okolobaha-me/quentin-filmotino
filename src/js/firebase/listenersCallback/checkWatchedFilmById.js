@@ -2,8 +2,6 @@ import { auth } from '../firebase';
 import { db } from '../firebase';
 import { ref, get } from 'firebase/database';
 
-// Принимает id фильма, который нужно проверить
-
 export async function checkWatchedFilmById(id) {
   const watchedFilmsRef = ref(db, 'users/' + auth.currentUser.uid + '/films/watched');
   const idFilmsArray = await get(watchedFilmsRef).then(snapshot => {

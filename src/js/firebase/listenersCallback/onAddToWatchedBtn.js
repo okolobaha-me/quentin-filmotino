@@ -27,7 +27,6 @@ export async function onAddToWatchedBtn(e) {
         e.target.removeEventListener('click', onAddToWatchedBtn);
         e.target.textContent = 'remove from watched';
         e.target.addEventListener('click', onRemoveFromWatched);
-        console.log('сохранили');
       })
       .catch(error => console.log(error));
   }

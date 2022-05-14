@@ -1,5 +1,6 @@
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
+import { onLibraryBtn } from '../../library/onLibraryBtn';
 
 import { refs } from '../firebaseRefs';
 const { signInBtn, signOutBtn, libraryBtn } = refs();
