@@ -27,6 +27,8 @@ function onFormSubmit(e) {
       return;
     }
     console.log(data);
+    const markup = showMovies(data);
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
     showPagination(); // <========== подставить рендер renderFilmList(data)
     createPagination(query);
   });
