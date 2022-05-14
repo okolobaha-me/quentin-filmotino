@@ -16,8 +16,11 @@ export const getGenresNames = function (genreIds) {
     });
   }
   const genre2 = genresNames.slice(0, 2);
-  if (genresNames.length > 2) {
+  if (genresNames.length > 2 && language === 'en') {
     genre2.push('Others');
+  }
+  if (genresNames.length > 2 && language === 'uk') {
+    genre2.push('Інші');
   }
   return genre2.join(', ');
 };
