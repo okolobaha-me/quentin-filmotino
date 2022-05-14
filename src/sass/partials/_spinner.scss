@@ -9,10 +9,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #777;
-    background-image:
-      linear-gradient(black, transparent 10%, transparent calc(50% - 1px), #aaa calc(50% - 1px), #aaa calc(50% + 1px), transparent calc(50% + 1px), transparent 90%, black),
-      linear-gradient(90deg, black, transparent 10%, transparent calc(50% - 1px), #aaa calc(50% - 1px), #aaa calc(50% + 1px), transparent calc(50% + 1px), transparent 90%, black);
+    background: rgb(20,20,20);
+    background: radial-gradient(circle, rgba(20,20,20,0.981127485173757) 0%, rgba(252,252,252,0.9587185215883228) 30%);
   &.preloader-hide{
       display: none;
   }
@@ -87,12 +85,12 @@
   
       @keyframes count {
         0%, 100% { content: 'L'; }
-        15% { content: 'LO'; }
-        30% { content: 'LOA'; }
-        45% { content: 'LOAD'; }
-        50% { content: 'LOADI'; }
-        75% { content: 'LOADIN'; }
-        90% { content: 'LOADING'; }
+        15% { content: 'O'; }
+        30% { content: 'A'; }
+        45% { content: 'D'; }
+        50% { content: 'I'; }
+        75% { content: 'N'; }
+        90% { content: 'G'; }
       
       }
     }
