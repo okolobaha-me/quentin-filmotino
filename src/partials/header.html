@@ -1,5 +1,5 @@
 <header class="header">
-  <div class="container header-container">
+  <div class="container header-container header-home" data-header-container>
     <div class="header-box">
       <!--#region LOGO #-->
       <a href="../src/index.html" class="logo">
@@ -17,22 +17,32 @@
             <button
               class="nav-btn header-btn-current lng-home"
               aria-label="Кнопка на початкову сторінку"
+              data-header-btn = "home"
             >
               Home
             </button>
           </li>
           <li class="nav-item">
-            <button class="nav-btn visually-hidden" aria-label="Кнопка на мою бібліотеку">
+            <button 
+              class="nav-btn visually-hidden"
+              aria-label="Кнопка на мою бібліотеку"
+              data-header-btn = "myLib"
+            >
               My library
             </button>
           </li>
           <li class="nav-item">
-            <button class="nav-btn signIn lng-signIn" aria-label="Кнопка на реєстрацію">
+            <button
+              class="nav-btn signIn lng-signIn"
+              aria-label="Кнопка на реєстрацію"
+              data-header-btn = "signIn"
+            >
               Sign in
             </button>
             <button
               class="nav-btn signOut visually-hidden lng-signOut"
               aria-label="Кнопка на реєстрацію"
+              data-header-btn = "signOut"
             >
               Sign out
             </button>
@@ -42,7 +52,7 @@
       <!--#endregion #-->
     </div>
 
-    <!--#region SEARCH #-->
+    <!--#region HOME SEARCH #-->
     <form class="search-form" id="search-form">
       <input
         class="search-input"
@@ -64,6 +74,20 @@
         </svg>
       </button>
     </form>
+    <!--#endregion #-->
+    
+    <!--#region MY LIBRARY BTN  #-->
+    <div class="my-lib-box visually-hidden" id="my-lib-box" data-my-lib-box>
+      <button class="my-lib-btn">
+        Whatched
+      </button>
+      <button class="my-lib-btn">
+        Queue
+      </button>
+    </div>
+    <!--#endregion #-->
+
+    <!--#region LANG -->
     <div class="lang__dropout">
       <div class="lang__select">
         <span class="lang__selected lng-uaS">Ukr</span>
@@ -74,6 +98,7 @@
         <li class="lng-en" data-lang title="en">Eng</li>
       </ul>
     </div>
+    <!--#endregion #-->
   </div>
   <div id="firebaseui-auth-container" class="backdrop is-hidden" data-modal></div>
 </header>
