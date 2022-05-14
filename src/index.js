@@ -8,3 +8,4 @@ import './js/render/module';
 import './js/dropout';
 import './js/localization/app';
 import './js/modal/film-modal';
+import './js/spinner';
