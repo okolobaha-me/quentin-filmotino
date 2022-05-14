@@ -14,8 +14,7 @@ export async function checkWatchedFilmById(id) {
       return;
     }
   });
-  console.log(idFilmsArray);
-  if (idFilmsArray.includes(id)) {
+  if (idFilmsArray && idFilmsArray.includes(`${id}`)) {
     return true;
   }
   return false;

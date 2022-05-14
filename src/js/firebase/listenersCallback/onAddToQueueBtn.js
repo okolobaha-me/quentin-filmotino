@@ -3,12 +3,13 @@ import { db } from '../firebase';
 import { ref, update } from 'firebase/database';
 import { onRemoveFromQueue } from './onRemoveFromQueue';
 import ApiService from '../../API/api-service';
+import { Notify } from 'notiflix';
 
 const service = new ApiService();
 
 export async function onAddToQueueBtn(e) {
   if (!auth.currentUser) {
-    alert('signIn, please');
+    Notify.failure('SignIn, please.');
     return;
   }
   const filmId = e.target.dataset.id;

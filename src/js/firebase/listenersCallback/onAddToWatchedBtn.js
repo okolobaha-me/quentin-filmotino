@@ -3,12 +3,13 @@ import { db } from '../firebase';
 import { ref, update } from 'firebase/database';
 import { onRemoveFromWatched } from './onRemoveFromWatched';
 import ApiService from '../../API/api-service';
+import { Notify } from 'notiflix';
 
 const service = new ApiService();
 
 export async function onAddToWatchedBtn(e) {
   if (!auth.currentUser) {
-    alert('signIn, please');
+    Notify.failure('SignIn, please.');
     return;
   }
   const filmId = e.target.dataset.id;
