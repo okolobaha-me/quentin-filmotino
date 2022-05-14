@@ -14,7 +14,7 @@ export default class {
     this.options = {
       urlPath: '',
       page: 1,
-      perPage: 16,
+      perPage: 15,
     };
   }
 

@@ -35,10 +35,10 @@ export function createPagination(q, total_results = 300) {
 
 function createPaginationBySearch(q, currentPage) {
   servicePagination.getFilmsByQuery({ page: currentPage, query: q }).then(data => {
-    /*const markup = showMovies(data);
-    refs.galleryRef.insertAdjacentHTML('beforeend', markup)*/ console.log(data);
+    const markup = showMovies(data);
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
   });
-  //refs.galleryRef.innerHTML = '';
+  refs.galleryRef.innerHTML = '';
 }
 
 function createPaginationByLoad(currentPage) {
