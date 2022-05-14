@@ -1,12 +1,16 @@
 import Pagination from 'tui-pagination';
-//import 'tui-pagination/dist/tui-pagination.css';
 import ApiService from '../API/api-service';
+import showMovies from '../render/render-film-list2.js';
+
 const servicePagination = new ApiService();
+
+console.log(servicePagination);
+
 import refs from '../render/refs';
 
-export function createPagination(q) {
+export function createPagination(q, total_results = 300) {
   const options = {
-    totalItems: 20000,
+    totalItems: total_results,
     itemsPerPage: 20,
     visiblePages: 5,
     page: 1,
@@ -14,6 +18,7 @@ export function createPagination(q) {
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
   };
+  console.log(options);
 
   const pagination = new Pagination(refs.containerRef, options);
 
@@ -29,11 +34,19 @@ export function createPagination(q) {
 }
 
 function createPaginationBySearch(q, currentPage) {
-  servicePagination.getFilmsByQuery({ page: currentPage, query: q }).then(r => console.log(r));
+  servicePagination.getFilmsByQuery({ page: currentPage, query: q }).then(data => {
+    const markup = showMovies(data);
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
+  });
+  refs.galleryRef.innerHTML = '';
 }
 
 function createPaginationByLoad(currentPage) {
-  servicePagination.getPopularFilms({ page: currentPage }).then(r => console.log(r));
+  servicePagination.getPopularFilms({ page: currentPage }).then(data => {
+    const markup = showMovies(data);
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
+  });
+  refs.galleryRef.innerHTML = '';
 }
 
 export function hidePagination() {

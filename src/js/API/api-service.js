@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const API_KEY = '79fb62b7e77dc5ee41dd0c1332d74198';
 const BASE_URL = 'https://api.themoviedb.org';
 
@@ -15,7 +14,7 @@ export default class {
     this.options = {
       urlPath: '',
       page: 1,
-      perPage: 16,
+      perPage: 15,
     };
   }
 
@@ -25,7 +24,6 @@ export default class {
     const response = await this.service.get(this.options.urlPath);
 
     response.data.results.length = this.options.perPage;
-
     return response.data;
   }
 
@@ -74,6 +72,10 @@ export default class {
 
   resetPage() {
     this.options.page = 1;
+  }
+
+  getTotalResults(obj) {
+    return obj.total_results;
   }
 
   // **get-set**
