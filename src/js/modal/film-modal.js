@@ -1,12 +1,11 @@
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 import Api from '../API/api-service';
-// import {checkQueueFilmById} from '../firebase/listenersCallback/checkQueueFilmById';
-// import {checkWatchedFilmById} from '../firebase/listenersCallback/checkWatchedFilmById';
-// import {onAddToQueueBtn} from '../firebase/listenersCallback/onAddToQueueBtn';
-// import {onAddToWatchedBtn} from '../firebase/listenersCallback/onAddToWatchedBtn';
-// import {onRemoveFromQueue} from '../firebase/listenersCallback/onRemoveFromQueue';
-// import {onRemoveFromWatched} from '../firebase/listenersCallback/onRemoveFromWatched';
+import { checkQueueFilmById } from '../firebase/listenersCallback/checkQueueFilmById';
+import { checkWatchedFilmById } from '../firebase/listenersCallback/checkWatchedFilmById';
+import { onAddToQueueBtn } from '../firebase/listenersCallback/onAddToQueueBtn';
+import { onAddToWatchedBtn } from '../firebase/listenersCallback/onAddToWatchedBtn';
+import { onRemoveFromQueue } from '../firebase/listenersCallback/onRemoveFromQueue';
+import { onRemoveFromWatched } from '../firebase/listenersCallback/onRemoveFromWatched';
+import { auth } from '../firebase/firebase';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const api = new Api();
@@ -42,36 +41,58 @@ async function onOpenModal(id) {
       window.addEventListener('keydown', onEscKeyPress);
       window.addEventListener('click', onCheckClickBody);
       addListenerToCloseBtn();
-      // checkFilm(id);
-    });
-  // .catch(() => Notify.info("Unfortunately, this movie hasn't description yet"));
+    })
+    .catch(console.log);
 }
 
-// function checkFilm(id) {
-//   const isWatched = checkWatchedFilmById(id);
-//   const isQueue = checkQueueFilmById(id);
+function checkFilm(id) {
+  const isAuth = checkAuth();
 
-//   const addToQueueBtn = document.querySelector('[data-action="addToQueue"]');
-//   const addToWatchedBtn = document.querySelector('[data-action="addToWatched"]');
+  refs.addToQueueBtn = document.querySelector('[data-action="addToQueue"]');
+  refs.addToWatchedBtn = document.querySelector('[data-action="addToWatched"]');
 
-//   if (isWatched) {
-//     addToWatchedBtn.addEventListener('click', onRemoveFromWatched);
-//     addToWatchedBtn.textContent = 'remove from watched';
-//   } else {
-//     addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
-//     addToWatchedBtn.textContent = 'add to watched';
-//   }
+  if (!isAuth) {
+    refs.addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
+    refs.addToQueueBtn.addEventListener('click', onAddToQueueBtn);
+  } else {
+    const isWatched = checkWatchedFilmById(id);
+    const isQueue = checkQueueFilmById(id);
 
-//   if (isQueue) {
-//     addToQueueBtn.addEventListener('click', onRemoveFromQueue);
-//     addToQueueBtn.textContent = 'remove from queue';
-//   } else {
-//     addToQueueBtn.addEventListener('click', onAddToQueueBtn);
-//     addToQueueBtn.textContent = 'add to queue';
-//   }
-// }
+    if (isWatched) {
+      refs.addToWatchedBtn.addEventListener('click', onRemoveFromWatched);
+      refs.addToWatchedBtn.textContent = 'remove from watched';
+    } else {
+      refs.addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
+      refs.addToWatchedBtn.textContent = 'add to watched';
+    }
+
+    if (isQueue) {
+      refs.addToQueueBtn.addEventListener('click', onRemoveFromQueue);
+      refs.addToQueueBtn.textContent = 'remove from queue';
+    } else {
+      refs.addToQueueBtn.addEventListener('click', onAddToQueueBtn);
+      refs.addToQueueBtn.textContent = 'add to queue';
+    }
+  }
+}
+
+function checkAuth() {
+  if (!auth.currentUser) {
+    return;
+  }
+  return true;
+}
 
 function onCloseModal() {
+  const isAuth = checkAuth();
+
+  if (isAuth) {
+    refs.addToWatchedBtn.removeEventListener('click', onRemoveFromWatched);
+    refs.addToWatchedBtn.removeEventListener('click', onAddToWatchedBtn);
+    refs.addToQueueBtn.removeEventListener('click', onRemoveFromQueue);
+    refs.addToQueueBtn.removeEventListener('click', onAddToQueueBtn);
+  }
+
   refs.modal.innerHTML = '';
   refs.modal.classList.add('is-hidden');
   bodyUnlock();
@@ -119,6 +140,7 @@ function renderModal({
   overview,
   id,
   genres,
+  name,
 }) {
   let filmGenres = '';
 
@@ -138,14 +160,18 @@ function renderModal({
     <div class="modal__img-wrapper">
       <img
         class="modal__img-wrapper img"
-        src="${IMG_URL + poster_path}"
+        src="${
+          poster_path
+            ? IMG_URL + poster_path
+            : 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'
+        }"
         alt="${title}"
         width="375px"
         height="478px"
       />
     </div>
     <div class="modal__content-wrapper">
-      <h2 class="modal__tittle">${title}</h2>  
+      <h2 class="modal__tittle">${title || name}</h2>  
       <table>
   <tr class="modal__param">
     <td class="modal__param-tittle">Vote / Votes</td>
@@ -162,11 +188,11 @@ function renderModal({
   </tr>
   <tr class="modal__param">
     <td class="modal__param-tittle">Original Title</td>
-    <td class="modal__param-value  uppercase">${original_title}</td>
+    <td class="modal__param-value  uppercase">${original_title || name}</td>
   </tr>
   <tr class="modal__param">
     <td class="modal__param-tittle">Genre</td>
-    <td class="modal__param-value">${genres}</td>
+    <td class="modal__param-value">${filmGenres}</td>
   </tr>
 </table>
      <div class="view">
@@ -184,13 +210,12 @@ function renderModal({
           add to queue
         </button>
       </div>
-
-
-      </div>
-     
+    </div>    
     </div>
 `;
   refs.modal.innerHTML = markup;
+
+  checkFilm(id);
 }
 
 /*
