@@ -39,6 +39,7 @@
     border: none;
     height: 40px;
     width: 40px;
+    
 
     &:hover,
         &:focus {
@@ -52,6 +53,7 @@
 
 .tui-next {
     order: 1;
+  
 }
 
 
@@ -70,18 +72,7 @@
 
     display: none;
 
-    @media screen and (min-width: 768px) {
-        display: flex;
-        height: 40px;
-        width: 40px;
-        margin: 0 8px;
-        background-color: getColor(page-btn-color);
-    }
-
-         &:hover,
-         &:focus {
-            background-color: rgb(221, 221, 221);
-         }
+  
 }
 
 
@@ -91,4 +82,8 @@
 
 .hide{
     display: none;
+}
+
+.material-icons {
+    font-size: 20px;
 }
