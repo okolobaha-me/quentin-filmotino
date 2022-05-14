@@ -42,10 +42,11 @@ function onSiteLoad(e) {
       return;
     }
     console.log(data);
+    console.log(service.getTotalResults(data));
     const markup = showMovies(data);
     refs.galleryRef.insertAdjacentHTML('beforeend', markup); // <========== подставить рендер renderFilmList(data)
+    createPagination();
   });
-  createPagination();
 }
 
 export function resetMarkup() {
