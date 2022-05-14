@@ -33,11 +33,3 @@ export async function onAddToWatchedBtn(e) {
   }
   addFilmToWatched(filmId);
 }
-
-// remove from watched
-
-// document.querySelector('.testBtn').addEventListener('click', e => {
-//   const filmObj = service.getFilmById({ id: 752623, language: 'en' }).then(e => {
-//     console.log(e);
-//   });
-// });
