@@ -9,7 +9,6 @@ dropouts.forEach(dropout => {
 
     select.addEventListener('click' , () => {
     select.classList.toggle('lang__select-clicked');
-    select.classList.remove('back');
     caret.classList.toggle('caret-rotate');
     menu.classList.toggle('lang__menu-open');
     });
@@ -20,14 +19,11 @@ dropouts.forEach(dropout => {
       select.classList.remove('lang__select-clicked');
       caret.classList.remove('caret-rotate');
       menu.classList.remove('lang__menu-open');
-      
 
       options.forEach(option => {
         option.classList.remove('lang__active');
-        select.classList.add('back');
       });
-      option.classList.add('lang__active');
-      select.classList.add('back');
+        option.classList.add('lang__active');
     });
   });
 });

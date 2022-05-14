@@ -1,47 +1,18 @@
-const axios = require('axios');
+import genres from './getGenres';
 
-
-const API_KEY = '79fb62b7e77dc5ee41dd0c1332d74198';
-const STORAGE_KEY = 'genres';
-
-saveLocalStorage();
-
-async function fetchGenres () {
-    URL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=';
-    try {
-        const { data } = await axios.get(`${URL}${API_KEY}&language=en-US`);
-        return data.genres ;
-    } catch (error) {
-        console.log(error);
-    };
-};
-
-function saveLocalStorage() {
-    fetchGenres()
-        .then((genres) => {            
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(genres));
+export const getGenresNames = function (genreIds) {
+  const genresNames = [];
+  console.log(genreIds);
+  for (let genreId of Object.values(genreIds)) {
+    genres.genres.forEach(genre => {
+      if (genreId === genre.id) {
+        genresNames.push(genre.name);
+      }
     });
-};
-
-export function convertIdInGenre(id) {
-    let  arr = localStorage.getItem(STORAGE_KEY)
-    for (const el of JSON.parse(arr)) {
-        if (el.id === id) {
-            return el.name;
-        };
-    };
-};
-
-export function movieGenresIfEmpty(arr) {
-    let string = ', Other';
-    if (arr) {
-        if (arr.length === 0) {
-        return 'Genre unavailable';
-    }   else 
-        if (arr.length <= 2) {
-        return arr.slice().join(', ');
-    } else {
-        return arr.slice(0, 2).join(', ') + string.toLowerCase();
-        };
-    }  
+  }
+  const genre2 = genresNames.slice(0, 2);
+  if (genresNames.length > 2) {
+    genre2.push('Others');
+  }
+  return genre2.join(', ');
 };
