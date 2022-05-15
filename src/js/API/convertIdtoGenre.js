@@ -1,28 +1,21 @@
 import genres from './getGenres';
 
-export const getGenresNames = function (genreIds) {
-  const genresNames = [];
-  let language = window.location.hash;
-  language = language.substring(1);
-  genreIds.forEach(genreId => {
-    genres.genres.forEach(genre => {
-      if (genre.id === genreId) {
-      if (language === 'uk') {
-        genresNames.push(genre.nameUk);
-      }
-      if (language === 'en') {
-        genresNames.push(genre.nameEn);
-      }
-    }
-   });
-  });
+const str = `${getGenres(genres)}`;
 
-  const genre2 = genresNames.slice(0, 2);
-  if (genresNames.length > 2 && language === 'en') {
-    genre2.push('Others');
+export function getGenres(list) {
+  if (!list.length) return '';
+  let language = window.location.hash;
+  language = language.substring(1); 
+  // const lan = getLang();
+  const g = [];
+  for (const re of list) {
+    if (g.length === 2) {
+      g.push('...');
+      break;
+    }
+    // if (если нету такого id) continue
+    g.push(genres[re][language]);
   }
-  if (genresNames.length > 2 && language === 'uk') {
-    genre2.push('Інші');
-  }
-  return genre2.join(', ');
-};
+  return g.map(g => `${g}`).join(', ');
+}
+
