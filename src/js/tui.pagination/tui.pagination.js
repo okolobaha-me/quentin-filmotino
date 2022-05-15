@@ -8,15 +8,61 @@ console.log(servicePagination);
 
 import refs from '../render/refs';
 
-export function createPagination(q, total_results = 300) {
+export function createPagination(q, total_results) {
   const options = {
     totalItems: total_results,
-    itemsPerPage: 20,
+    itemsPerPage: 12,
     visiblePages: 5,
-    page: 1,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
+    usageStatistics: false,
+    template: {
+      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      moveButton: type => {
+        let template = '';
+
+        if (type.type === 'first') {
+          template =
+            '<a href="#" class=" tui-page-btn tui-first custom-class-first">' +
+            '<span class="tui-ico-first">1</span>' +
+            '</a>';
+        }
+        if (type.type === 'prev') {
+          template =
+            '<a href="#" class="arrow tui-page-btn tui-prev custom-class-prev tui-first-child">' +
+            '<span class="material-icons">arrow_back</span>' +
+            '</a>';
+        }
+
+        if (type.type === 'next') {
+          template =
+            '<a href="#" class="arrow tui-page-btn tui-next custom-class-next">' +
+            '<span class="material-icons">arrow_forward</span>' +
+            '</a>';
+        }
+
+        if (type.type === 'last') {
+          template =
+            '<a href="#" class=" tui-page-btn tui-last custom-class-last">' +
+            '<span class="tui-ico-last">' +
+            options.totalPages +
+            '</span>' +
+            '</a>';
+        }
+
+        return template;
+      },
+      disabledMoveButton:
+        '<span class=" visually-hidden tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</span>',
+      moreButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip dots">' +
+        '<span class="material-icons">more_horiz</span>' +
+        '</a>',
+    },
   };
   console.log(options);
 
@@ -34,18 +80,24 @@ export function createPagination(q, total_results = 300) {
 }
 
 function createPaginationBySearch(q, currentPage) {
-  servicePagination.getFilmsByQuery({ page: currentPage, query: q }).then(data => {
-    const markup = showMovies(data);
-    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
-  });
+  servicePagination
+    .getFilmsByQuery({ page: currentPage, query: q })
+    .then(data => {
+      const markup = showMovies(data);
+      refs.galleryRef.insertAdjacentHTML('beforeend', markup);
+    })
+    .catch(error => console.error(error));
   refs.galleryRef.innerHTML = '';
 }
 
 function createPaginationByLoad(currentPage) {
-  servicePagination.getPopularFilms({ page: currentPage }).then(data => {
-    const markup = showMovies(data);
-    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
-  });
+  servicePagination
+    .getPopularFilms({ page: currentPage })
+    .then(data => {
+      const markup = showMovies(data);
+      refs.galleryRef.insertAdjacentHTML('beforeend', markup);
+    })
+    .catch(error => console.error(error));
   refs.galleryRef.innerHTML = '';
 }
 
