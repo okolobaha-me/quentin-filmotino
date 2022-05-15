@@ -2,8 +2,7 @@ import { getGenres } from '../API/convertIdtoGenre';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 export default function showMovies(data) {
-  console.log('data', data);
-  const arr = data.results;
+  const arr = Array.isArray(data) ? data:data.results;
   return arr
     .map((
       { 
