@@ -1,4 +1,4 @@
-import { getGenresNames } from '../API/convertIdtoGenre';
+import { getGenres } from '../API/convertIdtoGenre';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 export default function showMovies(data) {
@@ -23,7 +23,7 @@ export default function showMovies(data) {
           <h2 class="filmList__title">${title||name}</h2>
           <div class="filmList__info">
             <p class="filmList__text">
-              <span class="filmList__genge">${getGenresNames(genre_ids)}</span> |
+              <span class="filmList__genge">${getGenres(genre_ids)}</span> |
               <span class="filmList__releaseDate">${
                 date ? date.slice(0, 4) : '' 
               }</span>
