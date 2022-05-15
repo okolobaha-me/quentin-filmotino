@@ -1,47 +1,61 @@
 import refs from './refs';
+import { createPagination, hidePagination, showPagination } from '../tui.pagination/tui.pagination';
 
 import ApiService from '../API/api-service';
 
-// import renderFilmList from './render-film-list.js';
+import showMovies from './render-film-list2.js';
 
-const service = new ApiService;
+const service = new ApiService();
+
+let language = window.location.hash;
+language = language.substring(1);
 
 window.addEventListener('load', onSiteLoad);
 refs.formRef.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(e) {
-    e.preventDefault();
-    const query = e.target.elements.searchFilm.value;
+  e.preventDefault();
+  const query = e.target.elements.searchFilm.value;
 
-    if (query.trim() === '') {
-        return;
+  if (query.trim() === '') {
+    return;
+  }
+  // resetMarkup();
+  refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'; // <========== удалить после рендера
+  // console.log(`Фильмы по запросу ${query}:`);
+  service.getFilmsByQuery({ query: query, language }).then(data => {
+    if (data.total_results === 0) {
+      // console.log('запросов не найдено');
+      hidePagination();
+      return;
     }
-    
-    resetMarkup();
-    console.log(`Фильмы по запросу ${query}:`);
-    refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'
-    service.getFilmsByQuery(query).then(data => {
-        if (data.total_results === 0) {
-            console.log('запросов не найдено')
-            return
-        };
-        console.log(data);
-    });
+    // console.log(data);
+    const markup = showMovies(data);
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
+    showPagination(); // <========== подставить рендер renderFilmList(data)
+    createPagination(query, service.getTotalResults(data));
+  });
 }
 
-function onSiteLoad(e) {
-    resetMarkup();
-    refs.galleryRef.innerHTML = '<h1>здесь будут популярные за день фильмы ;)</h1>'
-    console.log('Фильмы, приходящие, при загрузке страницы');
-    service.getPopularFilms().then(data => {
-        if (data.total_results === 0) {
-            console.log('запросов не найдено')
-            return
-        };
-        console.log(data);
-    });
-};
+export function onSiteLoad(e) {
+  resetMarkup();
+  // <========== удалить после рендера
+  // console.log('Фильмы, приходящие, при загрузке страницы');
+  let language = window.location.hash;
+  language = language.substring(1);
 
-function resetMarkup() {
-    refs.galleryRef.innerHTML = '';
-};
+  service.getPopularFilms({ language }).then(data => {
+    if (data.total_results === 0) {
+      // console.log('запросов не найдено');
+      return;
+    }
+    // console.log(data);
+    const markup = showMovies(data);
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup); // <========== подставить рендер renderFilmList(data)
+    createPagination('', service.getTotalResults(data));
+  });
+}
+
+export function resetMarkup() {
+  refs.galleryRef.innerHTML = '';
+}

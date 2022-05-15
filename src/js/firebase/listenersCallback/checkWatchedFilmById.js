@@ -2,12 +2,7 @@ import { auth } from '../firebase';
 import { db } from '../firebase';
 import { ref, get } from 'firebase/database';
 
-export async function onCheckWatchedFilmById(e) {
-  //   if (!auth.currentUser) {
-  //     return alert('signIn, please');
-  //   }
-
-  // Нужно получить id фильма
+export async function checkWatchedFilmById(id) {
   const watchedFilmsRef = ref(db, 'users/' + auth.currentUser.uid + '/films/watched');
   const idFilmsArray = await get(watchedFilmsRef).then(snapshot => {
     if (snapshot.exists()) {
@@ -17,8 +12,8 @@ export async function onCheckWatchedFilmById(e) {
       return;
     }
   });
-  console.log(idFilmsArray);
-  if (idFilmsArray.includes('id фильма')) {
-    // добавить стили на кнопку, если такой фильм уже есть в списке
+  if (idFilmsArray && idFilmsArray.includes(`${id}`)) {
+    return true;
   }
+  return false;
 }

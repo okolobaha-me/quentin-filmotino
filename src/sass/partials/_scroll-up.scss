@@ -10,10 +10,14 @@
     opacity: 0;
     visibility: hidden;
     text-decoration: none;
+    fill:#ff620092;
     cursor: pointer;
-  
+  &:hover, &:focus{
+    fill: getColor(accent-color);
+   transform: scale(1.5);
+  }
     &.scroll--isShown {
-      opacity: 0.8;
+      opacity: 1;
       visibility: visible;
     }
   }

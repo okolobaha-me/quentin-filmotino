@@ -1,0 +1,90 @@
+.pagination-container {
+    display: flex;
+    justify-content: center;
+}
+
+.tui-pagination {
+    display: flex;
+
+    justify-content: center;
+    padding-bottom: 40px;
+
+    @media screen and (min-width: 768px) {
+        padding-bottom: 60px;
+    }
+}
+
+.tui-page-btn {
+    display: flex;
+    padding: 10px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover,
+        &:focus {
+            background-color: getColor(accent-color);
+        }
+}
+
+.tui-next,
+.tui-prev {
+    background-color: getColor(footer-background);
+    cursor: pointer;
+    border: none;
+    height: 40px;
+    width: 40px;
+    
+
+    &:hover,
+        &:focus {
+            background-color:rgb(221, 221, 221);
+        }
+}
+
+.tui-prev {
+    order: -1;
+}
+
+.tui-next {
+    order: 1;
+  
+}
+
+
+.tui-is-selected {
+    background-color: getColor(accent-color);
+    color: getColor(primary-text-color);
+    height: 40px;
+    width: 40px;
+    margin: 0 8px;
+}
+
+.tui-next-is-ellip,
+.tui-prev-is-ellip,
+.tui-first,
+.tui-last {
+
+    display :inline-block;
+    font-size: 18px;
+
+  
+}
+
+
+.material-icons {
+    font-size: 16px;
+}
+
+.hide{
+    display: none;
+}
+
+.material-icons {
+    font-size: 20px;
+}

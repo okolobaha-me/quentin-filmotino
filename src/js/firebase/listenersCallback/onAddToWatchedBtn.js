@@ -1,25 +1,44 @@
 import { auth } from '../firebase';
 import { db } from '../firebase';
 import { ref, update } from 'firebase/database';
+import { onRemoveFromWatched } from './onRemoveFromWatched';
+import ApiService from '../../API/api-service';
+import { Notify } from 'notiflix';
 
-export function onAddToWatchedBtn(e) {
+const service = new ApiService();
+
+let language = window.location.hash;
+language = language.substring(1);
+
+export async function onAddToWatchedBtn(e) {
   if (!auth.currentUser) {
-    alert('signIn, please');
+    Notify.failure('SignIn, please.');
     return;
   }
-  const filmId = e.target.id;
+  const filmId = e.target.dataset.id;
 
-  const saveFilmsRef = ref(db, 'users/' + auth.uid + '/films/watched');
-
-  function addFilmToWatched(filmId) {
-    const filmObj = { info: 'ТУТ БУДЕТ РЕЗУЛЬТАТ ОТ ЗАПРОСА ПО ID' };
+  async function addFilmToWatched(filmId) {
+    const filmObjEn = await service.getFilmById({ id: filmId, language: 'en' });
+    const filmObjUa = await service.getFilmById({ id: filmId, language: 'uk' });
 
     const updates = {};
 
-    updates['users/' + `${auth.currentUser.uid}` + '/films/watched/' + filmId] = filmObj;
-    update(ref(db), updates);
+    updates['users/' + `${auth.currentUser.uid}` + '/films/watched/' + filmId + '/en'] = filmObjEn;
+    updates['users/' + `${auth.currentUser.uid}` + '/films/watched/' + filmId + '/ua'] = filmObjUa;
+    update(ref(db), updates)
+      .then(success => {
+        e.target.removeEventListener('click', onAddToWatchedBtn);
+        // e.target.textContent = 'remove from watched';
+        if (language === 'uk') {
+          e.target.textContent = 'Видалити з переглянутих';
+        }
+
+        if (language === 'en') {
+          e.target.textContent = 'remove from watched';
+        }
+        e.target.addEventListener('click', onRemoveFromWatched);
+      })
+      .catch(error => console.log(error));
   }
   addFilmToWatched(filmId);
-  console.log('сохранили');
-  // Добавить стили после добавления фильма
 }

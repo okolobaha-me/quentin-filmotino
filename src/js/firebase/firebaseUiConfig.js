@@ -1,13 +1,13 @@
 import firebase from 'firebase/compat/app';
-import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
 import { refs } from './firebaseRefs';
-const { firebaseuiAuthContainer, signInBtn, signOutBtn, libraryBtn } = refs();
+const { firebaseuiAuthContainer } = refs();
 
-import { auth } from './firebase';
 import { db } from './firebase';
 import { ref, update } from 'firebase/database';
+
+import { Notify } from 'notiflix';
 
 export const uiConfig = {
   signInOptions: [
@@ -18,10 +18,7 @@ export const uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
       var user = authResult.user;
-      var credential = authResult.credential;
       var isNewUser = authResult.additionalUserInfo.isNewUser;
-      var providerId = authResult.additionalUserInfo.providerId;
-      var operationType = authResult.operationType;
 
       if (isNewUser) {
         function createNewUser() {
@@ -37,22 +34,13 @@ export const uiConfig = {
         }
         createNewUser();
       }
-
-      //===========Сюда запихать визуальные изменения при успешном входе/регистрации
-      // закрываем модалку с регистрацией
-      // меняем кнопку signIn => signOut
-      // добавляем слушателя событий на кнопку signOut (callback: onSignOutBtn)
       firebaseuiAuthContainer.classList.toggle('is-hidden');
-      signInBtn.classList.toggle('visually-hidden');
-      signOutBtn.classList.toggle('visually-hidden');
-      libraryBtn.classList.toggle('visually-hidden');
     },
     signInFailure: function (error) {
-      // Ошибка при регистрации/аутентификации
+      Notify.failure('Ups, something went wrong, try again later');
     },
     uiShown: function () {
       // можно выключить спинер, если он включается при открытии модалки или еще что-то придумать)
-      // console.log('uiShown');
     },
   },
 };

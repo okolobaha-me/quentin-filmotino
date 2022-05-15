@@ -1,5 +1,5 @@
 import { refs } from '../firebaseRefs';
-const { firebaseuiAuthContainer, signInBtn, signOutBtn } = refs();
+const { firebaseuiAuthContainer } = refs();
 
 import { uiConfig } from '../firebaseUiConfig';
 import { ui } from '../firebase';
