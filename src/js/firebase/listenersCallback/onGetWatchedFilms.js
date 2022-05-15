@@ -18,6 +18,9 @@ export async function onGetWatchedFilms(e) {
 
   const uaFilms = [];
   const enFilms = [];
+  if (!filmsArray) {
+    return;
+  }
   filmsArray.forEach(id => {
     uaFilms.push(id.ua);
   });

@@ -37,7 +37,7 @@ function onFormSubmit(e) {
   });
 }
 
-function onSiteLoad(e) {
+export function onSiteLoad(e) {
   resetMarkup();
   // <========== удалить после рендера
   console.log('Фильмы, приходящие, при загрузке страницы');
