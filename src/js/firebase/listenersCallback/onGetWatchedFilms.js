@@ -1,10 +1,11 @@
 import { auth } from '../firebase';
 import { db } from '../firebase';
 import { ref, get } from 'firebase/database';
-// Возвращает массив фильмов
+
 export async function onGetWatchedFilms(e) {
   if (!auth.currentUser) {
-    return alert('signIn, please');
+    Notify.failure('SignIn, please.');
+    return;
   }
   const watchedFilmsRef = ref(db, 'users/' + auth.currentUser.uid + '/films/watched');
   const filmsArray = await get(watchedFilmsRef).then(snapshot => {
@@ -14,7 +15,7 @@ export async function onGetWatchedFilms(e) {
       console.log('No data available');
     }
   });
-  console.log(filmsArray);
+
   const uaFilms = [];
   const enFilms = [];
   filmsArray.forEach(id => {
