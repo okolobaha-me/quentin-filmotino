@@ -33,6 +33,10 @@ export function onQueueBtn(e) {
 
 async function renderWatchedFilms() {
   await onGetWatchedFilms().then(array => {
+    if (!array) {
+      Notify.failure('Please, add movies');
+      return;
+    }
     createPaginationFB(array);
   });
   console.log('renderWatchedFilms');
@@ -40,6 +44,10 @@ async function renderWatchedFilms() {
 
 async function renderQueueFilms() {
   await onGetQueueFilms().then(array => {
+    if (!array) {
+      Notify.failure('Please, add movies');
+      return;
+    }
     createPaginationFB(array);
   });
   console.log('renderQueueFilms');

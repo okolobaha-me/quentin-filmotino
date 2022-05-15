@@ -203,7 +203,7 @@ const arrMovie = [
   },
 ];*/
 
-function createPaginationFB(arr) {
+export function createPaginationFB(arr) {
   const options = {
     totalItems: arr.length,
     itemsPerPage: 3,
