@@ -7,6 +7,9 @@ import { Notify } from 'notiflix';
 
 const service = new ApiService();
 
+let language = window.location.hash;
+language = language.substring(1);
+
 export async function onAddToWatchedBtn(e) {
   if (!auth.currentUser) {
     Notify.failure('SignIn, please.');
@@ -25,7 +28,14 @@ export async function onAddToWatchedBtn(e) {
     update(ref(db), updates)
       .then(success => {
         e.target.removeEventListener('click', onAddToWatchedBtn);
-        e.target.textContent = 'remove from watched';
+        // e.target.textContent = 'remove from watched';
+        if (language === 'uk') {
+          e.target.textContent = 'Видалити з переглянутих';
+        }
+
+        if (language === 'en') {
+          e.target.textContent = 'remove from watched';
+        }
         e.target.addEventListener('click', onRemoveFromWatched);
       })
       .catch(error => console.log(error));
