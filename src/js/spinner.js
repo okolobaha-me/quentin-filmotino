@@ -1,6 +1,6 @@
 function loadData() {
   return new Promise((resolve, reject) => {
-    setTimeout(resolve, 2000);
+    setTimeout(resolve, 0);
   });
 }
 
