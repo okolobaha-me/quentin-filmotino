@@ -213,8 +213,11 @@ export function createPaginationFB(arr) {
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
   };
+
   const firstPageCreate = newPageArr(arr, 1);
-  const markup = showMovies( firstPageCreate);
+  const markup = showMovies(firstPageCreate);
+  refs.galleryRef.innerHTML = '';
+
   refs.galleryRef.insertAdjacentHTML('beforeend', markup);
 
   const pagination = new Pagination(refs.containerRef, options);
@@ -223,7 +226,7 @@ export function createPaginationFB(arr) {
     const currentPage = event.page;
     const listMovie = newPageArr(newArr, currentPage);
 
-    console.log(listMovie);
+    // console.log(listMovie);
 
     refs.galleryRef.innerHTML = '';
     const markup = showMovies(listMovie);

@@ -22,14 +22,14 @@ function onFormSubmit(e) {
   }
   // resetMarkup();
   refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'; // <========== удалить после рендера
-  console.log(`Фильмы по запросу ${query}:`);
+  // console.log(`Фильмы по запросу ${query}:`);
   service.getFilmsByQuery({ query: query, language }).then(data => {
     if (data.total_results === 0) {
-      console.log('запросов не найдено');
+      // console.log('запросов не найдено');
       hidePagination();
       return;
     }
-    console.log(data);
+    // console.log(data);
     const markup = showMovies(data);
     refs.galleryRef.insertAdjacentHTML('beforeend', markup);
     showPagination(); // <========== подставить рендер renderFilmList(data)
@@ -40,16 +40,16 @@ function onFormSubmit(e) {
 export function onSiteLoad(e) {
   resetMarkup();
   // <========== удалить после рендера
-  console.log('Фильмы, приходящие, при загрузке страницы');
+  // console.log('Фильмы, приходящие, при загрузке страницы');
   let language = window.location.hash;
   language = language.substring(1);
 
   service.getPopularFilms({ language }).then(data => {
     if (data.total_results === 0) {
-      console.log('запросов не найдено');
+      // console.log('запросов не найдено');
       return;
     }
-    console.log(data);
+    // console.log(data);
     const markup = showMovies(data);
     refs.galleryRef.insertAdjacentHTML('beforeend', markup); // <========== подставить рендер renderFilmList(data)
     createPagination('', service.getTotalResults(data));

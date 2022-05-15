@@ -12,7 +12,7 @@ export async function onGetWatchedFilms(e) {
     if (snapshot.exists()) {
       return Object.values(snapshot.val());
     } else {
-      console.log('No data available');
+      // console.log('No data available');
     }
   });
 
@@ -32,9 +32,9 @@ export async function onGetWatchedFilms(e) {
   hash = hash.substring(1);
 
   if (hash === 'en') {
-    console.log(enFilms);
+    // console.log(enFilms);
     return enFilms;
   }
-  console.log(uaFilms);
+  // console.log(uaFilms);
   return uaFilms;
 }

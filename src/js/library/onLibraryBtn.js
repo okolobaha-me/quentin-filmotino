@@ -11,7 +11,7 @@ export function onLibraryBtn(e) {
     Notify.failure('SignIn, please.');
     return;
   }
-  console.log('click');
+  // console.log('click');
   renderWatchedFilms();
 }
 
@@ -39,7 +39,7 @@ async function renderWatchedFilms() {
     }
     createPaginationFB(array);
   });
-  console.log('renderWatchedFilms');
+  // console.log('renderWatchedFilms');
 }
 
 async function renderQueueFilms() {
@@ -50,5 +50,5 @@ async function renderQueueFilms() {
     }
     createPaginationFB(array);
   });
-  console.log('renderQueueFilms');
+  // console.log('renderQueueFilms');
 }
