@@ -4,19 +4,18 @@ import showMovies from '../render/render-film-list2.js';
 
 const servicePagination = new ApiService();
 
-console.log(servicePagination);
-
 import refs from '../render/refs';
 
 export function createPagination(q, total_results) {
   const options = {
     totalItems: total_results,
-    itemsPerPage: 12,
+    itemsPerPage: 24,
     visiblePages: 5,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
     usageStatistics: false,
+
     template: {
       page: '<a href="#" class="tui-page-btn">{{page}}</a>',
       currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
@@ -47,7 +46,7 @@ export function createPagination(q, total_results) {
           template =
             '<a href="#" class=" tui-page-btn tui-last custom-class-last">' +
             '<span class="tui-ico-last">' +
-            options.totalPages +
+            Math.ceil(options.totalItems / options.itemsPerPage) +
             '</span>' +
             '</a>';
         }
@@ -64,7 +63,6 @@ export function createPagination(q, total_results) {
         '</a>',
     },
   };
-  console.log(options);
 
   const pagination = new Pagination(refs.containerRef, options);
 
