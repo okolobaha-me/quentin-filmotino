@@ -11,6 +11,9 @@ import { auth } from '../firebase/firebase';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const api = new Api();
 
+let language = window.location.hash;
+language = language.substring(1);
+
 const refs = {
   openModalCards: document.querySelector('[data-film-modal-open]'),
   modal: document.querySelector('[data-film-modal]'),
@@ -32,9 +35,6 @@ function onCheckClickUl(e) {
 }
 
 async function onOpenModal(id) {
-  let language = window.location.hash;
-  language = language.substring(1);
-
   api
     .getFilmById({ id, language })
     .then(renderModal)
@@ -59,25 +59,57 @@ function checkFilm(id) {
   if (!isAuth) {
     refs.addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
     refs.addToQueueBtn.addEventListener('click', onAddToQueueBtn);
-  } else {
+  }
+
+  if (isAuth) {
     const isWatched = checkWatchedFilmById(id);
+
+    isWatched.then(status => {
+      if (status) {
+        refs.addToWatchedBtn.addEventListener('click', onRemoveFromWatched);
+        if (language === 'uk') {
+          refs.addToWatchedBtn.textContent = 'Видалити з переглянутих';
+        }
+
+        if (language === 'en') {
+          refs.addToWatchedBtn.textContent = 'remove from watched';
+        }
+      }
+      if (!status) {
+        refs.addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
+        if (language === 'uk') {
+          refs.addToWatchedBtn.textContent = 'Додати до переглянутих';
+        }
+
+        if (language === 'en') {
+          refs.addToWatchedBtn.textContent = 'Add to watched';
+        }
+      }
+    });
+
     const isQueue = checkQueueFilmById(id);
+    isQueue.then(status => {
+      if (status) {
+        refs.addToQueueBtn.addEventListener('click', onRemoveFromQueue);
+        if (language === 'uk') {
+          refs.addToQueueBtn.textContent = 'Видалити з черги';
+        }
 
-    if (isWatched) {
-      refs.addToWatchedBtn.addEventListener('click', onRemoveFromWatched);
-      refs.addToWatchedBtn.textContent = 'remove from watched';
-    } else {
-      refs.addToWatchedBtn.addEventListener('click', onAddToWatchedBtn);
-      refs.addToWatchedBtn.textContent = 'add to watched';
-    }
+        if (language === 'en') {
+          refs.addToQueueBtn.textContent = 'remove from queue';
+        }
+      }
+      if (!status) {
+        refs.addToQueueBtn.addEventListener('click', onAddToQueueBtn);
+        if (language === 'uk') {
+          refs.addToQueueBtn.textContent = 'Додати до черги';
+        }
 
-    if (isQueue) {
-      refs.addToQueueBtn.addEventListener('click', onRemoveFromQueue);
-      refs.addToQueueBtn.textContent = 'remove from queue';
-    } else {
-      refs.addToQueueBtn.addEventListener('click', onAddToQueueBtn);
-      refs.addToQueueBtn.textContent = 'add to queue';
-    }
+        if (language === 'en') {
+          refs.addToQueueBtn.textContent = 'Add to queue';
+        }
+      }
+    });
   }
 }
 

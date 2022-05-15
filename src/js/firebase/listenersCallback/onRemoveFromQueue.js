@@ -3,6 +3,9 @@ import { db } from '../firebase';
 import { ref, remove } from 'firebase/database';
 import { onAddToQueueBtn } from './onAddToQueueBtn';
 
+let language = window.location.hash;
+language = language.substring(1);
+
 export function onRemoveFromQueue(e) {
   if (!auth.currentUser) {
     alert('signIn, please');
@@ -14,7 +17,14 @@ export function onRemoveFromQueue(e) {
   remove(removeFilmRef)
     .then(success => {
       e.target.removeEventListener('click', onRemoveFromQueue);
-      e.target.textContent = 'add to watched';
+      if (language === 'uk') {
+        e.target.textContent = 'Додати до черги';
+      }
+
+      if (language === 'en') {
+        e.target.textContent = 'Add to queue';
+      }
+      // e.target.textContent = 'add to watched';
       e.target.addEventListener('click', onAddToQueueBtn);
       console.log('удалили');
     })

@@ -7,6 +7,9 @@ import showMovies from './render-film-list2.js';
 
 const service = new ApiService();
 
+let language = window.location.hash;
+language = language.substring(1);
+
 window.addEventListener('load', onSiteLoad);
 refs.formRef.addEventListener('submit', onFormSubmit);
 
@@ -20,7 +23,7 @@ function onFormSubmit(e) {
   // resetMarkup();
   refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'; // <========== удалить после рендера
   console.log(`Фильмы по запросу ${query}:`);
-  service.getFilmsByQuery({ query: query }).then(data => {
+  service.getFilmsByQuery({ query: query, language }).then(data => {
     if (data.total_results === 0) {
       console.log('запросов не найдено');
       hidePagination();

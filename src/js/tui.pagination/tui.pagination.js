@@ -4,6 +4,9 @@ import showMovies from '../render/render-film-list2.js';
 
 const servicePagination = new ApiService();
 
+let language = window.location.hash;
+language = language.substring(1);
+
 import refs from '../render/refs';
 
 export function createPagination(q, total_results) {
@@ -79,7 +82,7 @@ export function createPagination(q, total_results) {
 
 function createPaginationBySearch(q, currentPage) {
   servicePagination
-    .getFilmsByQuery({ page: currentPage, query: q })
+    .getFilmsByQuery({ page: currentPage, query: q, language })
     .then(data => {
       const markup = showMovies(data);
       refs.galleryRef.insertAdjacentHTML('beforeend', markup);
