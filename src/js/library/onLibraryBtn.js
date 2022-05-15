@@ -6,6 +6,8 @@ import { onGetQueueFilms } from '../firebase/listenersCallback/onGetQueueFilms';
 import { onGetWatchedFilms } from '../firebase/listenersCallback/onGetWatchedFilms';
 import { createPaginationFB } from '../tui.pagination/fb.pagination';
 
+const gallery = document.querySelector('.filmList');
+
 export function onLibraryBtn(e) {
   if (!auth.currentUser) {
     Notify.failure('SignIn, please.');
@@ -34,7 +36,7 @@ export function onQueueBtn(e) {
 async function renderWatchedFilms() {
   await onGetWatchedFilms().then(array => {
     if (!array) {
-      Notify.failure('Please, add movies');
+      gallery.innerHTML = libraryStr;
       return;
     }
     createPaginationFB(array);
@@ -45,10 +47,14 @@ async function renderWatchedFilms() {
 async function renderQueueFilms() {
   await onGetQueueFilms().then(array => {
     if (!array) {
-      Notify.failure('Please, add movies');
+      gallery.innerHTML = libraryStr;
       return;
     }
     createPaginationFB(array);
   });
   // console.log('renderQueueFilms');
 }
+
+const libraryStr = `<li>
+  <h2 style="text-align: center; font-size: 40px">Please, add movies to the library...</h2>
+</li>`;
