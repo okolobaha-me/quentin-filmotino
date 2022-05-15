@@ -1,10 +1,11 @@
 import { auth } from '../firebase/firebase';
 import { Notify } from 'notiflix';
 import { refs } from '../firebase/firebaseRefs';
-
+import Ref from '../render/refs';
 import { onGetQueueFilms } from '../firebase/listenersCallback/onGetQueueFilms';
 import { onGetWatchedFilms } from '../firebase/listenersCallback/onGetWatchedFilms';
 import { createPaginationFB } from '../tui.pagination/fb.pagination';
+import { ref } from 'firebase/database';
 
 const gallery = document.querySelector('.filmList');
 
@@ -39,18 +40,23 @@ async function renderWatchedFilms() {
       gallery.innerHTML = libraryStr;
       return;
     }
-    createPaginationFB(array);
+    createPaginationFB(array, 1, Ref.containerWRef);
   });
-  // console.log('renderWatchedFilms');
+  Ref.containerQRef.innerHTML = '';
+  Ref.containerRef.innerHTML = ''; // console.log('renderWatchedFilms');
 }
 
 async function renderQueueFilms() {
   await onGetQueueFilms().then(array => {
     if (!array) {
       gallery.innerHTML = libraryStr;
+
       return;
     }
-    createPaginationFB(array);
+
+    createPaginationFB(array, 1, Ref.containerQRef);
+    Ref.containerRef.innerHTML = '';
+    Ref.containerWRef.innerHTML = '';
   });
   // console.log('renderQueueFilms');
 }

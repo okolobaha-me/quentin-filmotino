@@ -69,9 +69,16 @@
 .tui-prev-is-ellip,
 .tui-first,
 .tui-last {
+    display: none;
+     font-size: 18px;
 
+    @media screen and (min-width: 768px) {
+       
     display :inline-block;
-    font-size: 18px;
+   
+        }
+
+
 
   
 }

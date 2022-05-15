@@ -35,6 +35,8 @@ function onFormSubmit(e) {
     showPagination(); // <========== подставить рендер renderFilmList(data)
     createPagination(query, service.getTotalResults(data));
   });
+  refs.containerQRef.innerHTML = '';
+  refs.containerWRef.innerHTML = '';
 }
 
 export function onSiteLoad(e) {
@@ -54,6 +56,8 @@ export function onSiteLoad(e) {
     refs.galleryRef.insertAdjacentHTML('beforeend', markup); // <========== подставить рендер renderFilmList(data)
     createPagination('', service.getTotalResults(data));
   });
+  refs.containerQRef.innerHTML = '';
+  refs.containerWRef.innerHTML = '';
 }
 
 export function resetMarkup() {
