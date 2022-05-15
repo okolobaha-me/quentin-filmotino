@@ -27,7 +27,6 @@ export async function onAddToQueueBtn(e) {
         e.target.removeEventListener('click', onAddToQueueBtn);
         e.target.textContent = 'remove from queue';
         e.target.addEventListener('click', onRemoveFromQueue);
-        console.log('сохранили');
       })
       .catch(error => console.log(error));
   }

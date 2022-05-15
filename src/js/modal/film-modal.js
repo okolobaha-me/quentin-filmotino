@@ -158,9 +158,9 @@ function renderModal({
   const markup = `
   <div class="modal-film">
     <button class="modal__btn" data-film-modal-close type="button">
-      <svg class="cross">
-        <use href="/sprite.0943b6b7.svg#cross" width="14" height="14"></use>
-      </svg>
+      <span class="material-symbols-outlined">
+close
+</span>
     </button>
     <div class="modal__img-wrapper">
       <img

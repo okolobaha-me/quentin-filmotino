@@ -6,5 +6,8 @@ export function refs() {
     addToWatchedBtn: document.querySelector('[data-action="addToWatched"]'),
     addToQueueBtn: document.querySelector('[data-action="addToQueue"]'),
     libraryBtn: document.querySelector('[aria-label="Кнопка на мою бібліотеку"]'),
+    watchedBtn: document.querySelector('[data-action="Whatched"]'),
+    queueBtn: document.querySelector('[data-action="Queue"]'),
+    homeBtn: document.querySelector('[aria-label="Кнопка на початкову сторінку"]'),
   };
 }

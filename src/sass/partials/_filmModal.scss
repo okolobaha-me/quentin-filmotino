@@ -38,17 +38,31 @@
   right: 16px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover,
-  &:focus {
-    fill: getColor(accent-color);
-  }
-
+ 
 }
 
-.cross {
-  width: 14px;
-  height: 14px;
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  color: getColor(second-text-color);
+
+    &:hover,
+      &:focus {
+       color: getColor(accent-color);
+      }
 }
+
 
 .modal__img-wrapper {
   margin-bottom: 20px;

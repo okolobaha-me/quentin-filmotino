@@ -30,7 +30,7 @@ function onFormSubmit(e) {
     const markup = showMovies(data);
     refs.galleryRef.insertAdjacentHTML('beforeend', markup);
     showPagination(); // <========== подставить рендер renderFilmList(data)
-    createPagination(query);
+    createPagination(query, service.getTotalResults(data));
   });
 }
 
@@ -47,10 +47,9 @@ function onSiteLoad(e) {
       return;
     }
     console.log(data);
-    console.log(service.getTotalResults(data));
     const markup = showMovies(data);
     refs.galleryRef.insertAdjacentHTML('beforeend', markup); // <========== подставить рендер renderFilmList(data)
-    createPagination();
+    createPagination('', service.getTotalResults(data));
   });
 }
 
