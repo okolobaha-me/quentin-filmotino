@@ -2,241 +2,81 @@ import Pagination from 'tui-pagination';
 import refs from '../render/refs';
 import showMovies from '../render/render-film-list2.js';
 
-// const arrMovie = [
-//   {
-//     adult: false,
-//     backdrop_path: '/fMiEp00v8gGWEceL4QeLu6H6z69.jpg',
-//     genre_ids: (5)[(28, 12, 18, 14, 36)],
-//     id: 639933,
-//     media_type: 'movie',
-//     original_language: 'en',
-//     original_title: 'The Northman',
-//     overview:
-//       "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
-//     popularity: 641.782,
-//     poster_path: '/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg',
-//     release_date: '2022-04-07',
-//     title: 'The Northman',
-//     video: false,
-//     vote_average: 7.6,
-//     vote_count: 598,
-//   },
-//   {
-//     adult: false,
-//     backdrop_path: '/fMiEp00v8gGWEceL4QeLu6H6z69.jpg',
-//     genre_ids: (5)[(28, 12, 18, 14, 36)],
-//     id: 639933,
-//     media_type: 'movie',
-//     original_language: 'en',
-//     original_title: 'The Northman',
-//     overview:
-//       "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
-//     popularity: 641.782,
-//     poster_path: '/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg',
-//     release_date: '2022-04-07',
-//     title: 'The Northman',
-//     video: false,
-//     vote_average: 7.6,
-//     vote_count: 598,
-//   },
-//   {
-//     adult: false,
-//     backdrop_path: '/fMiEp00v8gGWEceL4QeLu6H6z69.jpg',
-//     genre_ids: (5)[(28, 12, 18, 14, 36)],
-//     id: 639933,
-//     media_type: 'movie',
-//     original_language: 'en',
-//     original_title: 'The Northman',
-//     overview:
-//       "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
-//     popularity: 641.782,
-//     poster_path: '/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg',
-//     release_date: '2022-04-07',
-//     title: 'The Northman',
-//     video: false,
-//     vote_average: 7.6,
-//     vote_count: 598,
-//   },
-//   {
-//     adult: false,
-//     backdrop_path: '/fMiEp00v8gGWEceL4QeLu6H6z69.jpg',
-//     genre_ids: (5)[(28, 12, 18, 14, 36)],
-//     id: 4,
-//     media_type: 'movie',
-//     original_language: 'en',
-//     original_title: 'The Northman',
-//     overview:
-//       "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
-//     popularity: 641.782,
-//     poster_path: '/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg',
-//     release_date: '2022-04-07',
-//     title: 'The Northman',
-//     video: false,
-//     vote_average: 7.6,
-//     vote_count: 598,
-//   },
-//   {
-//     adult: false,
-//     backdrop_path: '/fMiEp00v8gGWEceL4QeLu6H6z69.jpg',
-//     genre_ids: (5)[(28, 12, 18, 14, 36)],
-//     id: 639933,
-//     media_type: 'movie',
-//     original_language: 'en',
-//     original_title: 'The Northman',
-//     overview:
-//       "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
-//     popularity: 641.782,
-//     poster_path: '/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg',
-//     release_date: '2022-04-07',
-//     title: 'The Northman',
-//     video: false,
-//     vote_average: 7.6,
-//     vote_count: 598,
-//   },
-//   {
-//     adult: false,
-//     backdrop_path: '/fMiEp00v8gGWEceL4QeLu6H6z69.jpg',
-//     genre_ids: (5)[(28, 12, 18, 14, 36)],
-//     id: 639933,
-//     media_type: 'movie',
-//     original_language: 'en',
-//     original_title: 'The Northman',
-//     overview:
-//       "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
-//     popularity: 641.782,
-//     poster_path: '/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg',
-//     release_date: '2022-04-07',
-//     title: 'The Northman',
-//     video: false,
-//     vote_average: 7.6,
-//     vote_count: 598,
-//   },
-//   {
-//     adult: false,
-//     backdrop_path: '/fMiEp00v8gGWEceL4QeLu6H6z69.jpg',
-//     genre_ids: (5)[(28, 12, 18, 14, 36)],
-//     id: 7,
-//     media_type: 'movie',
-//     original_language: 'en',
-//     original_title: 'The Northman',
-//     overview:
-//       "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
-//     popularity: 641.782,
-//     poster_path: '/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg',
-//     release_date: '2022-04-07',
-//     title: 'The Northman',
-//     video: false,
-//     vote_average: 7.6,
-//     vote_count: 598,
-//   },
-//   {
-//     adult: false,
-//     backdrop_path: '/fMiEp00v8gGWEceL4QeLu6H6z69.jpg',
-//     genre_ids: (5)[(28, 12, 18, 14, 36)],
-//     id: 639933,
-//     media_type: 'movie',
-//     original_language: 'en',
-//     original_title: 'The Northman',
-//     overview:
-//       "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
-//     popularity: 641.782,
-//     poster_path: '/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg',
-//     release_date: '2022-04-07',
-//     title: 'The Northman',
-//     video: false,
-//     vote_average: 7.6,
-//     vote_count: 598,
-//   },
-//   {
-//     adult: false,
-//     backdrop_path: '/fMiEp00v8gGWEceL4QeLu6H6z69.jpg',
-//     genre_ids: (5)[(28, 12, 18, 14, 36)],
-//     id: 639933,
-//     media_type: 'movie',
-//     original_language: 'en',
-//     original_title: 'The Northman',
-//     overview:
-//       "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
-//     popularity: 9,
-//     poster_path: '/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg',
-//     release_date: '2022-04-07',
-//     title: 'The Northman',
-//     video: false,
-//     vote_average: 7.6,
-//     vote_count: 598,
-//   },
-//   {
-//     adult: false,
-//     backdrop_path: '/fMiEp00v8gGWEceL4QeLu6H6z69.jpg',
-//     genre_ids: (5)[(28, 12, 18, 14, 36)],
-//     id: 639933,
-//     media_type: 'movie',
-//     original_language: 'en',
-//     original_title: 'The Northman',
-//     overview:
-//       "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
-//     popularity: 641.782,
-//     poster_path: '/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg',
-//     release_date: '2022-04-07',
-//     title: 'The Northman',
-//     video: false,
-//     vote_average: 7.6,
-//     vote_count: 598,
-//   },
-//   {
-//     adult: false,
-//     backdrop_path: '/fMiEp00v8gGWEceL4QeLu6H6z69.jpg',
-//     genre_ids: (5)[(28, 12, 18, 14, 36)],
-//     id: 639933,
-//     media_type: 'movie',
-//     original_language: 'en',
-//     original_title: 'The Northman',
-//     overview:
-//       "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
-//     popularity: 641.782,
-//     poster_path: '/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg',
-//     release_date: '2022-04-07',
-//     title: 'The Northman',
-//     video: false,
-//     vote_average: 7.6,
-//     vote_count: 598,
-//   },
-// ];
-
-export function createPaginationFB(arr) {
+export function createPaginationFB(arr, page = 1, container) {
   const options = {
     totalItems: arr.length,
-    itemsPerPage: 3,
+    itemsPerPage: 6,
     visiblePages: 3,
-    page: 1,
+    page,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
+    template: {
+      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      moveButton: type => {
+        let template = '';
+
+        if (type.type === 'first') {
+          template =
+            '<a href="#" class=" tui-page-btn tui-first custom-class-first">' +
+            '<span class="tui-ico-first">1</span>' +
+            '</a>';
+        }
+        if (type.type === 'prev') {
+          template =
+            '<a href="#" class="arrow tui-page-btn tui-prev custom-class-prev tui-first-child">' +
+            '<span class="material-icons">arrow_back</span>' +
+            '</a>';
+        }
+
+        if (type.type === 'next') {
+          template =
+            '<a href="#" class="arrow tui-page-btn tui-next custom-class-next">' +
+            '<span class="material-icons">arrow_forward</span>' +
+            '</a>';
+        }
+
+        if (type.type === 'last') {
+          template =
+            '<a href="#" class=" tui-page-btn tui-last custom-class-last">' +
+            '<span class="tui-ico-last">' +
+            Math.ceil(options.totalItems / options.itemsPerPage) +
+            '</span>' +
+            '</a>';
+        }
+
+        return template;
+      },
+      disabledMoveButton:
+        '<span class=" visually-hidden tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</span>',
+      moreButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip dots">' +
+        '<span class="material-icons">more_horiz</span>' +
+        '</a>',
+    },
   };
-
   const firstPageCreate = newPageArr(arr, 1);
-  const markup = showMovies(firstPageCreate);
   refs.galleryRef.innerHTML = '';
+  const markup = showMovies(firstPageCreate);
+  refs.galleryRef.innerHTML = markup;
 
-  refs.galleryRef.insertAdjacentHTML('beforeend', markup);
+  const pagination = new Pagination(container, options);
 
-  const pagination = new Pagination(refs.containerRef, options);
-  let newArr = arr;
   pagination.on('afterMove', event => {
     const currentPage = event.page;
-    const listMovie = newPageArr(newArr, currentPage);
-
-    // console.log(listMovie);
+    const listMovie = newPageArr(arr, currentPage);
 
     refs.galleryRef.innerHTML = '';
     const markup = showMovies(listMovie);
-    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
+    refs.galleryRef.innerHTML = markup;
   });
 }
 
 function newPageArr(arr, page) {
-  const perPage = 3;
+  const perPage = 6;
   const newArr = arr.slice(perPage * (page - 1), perPage * page);
   return newArr;
 }
-// createPaginationFB(arrMovie);
