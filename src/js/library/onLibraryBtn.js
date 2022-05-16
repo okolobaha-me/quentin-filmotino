@@ -104,10 +104,9 @@ async function snapshotFn(snapshot) {
   hash = hash.substring(1);
 
   if (hash === 'en') {
-    console.log(enFilms);
     return enFilms;
   }
-  console.log(uaFilms);
+
   return uaFilms;
 }
 
