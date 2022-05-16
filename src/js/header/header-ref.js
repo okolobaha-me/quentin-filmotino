@@ -14,11 +14,5 @@ export const headerSelector = {
 };
 export const headerRef = {
     btnHome: document.querySelector('[data-header-btn = "home"]'),
-    btnMyLib: document.querySelector('[data-header-btn = "myLib"]'),
-    btnSignIn: document.querySelector('[data-header-btn = "signIn"]'),
-    btnSignOut: document.querySelector('[data-header-btn = "signOut"]'),
-    backdrop: document.querySelector('#firebaseui-auth-container'),
-    form: document.querySelector('#search-form'),
     nav: document.querySelector('.nav'),
-    btn: document.querySelectorAll('[data-header-btn]')
 };

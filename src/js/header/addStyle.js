@@ -44,7 +44,7 @@ export const addStyle = (btn, header) => {
         {
             addHeaderStyle(header);
             showHeaderSearchForm(header);
-            //headerRef.btnHome.classList.remove(headerSelector.cl_actBtnS);
+            btn.classList.remove(headerSelector.cl_actBtnS);
             //#region TODO #
                 //can be a function that run when the Btn SignIn was clicked
 
@@ -55,8 +55,7 @@ export const addStyle = (btn, header) => {
         {
             addHeaderStyle(header);
             showHeaderSearchForm(header);
-            headerRef.btnSignOut.classList.remove(headerSelector.cl_actBtnS);
-            headerRef.btnSignIn.classList.remove(headerSelector.cl_actBtnS);
+            btn.classList.remove(headerSelector.cl_actBtnS);
             //#region TODO #
                 //can be a function that run when the Btn SignOut was clicked
 
