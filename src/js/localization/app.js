@@ -18,8 +18,7 @@ function changeURLLanguage(lang) {
 }
 
 export function changeLanguage() {
-  let hash = window.location.hash;
-  hash = hash.substring(1);
+  const hash = window.location.hash.substring(1);
 
   if (!allLang.includes(hash)) {
     location.href = `${window.location.pathname}#uk`;

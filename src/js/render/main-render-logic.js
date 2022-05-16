@@ -4,11 +4,11 @@ import { createPagination, hidePagination, showPagination } from '../tui.paginat
 import ApiService from '../API/api-service';
 
 import showMovies from './render-film-list2.js';
+import { Notify } from 'notiflix';
 
 const service = new ApiService();
 
-let language = window.location.hash;
-language = language.substring(1);
+let language = window.location.hash.substring(1);
 
 window.addEventListener('load', onSiteLoad);
 refs.formRef.addEventListener('submit', onFormSubmit);
@@ -21,23 +21,28 @@ function onFormSubmit(e) {
     return;
   }
   resetMarkup();
+  hidePagination();
+
   service.getFilmsByQuery({ query: query, language }).then(data => {
     const totalResults = service.getTotalResults(data);
-    const hasClass = refs.notificationText.classList.contains('--hidden');
 
     if (totalResults === 0) {
-      if (hasClass) {
-        refs.notificationText.classList.remove('--hidden')
+      if (language === 'uk') {
+        Notify.failure(
+          'Нічого не знайдено. Введіть, будь ласка, правильну назву фільму та спробуйте ще раз',
+        );
       }
-      hidePagination();
+
+      if (language === 'en') {
+        Notify.failure('Search result not successful. Enter the correct movie name and try again');
+      }
+
       return;
-    };
-    if (!hasClass) {
-      refs.notificationText.classList.add('--hidden');
-    };
+    }
+
     const markup = showMovies(data);
     refs.galleryRef.insertAdjacentHTML('beforeend', markup);
-    showPagination(); 
+    showPagination();
     createPagination(query, totalResults);
   });
   refs.containerQRef.innerHTML = '';
@@ -46,15 +51,13 @@ function onFormSubmit(e) {
 
 export function onSiteLoad(e) {
   resetMarkup();
-  let language = window.location.hash;
-  language = language.substring(1);
 
   service.getPopularFilms({ language }).then(data => {
     if (data.total_results === 0) {
       return;
     }
     const markup = showMovies(data);
-    refs.galleryRef.insertAdjacentHTML('beforeend', markup); 
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
     createPagination('', service.getTotalResults(data));
   });
   refs.containerQRef.innerHTML = '';

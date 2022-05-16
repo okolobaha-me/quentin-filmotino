@@ -3,8 +3,7 @@ import { db } from '../firebase';
 import { ref, remove } from 'firebase/database';
 import { onAddToQueueBtn } from './onAddToQueueBtn';
 
-let language = window.location.hash;
-language = language.substring(1);
+const language = window.location.hash.substring(1);
 
 export function onRemoveFromQueue(e) {
   if (!auth.currentUser) {

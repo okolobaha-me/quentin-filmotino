@@ -11,8 +11,7 @@ import { onSiteLoad } from '../render/main-render-logic';
 
 const gallery = document.querySelector('.filmList');
 
-let language = window.location.hash;
-language = language.substring(1);
+const language = window.location.hash.substring(1);
 
 export function onLibraryBtn(e) {
   if (!auth.currentUser) {
@@ -104,8 +103,7 @@ async function snapshotFn(snapshot) {
     enFilms.push(id.en);
   });
 
-  let hash = window.location.hash;
-  hash = hash.substring(1);
+  const hash = window.location.hash.substring(1);
 
   if (hash === 'en') {
     return enFilms;

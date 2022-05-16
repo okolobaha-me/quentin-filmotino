@@ -3,8 +3,7 @@ import { db } from '../firebase';
 import { ref, remove } from 'firebase/database';
 import { onAddToWatchedBtn } from './onAddToWatchedBtn';
 
-let language = window.location.hash;
-language = language.substring(1);
+const language = window.location.hash.substring(1);
 
 export function onRemoveFromWatched(e) {
   if (!auth.currentUser) {

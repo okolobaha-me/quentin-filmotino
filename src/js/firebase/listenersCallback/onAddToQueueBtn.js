@@ -7,8 +7,7 @@ import { Notify } from 'notiflix';
 
 const service = new ApiService();
 
-let language = window.location.hash;
-language = language.substring(1);
+const language = window.location.hash.substring(1);
 
 export async function onAddToQueueBtn(e) {
   if (!auth.currentUser) {
