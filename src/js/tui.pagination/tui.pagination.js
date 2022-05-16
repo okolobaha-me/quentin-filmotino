@@ -28,7 +28,7 @@ export function createPagination(q, total_results) {
         if (type.type === 'first') {
           template =
             '<a href="#" class=" tui-page-btn tui-first custom-class-first">' +
-            '<span class="tui-ico-first">1</span>' +
+            '<span class="tui-ico-first"><<</span>' +
             '</a>';
         }
         if (type.type === 'prev') {
@@ -49,7 +49,7 @@ export function createPagination(q, total_results) {
           template =
             '<a href="#" class=" tui-page-btn tui-last custom-class-last">' +
             '<span class="tui-ico-last">' +
-            Math.ceil(options.totalItems / options.itemsPerPage) +
+            '>>' +
             '</span>' +
             '</a>';
         }
@@ -73,16 +73,16 @@ export function createPagination(q, total_results) {
     const currentPage = event.page;
 
     if (q) {
-      createPaginationBySearch(q, currentPage);
+      createPaginationBySearch(q, currentPage, language);
     } else {
-      createPaginationByLoad(currentPage);
+      createPaginationByLoad(currentPage, language);
     }
   });
 }
 
-function createPaginationBySearch(q, currentPage) {
+function createPaginationBySearch(q, currentPage, language) {
   servicePagination
-    .getFilmsByQuery({ page: currentPage, query: q, language })
+    .getFilmsByQuery({ page: currentPage, query: q, language: language })
     .then(data => {
       const markup = showMovies(data);
       refs.galleryRef.insertAdjacentHTML('beforeend', markup);
@@ -91,9 +91,9 @@ function createPaginationBySearch(q, currentPage) {
   refs.galleryRef.innerHTML = '';
 }
 
-function createPaginationByLoad(currentPage) {
+function createPaginationByLoad(currentPage, language) {
   servicePagination
-    .getPopularFilms({ page: currentPage })
+    .getPopularFilms({ page: currentPage, language: language })
     .then(data => {
       const markup = showMovies(data);
       refs.galleryRef.insertAdjacentHTML('beforeend', markup);

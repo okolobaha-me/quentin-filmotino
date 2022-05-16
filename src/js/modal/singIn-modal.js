@@ -13,7 +13,7 @@ function onOpenModal() {
   window.addEventListener('click', onCheckClick);
 }
 
-function onCloseModal() {
+export function onCloseModal() {
   refs.modal.classList.add('is-hidden');
   bodyUnlock();
 
