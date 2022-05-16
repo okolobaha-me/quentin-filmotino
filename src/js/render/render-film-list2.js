@@ -22,8 +22,8 @@ export default function showMovies(data) {
         const g = genre_ids || genres;
 
         return `
-        <li class="filmList__item" id="${id}">
-        <div class="filmList__link">
+        <li  class="filmList__item" id="${id}">
+        <div tabindex="0" class="filmList__link">
           <div class="filmList__poster">
             <picture>
               <img
