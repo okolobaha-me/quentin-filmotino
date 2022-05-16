@@ -26,6 +26,8 @@ export function changeLanguage() {
     location.reload();
   }
 
+  document.documentElement.setAttribute('lang', hash);
+
   selectLng.forEach(lng => {
     if (hash === 'en') {
       selected.classList.add('lng-enS');
@@ -38,7 +40,8 @@ export function changeLanguage() {
 
   const keys = Object.keys(languages);
   keys.forEach(key => {
-    let element = document.querySelector('.lng-' + key);
+    const element = document.querySelector('.lng-' + key);
+    const developers = document.querySelectorAll('.lng-developer');
 
     if (key === 'input') {
       searchInput.placeholder = languages[key][hash];
@@ -47,6 +50,10 @@ export function changeLanguage() {
     if (element) {
       element.innerHTML = languages[key][hash];
     }
+
+    developers.forEach(developer => {
+      developer.innerHTML = languages['developer'][hash];
+    });
   });
 }
 

@@ -11,6 +11,9 @@ import { onSiteLoad } from '../render/main-render-logic';
 
 const gallery = document.querySelector('.filmList');
 
+let language = window.location.hash;
+language = language.substring(1);
+
 export function onLibraryBtn(e) {
   if (!auth.currentUser) {
     Notify.failure('SignIn, please.');
@@ -82,9 +85,10 @@ async function renderQueueFilms(snapshot) {
   });
 }
 
-const libraryStr = `<li>
-  <h2 style="text-align: center; font-size: 40px">Please, add movies to the library...</h2>
-</li>`;
+const libraryStr =
+  language === 'uk'
+    ? `<li><h2 style="text-align: center; font-size: 40px">Будь ласка, додайте фільми в бібліотеку...</h2></li>`
+    : `<li> <h2 style="text-align: center; font-size: 40px">Please, add movies to the library...</h2></li>`;
 
 async function snapshotFn(snapshot) {
   const filmsArray = await getValue(snapshot);
