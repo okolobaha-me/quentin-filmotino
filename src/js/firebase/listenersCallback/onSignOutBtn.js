@@ -13,7 +13,7 @@ export function onSignOutBtn(e) {
       libraryBtn.classList.toggle('visually-hidden');
       onHomeBtn();
     })
-    .catch(e => {
-      console.log('error off');
+    .catch(error => {
+      console.log(error);
     });
 }

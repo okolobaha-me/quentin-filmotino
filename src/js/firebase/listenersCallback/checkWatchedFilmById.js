@@ -8,7 +8,6 @@ export async function checkWatchedFilmById(id) {
     if (snapshot.exists()) {
       return Object.keys(snapshot.val());
     } else {
-      console.log('No data available');
       return;
     }
   });

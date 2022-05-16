@@ -5,12 +5,11 @@ import { refs } from './firebaseRefs';
 const { firebaseuiAuthContainer } = refs();
 
 import { db } from './firebase';
-import { ref, update } from 'firebase/database';
+import { ref, update, off } from 'firebase/database';
 
 import { Notify } from 'notiflix';
 
 import { onCloseModal } from '../modal/singIn-modal';
-import { removeListeners } from '../library/onLibraryBtn';
 
 export const uiConfig = {
   signInOptions: [
@@ -39,7 +38,10 @@ export const uiConfig = {
       }
       firebaseuiAuthContainer.classList.toggle('is-hidden');
       onCloseModal();
-      removeListeners();
+      const onValueRefQueue = ref(db, 'users/' + user.uid + '/films/queue');
+      const onValueRefWatched = ref(db, 'users/' + user.uid + '/films/watched');
+      off(onValueRefQueue);
+      off(onValueRefWatched);
     },
     signInFailure: function (error) {
       Notify.failure('Ups, something went wrong, try again later');
