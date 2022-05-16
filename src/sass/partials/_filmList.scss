@@ -2,29 +2,29 @@
   @media screen and (min-width: $tablet) {
     display: flex;
     flex-wrap: wrap;
-    margin: -16px;
+    margin: -16px -16px -13px -16px;
   }
 
   @media screen and (min-width: $desktop) {
-    margin: -8px -8px -24px -8px;
+    margin: -8px -8px -21px -8px;
   }
 }
 
 .filmList__item {
   &:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 17px;
   }
 
   @media screen and (min-width: $tablet) {
     flex-basis: calc((100% - 16px * 4) / 2);
 
-    margin: 16px 16px 16px 16px;
+    margin: 16px 16px 13px 16px;
   }
 
   @media screen and (min-width: $desktop) {
     flex-basis: calc((100% - 8.16666px * 6) / 3);
 
-    margin: 8px 8px 24px 8px;
+    margin: 8px 8px 21px 8px;
   }
 }
 
@@ -39,6 +39,7 @@
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
       1px 4px 6px rgba(0, 0, 0, 0.16);
   }
+  padding-bottom: 3px;
 }
 
 .filmList__poster {
