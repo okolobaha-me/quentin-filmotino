@@ -1,13 +1,6 @@
-function loadData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, 2000);
-  });
-}
 
-loadData().then(() => {
-  let preloaderEL = document.getElementById('preloader');
-  preloaderEL.classList.add('preloader-hide');
+const loader = document.querySelector('main');
+main.innerHTML =
+  '<div class="preloader"><div class="spinner-box" id="spinner-box"><div class="spinner"></div><div class="letters"></div></div></div>';
 
-  let spinner = document.getElementById('spinner-box');
-  spinner.classList.add('spinner-box--hide');
-});
+ 
