@@ -21,7 +21,7 @@ export function createPagination(q, total_results) {
 
     template: {
       page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected darkmode-ignore">{{page}}</strong>',
       moveButton: type => {
         let template = '';
 
