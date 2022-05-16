@@ -20,7 +20,7 @@ export function createPaginationFB(arr, page = 1, container) {
         if (type.type === 'first') {
           template =
             '<a href="#" class=" tui-page-btn tui-first custom-class-first">' +
-            '<span class="tui-ico-first">1</span>' +
+            '<span class="tui-ico-first"><<</span>' +
             '</a>';
         }
         if (type.type === 'prev') {
@@ -41,7 +41,7 @@ export function createPaginationFB(arr, page = 1, container) {
           template =
             '<a href="#" class=" tui-page-btn tui-last custom-class-last">' +
             '<span class="tui-ico-last">' +
-            Math.ceil(options.totalItems / options.itemsPerPage) +
+            '>>' +
             '</span>' +
             '</a>';
         }
