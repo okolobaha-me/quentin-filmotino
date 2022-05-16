@@ -183,8 +183,4 @@ export const languages = {
     en: 'Search result not successful. Enter the correct movie name and try again',
     uk: 'Нічого не знайдено. Введіть, будь ласка, правильну назву фільму та спробуйте ще раз',
   },
-  // notMovies: {
-  //   en: 'Please, add movies to the library...',
-  //   uk: 'Будь ласка, додайте фільми в бібліотеку',
-  // },
 };
