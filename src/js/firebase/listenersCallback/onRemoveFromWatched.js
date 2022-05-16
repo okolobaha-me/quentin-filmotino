@@ -17,6 +17,7 @@ export function onRemoveFromWatched(e) {
   remove(removeFilmRef)
     .then(success => {
       e.target.removeEventListener('click', onRemoveFromWatched);
+      // e.target.textContent = 'add to watched';
       if (language === 'uk') {
         e.target.textContent = 'Додати до переглянутих';
       }
@@ -25,6 +26,7 @@ export function onRemoveFromWatched(e) {
         e.target.textContent = 'Add to watched';
       }
       e.target.addEventListener('click', onAddToWatchedBtn);
+      console.log('удалили');
     })
     .catch(error => console.log(error));
 }

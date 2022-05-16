@@ -24,7 +24,9 @@ export function onRemoveFromQueue(e) {
       if (language === 'en') {
         e.target.textContent = 'Add to queue';
       }
+      // e.target.textContent = 'add to watched';
       e.target.addEventListener('click', onAddToQueueBtn);
+      console.log('удалили');
     })
     .catch(error => console.log(error));
 }

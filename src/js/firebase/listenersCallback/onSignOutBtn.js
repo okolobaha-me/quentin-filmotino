@@ -1,8 +1,9 @@
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
+import { onLibraryBtn } from '../../library/onLibraryBtn';
+
 import { refs } from '../firebaseRefs';
 const { signInBtn, signOutBtn, libraryBtn } = refs();
-import { onHomeBtn } from '../../library/onLibraryBtn';
 
 export function onSignOutBtn(e) {
   signOut(auth)
@@ -11,9 +12,8 @@ export function onSignOutBtn(e) {
       signInBtn.classList.toggle('visually-hidden');
       signOutBtn.classList.toggle('visually-hidden');
       libraryBtn.classList.toggle('visually-hidden');
-      onHomeBtn();
     })
-    .catch(error => {
-      console.log(error);
+    .catch(e => {
+      console.log('error off');
     });
 }

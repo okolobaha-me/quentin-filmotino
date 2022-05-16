@@ -14,7 +14,7 @@ export default class {
     this.options = {
       urlPath: '',
       page: 1,
-      perPage: 18,
+      perPage: 24,
     };
   }
 
@@ -28,7 +28,7 @@ export default class {
   }
 
   getPopularFilms({ page = this.options.page, language = 'en' } = {}) {
-    const url = `/3/trending/movie/day?page=${page}&language=${language}`;
+    const url = `/3/trending/all/day?page=${page}&language=${language}`;
 
     this.changeUrlPath(url);
     return this.getFilms();

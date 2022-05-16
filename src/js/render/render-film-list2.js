@@ -22,8 +22,8 @@ export default function showMovies(data) {
         const g = genre_ids || genres;
 
         return `
-        <li  class="filmList__item" id="${id}">
-        <div tabindex="0" class="filmList__link">
+        <li class="filmList__item" id="${id}">
+        <div class="filmList__link">
           <div class="filmList__poster">
             <picture>
               <img
@@ -35,10 +35,12 @@ export default function showMovies(data) {
           <h2 class="filmList__title">${title || name}</h2>
           <div class="filmList__info">
             <p class="filmList__text">
-              <span class="filmList__genge">${getGenres(g)}</span> |
-              <span class="filmList__releaseDate">${date ? date.slice(0, 4) : ''}</span>
+              <span class="filmList__genge darkmode-ignore">${getGenres(g)}</span> |
+              <span class="filmList__releaseDate darkmode-ignore">${
+                date ? date.slice(0, 4) : ''
+              }</span>
             </p>
-            <p class="filmList__voteAverage">${vote_average}</p>
+            <p class="filmList__voteAverage darkmode-ignore">${vote_average}</p>
           </div>
         </div>
         </li>

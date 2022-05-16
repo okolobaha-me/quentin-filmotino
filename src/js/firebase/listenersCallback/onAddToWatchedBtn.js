@@ -28,6 +28,7 @@ export async function onAddToWatchedBtn(e) {
     update(ref(db), updates)
       .then(success => {
         e.target.removeEventListener('click', onAddToWatchedBtn);
+        // e.target.textContent = 'remove from watched';
         if (language === 'uk') {
           e.target.textContent = 'Видалити з переглянутих';
         }

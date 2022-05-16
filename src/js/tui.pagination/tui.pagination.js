@@ -21,14 +21,14 @@ export function createPagination(q, total_results) {
 
     template: {
       page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected darkmode-ignore">{{page}}</strong>',
       moveButton: type => {
         let template = '';
 
         if (type.type === 'first') {
           template =
             '<a href="#" class=" tui-page-btn tui-first custom-class-first">' +
-            '<span class="tui-ico-first"><<</span>' +
+            '<span class="tui-ico-first">1</span>' +
             '</a>';
         }
         if (type.type === 'prev') {
@@ -49,7 +49,7 @@ export function createPagination(q, total_results) {
           template =
             '<a href="#" class=" tui-page-btn tui-last custom-class-last">' +
             '<span class="tui-ico-last">' +
-            '>>' +
+            Math.ceil(options.totalItems / options.itemsPerPage) +
             '</span>' +
             '</a>';
         }
@@ -73,16 +73,16 @@ export function createPagination(q, total_results) {
     const currentPage = event.page;
 
     if (q) {
-      createPaginationBySearch(q, currentPage, language);
+      createPaginationBySearch(q, currentPage);
     } else {
-      createPaginationByLoad(currentPage, language);
+      createPaginationByLoad(currentPage);
     }
   });
 }
 
-function createPaginationBySearch(q, currentPage, language) {
+function createPaginationBySearch(q, currentPage) {
   servicePagination
-    .getFilmsByQuery({ page: currentPage, query: q, language: language })
+    .getFilmsByQuery({ page: currentPage, query: q, language })
     .then(data => {
       const markup = showMovies(data);
       refs.galleryRef.insertAdjacentHTML('beforeend', markup);
@@ -91,9 +91,9 @@ function createPaginationBySearch(q, currentPage, language) {
   refs.galleryRef.innerHTML = '';
 }
 
-function createPaginationByLoad(currentPage, language) {
+function createPaginationByLoad(currentPage) {
   servicePagination
-    .getPopularFilms({ page: currentPage, language: language })
+    .getPopularFilms({ page: currentPage })
     .then(data => {
       const markup = showMovies(data);
       refs.galleryRef.insertAdjacentHTML('beforeend', markup);

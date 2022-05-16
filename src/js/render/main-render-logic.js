@@ -20,25 +20,20 @@ function onFormSubmit(e) {
   if (query.trim() === '') {
     return;
   }
-  resetMarkup();
+  // resetMarkup();
+  refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'; // <========== удалить после рендера
+  // console.log(`Фильмы по запросу ${query}:`);
   service.getFilmsByQuery({ query: query, language }).then(data => {
-    const totalResults = service.getTotalResults(data);
-    const hasClass = refs.notificationText.classList.contains('--hidden');
-
-    if (totalResults === 0) {
-      if (hasClass) {
-        refs.notificationText.classList.remove('--hidden')
-      }
+    if (data.total_results === 0) {
+      // console.log('запросов не найдено');
       hidePagination();
       return;
-    };
-    if (!hasClass) {
-      refs.notificationText.classList.add('--hidden');
-    };
+    }
+    // console.log(data);
     const markup = showMovies(data);
     refs.galleryRef.insertAdjacentHTML('beforeend', markup);
-    showPagination(); 
-    createPagination(query, totalResults);
+    showPagination(); // <========== подставить рендер renderFilmList(data)
+    createPagination(query, service.getTotalResults(data));
   });
   refs.containerQRef.innerHTML = '';
   refs.containerWRef.innerHTML = '';
@@ -46,15 +41,19 @@ function onFormSubmit(e) {
 
 export function onSiteLoad(e) {
   resetMarkup();
+  // <========== удалить после рендера
+  // console.log('Фильмы, приходящие, при загрузке страницы');
   let language = window.location.hash;
   language = language.substring(1);
 
   service.getPopularFilms({ language }).then(data => {
     if (data.total_results === 0) {
+      // console.log('запросов не найдено');
       return;
     }
+    // console.log(data);
     const markup = showMovies(data);
-    refs.galleryRef.insertAdjacentHTML('beforeend', markup); 
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup); // <========== подставить рендер renderFilmList(data)
     createPagination('', service.getTotalResults(data));
   });
   refs.containerQRef.innerHTML = '';

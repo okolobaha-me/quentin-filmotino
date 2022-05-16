@@ -6,5 +6,4 @@ export default {
   galleryRef: document.querySelector('.filmList'),
   containerQRef: document.getElementById('tui-pagination-container-q'),
   containerWRef: document.getElementById('tui-pagination-container-w'),
-  notificationText: document.querySelector('.film_notification') 
 };

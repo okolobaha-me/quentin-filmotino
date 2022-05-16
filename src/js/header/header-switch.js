@@ -1,4 +1,6 @@
 import { headerRef, headerSelector } from './header-ref';
+import { headerRenderMain } from './header-render-main';
+import { headerRenderMyLib } from './header-render-myLib';
 import { delStyle } from './delStyle';
 import { addStyle } from './addStyle';
 

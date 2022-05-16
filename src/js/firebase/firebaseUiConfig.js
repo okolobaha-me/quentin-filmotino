@@ -5,11 +5,9 @@ import { refs } from './firebaseRefs';
 const { firebaseuiAuthContainer } = refs();
 
 import { db } from './firebase';
-import { ref, update, off } from 'firebase/database';
+import { ref, update } from 'firebase/database';
 
 import { Notify } from 'notiflix';
-
-import { onCloseModal } from '../modal/singIn-modal';
 
 export const uiConfig = {
   signInOptions: [
@@ -19,8 +17,8 @@ export const uiConfig = {
   signInFlow: 'popup',
   callbacks: {
     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-      const user = authResult.user;
-      const isNewUser = authResult.additionalUserInfo.isNewUser;
+      var user = authResult.user;
+      var isNewUser = authResult.additionalUserInfo.isNewUser;
 
       if (isNewUser) {
         function createNewUser() {
@@ -37,11 +35,6 @@ export const uiConfig = {
         createNewUser();
       }
       firebaseuiAuthContainer.classList.toggle('is-hidden');
-      onCloseModal();
-      const onValueRefQueue = ref(db, 'users/' + user.uid + '/films/queue');
-      const onValueRefWatched = ref(db, 'users/' + user.uid + '/films/watched');
-      off(onValueRefQueue);
-      off(onValueRefWatched);
     },
     signInFailure: function (error) {
       Notify.failure('Ups, something went wrong, try again later');
