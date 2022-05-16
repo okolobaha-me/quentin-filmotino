@@ -1,3 +1,30 @@
 .darkmode-toggle {
-  z-index: 500;
+  z-index: 1;
+}
+.filmList__voteAverage.darkmode-ignore,
+.tui-is-selected.darkmode-ignore,
+a.tui-page-btn {
+  display: inherit;
+}
+
+.modal-bg--black {
+  background-color: #1e1e1e;
+}
+
+.modal-text--black {
+  color: white;
+  fill: white;
+}
+
+.darkmode--activated .modal-film {
+  background-color: #1e1e1e;
+}
+.darkmode--activated .modal__param-value {
+  color: white;
+}
+.darkmode--activated .modal__tittle {
+  color: white;
+}
+.darkmode--activated .view {
+  color: white;
 }

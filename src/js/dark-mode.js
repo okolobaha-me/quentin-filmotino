@@ -16,3 +16,43 @@ const options = {
 
 const darkmode = new Darkmode(options);
 darkmode.showWidget();
+
+const refs = {
+  teamModalButton: document.querySelector('[data-team-modal-open]'),
+  modal: document.querySelector('.modal-team'),
+  icon: document.querySelector('.modal-team__close-button'),
+  title: document.querySelector('.modal-team__title'),
+  fill: document.querySelectorAll('.modal-team__item'),
+  name: document.querySelectorAll('.modal-team__item-name'),
+  info: document.querySelectorAll('.modal-team__item-info'),
+};
+
+refs.teamModalButton.addEventListener('click', () => {
+  if (darkmode.isActivated()) {
+    refs.modal.classList.add('modal-bg--black');
+    refs.title.classList.add('modal-text--black');
+    refs.icon.classList.add('modal-text--black');
+    refs.fill.forEach(element => {
+      element.classList.add('modal-bg--black');
+    });
+    refs.name.forEach(element => {
+      element.classList.add('modal-text--black');
+    });
+    refs.info.forEach(element => {
+      element.classList.add('modal-text--black');
+    });
+  } else {
+    refs.modal.classList.remove('modal-bg--black');
+    refs.title.classList.remove('modal-text--black');
+    refs.icon.classList.remove('modal-text--black');
+    refs.fill.forEach(element => {
+      element.classList.remove('modal-bg--black');
+    });
+    refs.name.forEach(element => {
+      element.classList.remove('modal-text--black');
+    });
+    refs.info.forEach(element => {
+      element.classList.remove('modal-text--black');
+    });
+  }
+});
