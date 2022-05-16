@@ -4,6 +4,7 @@ function loadData() {
   });
 }
 
+
 loadData().then(() => {
   let preloaderEL = document.getElementById('preloader');
   preloaderEL.classList.add('preloader-hide');
