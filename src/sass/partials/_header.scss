@@ -196,6 +196,24 @@
   background-color: transparent;
 }
 
+.film_notification {
+  @include font(14px, 16px, 400);
+
+  display: block;
+
+  text-align: center;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+
+  color: getColor(error-text-color);
+
+  &.--hidden {
+    display: none;
+  }
+}
+
 //#endregion #
 
 //#region MY LIBRARY BTN #
