@@ -12,7 +12,14 @@ language = language.substring(1);
 
 export async function onAddToWatchedBtn(e) {
   if (!auth.currentUser) {
-    Notify.failure('SignIn, please.');
+    if (language === 'uk') {
+      Notify.failure('Увійдіть в акаунт, будь ласка.');
+    }
+
+    if (language === 'en') {
+      Notify.failure('SignIn, please.');
+    }
+
     return;
   }
   const filmId = e.target.dataset.id;
