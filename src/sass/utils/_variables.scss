@@ -1,20 +1,30 @@
-$colors: (accent-color: #FF6B08,
-    primary-text-color: #FFFFFF,
-    second-text-color: #000000,
-    third-text-color: #545454,//footer text
-    four-text-color:#8c8c8c,//film-modal-text
-    error-text-color: #FF001B, //under searchForm
+$colors: (
+  accent-color: #ff6b08,
+  primary-text-color: #ffffff,
+  second-text-color: #000000,
+  third-text-color: #545454,
+  //footer text
+  four-text-color: #8c8c8c,
+  //film-modal-text
+  error-text-color: #ff001b,
 
-    section-background: #FFFFFF,
-    footer-background:#F7F7F7,
+  //under searchForm
+  section-background: #ffffff,
+  footer-background: #f7f7f7,
 
-    transparent-color: rgba(0, 0, 0, 0), //headerBtn
-    first-border-color: #FFFFFF, //btnBorder
-    second-border-color: rgba(0, 0, 0, 1), //btnBorder
+  transparent-color: rgba(0, 0, 0, 0),
+  //headerBtn
+  first-border-color: #ffffff,
+  //btnBorder
+  second-border-color: rgba(0, 0, 0, 1),
+  //btnBorder
+  page-btn-color: #f7f7f7,
 
-    page-btn-color: #F7F7F7, //(aboveFooter)
+  //(aboveFooter)
+  modal-bg-color: #1e1e1e,
+  modal-text-color: #ffffff,
 );
 
 @function getColor($key) {
-    @return map-get($colors, $key);
-};
+  @return map-get($colors, $key);
+} ;

@@ -10,23 +10,23 @@ a.tui-page-btn {
 }
 
 .modal-bg--black {
-  background-color: #1e1e1e;
+  background-color: getColor(modal-bg-color);
 }
 
 .modal-text--black {
-  color: white;
-  fill: white;
+  color: getColor(modal-text-color);
+  fill: getColor(modal-text-color);
 }
 
 .darkmode--activated .modal-film {
-  background-color: #1e1e1e;
+  background-color: getColor(modal-bg-color);
 }
 .darkmode--activated .modal__param-value {
-  color: white;
+  color: getColor(modal-text-color);
 }
 .darkmode--activated .modal__tittle {
-  color: white;
+  color: getColor(modal-text-color);
 }
 .darkmode--activated .view {
-  color: white;
+  color: getColor(modal-text-color);
 }
