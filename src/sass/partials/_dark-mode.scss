@@ -30,3 +30,6 @@ a.tui-page-btn {
 .darkmode--activated .view {
   color: getColor(modal-text-color);
 }
+.darkmode--activated  .material-symbols-outlined {
+  color:getColor(modal-text-color)
+}
