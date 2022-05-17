@@ -13,7 +13,7 @@ export function createPaginationFB(arr, page = 1, container) {
     lastItemClassName: 'tui-last-child',
     template: {
       page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected darkmode-ignore">{{page}}</strong>',
       moveButton: type => {
         let template = '';
 
