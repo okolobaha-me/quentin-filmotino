@@ -66,6 +66,14 @@ export function createPaginationFB(arr, page = 1, container) {
   const pagination = new Pagination(container, options);
 
   pagination.on('afterMove', event => {
+    let mask = document.querySelector('.spinner_mask');
+
+    mask.classList.remove('hide');
+    mask.style.display = 'flex';
+    setTimeout(() => {
+      mask.style.display = 'none';
+    }, 600);
+
     const currentPage = event.page;
     const listMovie = newPageArr(arr, currentPage);
 
