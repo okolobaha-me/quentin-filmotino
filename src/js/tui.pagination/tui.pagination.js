@@ -71,6 +71,14 @@ export function createPagination(q, total_results) {
   pagination.on('afterMove', event => {
     const currentPage = event.page;
 
+    let mask = document.querySelector('.spinner_mask'); 
+ 
+    mask.classList.remove('hide'); 
+    mask.style.display = 'flex'; 
+    setTimeout(() => { 
+      mask.style.display = 'none'; 
+    }, 600)
+
     if (q) {
       createPaginationBySearch(q, currentPage, language);
     } else {
