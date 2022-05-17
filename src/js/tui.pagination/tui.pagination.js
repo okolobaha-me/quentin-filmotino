@@ -4,8 +4,7 @@ import showMovies from '../render/render-film-list2.js';
 
 const servicePagination = new ApiService();
 
-let language = window.location.hash;
-language = language.substring(1);
+const language = window.location.hash.substring(1);
 
 import refs from '../render/refs';
 

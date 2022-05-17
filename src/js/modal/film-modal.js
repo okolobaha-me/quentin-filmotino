@@ -11,8 +11,7 @@ import { auth } from '../firebase/firebase';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const api = new Api();
 
-let language = window.location.hash;
-language = language.substring(1);
+const language = window.location.hash.substring(1);
 
 const refs = {
   openModalCards: document.querySelector('[data-film-modal-open]'),
