@@ -1,12 +1,14 @@
+let spinnerMaskRef = document.querySelector('.spinner_mask');
 
-let spinnerMaskRef = document.querySelector('.spinner_mask'); 
+window.addEventListener('load', () => {
+  {
+    spinnerMaskRef.classList.remove('hide');
+    spinnerMaskRef.style.display = 'flex';
 
-window.addEventListener('load', () => { 
-  spinnerMaskRef.classList.add('hide'); 
-  setTimeout(() => { 
-    spinnerMaskRef.style.display = 'none'; 
-  }, 700); 
+    hide();
+  }
 });
-
-
- 
+async function hide() {
+  spinnerMaskRef.classList.add('hide');
+  spinnerMaskRef.style.display = 'none';
+}

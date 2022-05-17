@@ -71,13 +71,9 @@ export function createPagination(q, total_results) {
   pagination.on('afterMove', event => {
     const currentPage = event.page;
 
-    let mask = document.querySelector('.spinner_mask'); 
- 
-    mask.classList.remove('hide'); 
-    mask.style.display = 'flex'; 
-    setTimeout(() => { 
-      mask.style.display = 'none'; 
-    }, 600)
+    let maskRef = document.querySelector('.spinner_mask');
+    maskRef.classList.remove('hide');
+    maskRef.style.display = 'flex';
 
     if (q) {
       createPaginationBySearch(q, currentPage, language);
@@ -91,6 +87,7 @@ function createPaginationBySearch(q, currentPage, language) {
   servicePagination
     .getFilmsByQuery({ page: currentPage, query: q, language: language })
     .then(data => {
+      hides();
       const markup = showMovies(data);
       refs.galleryRef.insertAdjacentHTML('beforeend', markup);
     })
@@ -102,6 +99,7 @@ function createPaginationByLoad(currentPage, language) {
   servicePagination
     .getPopularFilms({ page: currentPage, language: language })
     .then(data => {
+      hides();
       const markup = showMovies(data);
       refs.galleryRef.insertAdjacentHTML('beforeend', markup);
     })
@@ -114,4 +112,8 @@ export function hidePagination() {
 }
 export function showPagination() {
   refs.containerRef.classList.remove('hide');
+}
+async function hides() {
+  let maskRef = document.querySelector('.spinner_mask');
+  maskRef.style.display = 'none';
 }
