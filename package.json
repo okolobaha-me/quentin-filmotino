@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "darkmode-js": "^1.5.7",
     "firebase": "^9.8.1",
     "firebaseui": "^6.0.1",
     "lodash": "^4.17.21",

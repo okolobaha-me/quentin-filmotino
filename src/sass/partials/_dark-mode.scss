@@ -1,0 +1,35 @@
+// TODO: vars for colors
+
+.darkmode-toggle {
+  z-index: 1;
+}
+.filmList__voteAverage.darkmode-ignore,
+.tui-is-selected.darkmode-ignore,
+a.tui-page-btn {
+  display: inherit;
+}
+
+.modal-bg--black {
+  background-color: getColor(modal-bg-color);
+}
+
+.modal-text--black {
+  color: getColor(modal-text-color);
+  fill: getColor(modal-text-color);
+}
+
+.darkmode--activated .modal-film {
+  background-color: getColor(modal-bg-color);
+}
+.darkmode--activated .modal__param-value {
+  color: getColor(modal-text-color);
+}
+.darkmode--activated .modal__tittle {
+  color: getColor(modal-text-color);
+}
+.darkmode--activated .view {
+  color: getColor(modal-text-color);
+}
+.darkmode--activated  .material-symbols-outlined {
+  color:getColor(modal-text-color)
+}

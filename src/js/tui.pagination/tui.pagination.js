@@ -4,8 +4,7 @@ import showMovies from '../render/render-film-list2.js';
 
 const servicePagination = new ApiService();
 
-let language = window.location.hash;
-language = language.substring(1);
+const language = window.location.hash.substring(1);
 
 import refs from '../render/refs';
 
@@ -21,14 +20,14 @@ export function createPagination(q, total_results) {
 
     template: {
       page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected darkmode-ignore">{{page}}</strong>',
       moveButton: type => {
         let template = '';
 
         if (type.type === 'first') {
           template =
             '<a href="#" class=" tui-page-btn tui-first custom-class-first">' +
-            '<span class="tui-ico-first">1</span>' +
+            '<span class="tui-ico-first"><<</span>' +
             '</a>';
         }
         if (type.type === 'prev') {
@@ -49,7 +48,7 @@ export function createPagination(q, total_results) {
           template =
             '<a href="#" class=" tui-page-btn tui-last custom-class-last">' +
             '<span class="tui-ico-last">' +
-            Math.ceil(options.totalItems / options.itemsPerPage) +
+            '>>' +
             '</span>' +
             '</a>';
         }
@@ -72,17 +71,25 @@ export function createPagination(q, total_results) {
   pagination.on('afterMove', event => {
     const currentPage = event.page;
 
+    let mask = document.querySelector('.spinner_mask'); 
+ 
+    mask.classList.remove('hide'); 
+    mask.style.display = 'flex'; 
+    setTimeout(() => { 
+      mask.style.display = 'none'; 
+    }, 600)
+
     if (q) {
-      createPaginationBySearch(q, currentPage);
+      createPaginationBySearch(q, currentPage, language);
     } else {
-      createPaginationByLoad(currentPage);
+      createPaginationByLoad(currentPage, language);
     }
   });
 }
 
-function createPaginationBySearch(q, currentPage) {
+function createPaginationBySearch(q, currentPage, language) {
   servicePagination
-    .getFilmsByQuery({ page: currentPage, query: q, language })
+    .getFilmsByQuery({ page: currentPage, query: q, language: language })
     .then(data => {
       const markup = showMovies(data);
       refs.galleryRef.insertAdjacentHTML('beforeend', markup);
@@ -91,9 +98,9 @@ function createPaginationBySearch(q, currentPage) {
   refs.galleryRef.innerHTML = '';
 }
 
-function createPaginationByLoad(currentPage) {
+function createPaginationByLoad(currentPage, language) {
   servicePagination
-    .getPopularFilms({ page: currentPage })
+    .getPopularFilms({ page: currentPage, language: language })
     .then(data => {
       const markup = showMovies(data);
       refs.galleryRef.insertAdjacentHTML('beforeend', markup);

@@ -3,8 +3,7 @@ import { db } from '../firebase';
 import { ref, remove } from 'firebase/database';
 import { onAddToQueueBtn } from './onAddToQueueBtn';
 
-let language = window.location.hash;
-language = language.substring(1);
+const language = window.location.hash.substring(1);
 
 export function onRemoveFromQueue(e) {
   if (!auth.currentUser) {
@@ -24,9 +23,7 @@ export function onRemoveFromQueue(e) {
       if (language === 'en') {
         e.target.textContent = 'Add to queue';
       }
-      // e.target.textContent = 'add to watched';
       e.target.addEventListener('click', onAddToQueueBtn);
-      console.log('удалили');
     })
     .catch(error => console.log(error));
 }

@@ -18,13 +18,14 @@ function changeURLLanguage(lang) {
 }
 
 export function changeLanguage() {
-  let hash = window.location.hash;
-  hash = hash.substring(1);
+  const hash = window.location.hash.substring(1);
 
   if (!allLang.includes(hash)) {
     location.href = `${window.location.pathname}#uk`;
     location.reload();
   }
+
+  document.documentElement.setAttribute('lang', hash);
 
   selectLng.forEach(lng => {
     if (hash === 'en') {
@@ -38,7 +39,8 @@ export function changeLanguage() {
 
   const keys = Object.keys(languages);
   keys.forEach(key => {
-    let element = document.querySelector('.lng-' + key);
+    const element = document.querySelector('.lng-' + key);
+    const developers = document.querySelectorAll('.lng-developer');
 
     if (key === 'input') {
       searchInput.placeholder = languages[key][hash];
@@ -47,6 +49,10 @@ export function changeLanguage() {
     if (element) {
       element.innerHTML = languages[key][hash];
     }
+
+    developers.forEach(developer => {
+      developer.innerHTML = languages['developer'][hash];
+    });
   });
 }
 

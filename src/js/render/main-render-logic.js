@@ -4,11 +4,11 @@ import { createPagination, hidePagination, showPagination } from '../tui.paginat
 import ApiService from '../API/api-service';
 
 import showMovies from './render-film-list2.js';
+import { Notify } from 'notiflix';
 
 const service = new ApiService();
 
-let language = window.location.hash;
-language = language.substring(1);
+let language = window.location.hash.substring(1);
 
 window.addEventListener('load', onSiteLoad);
 refs.formRef.addEventListener('submit', onFormSubmit);
@@ -20,40 +20,48 @@ function onFormSubmit(e) {
   if (query.trim() === '') {
     return;
   }
-  // resetMarkup();
-  refs.galleryRef.innerHTML = '<h1>здесь будут фильмы по запросу ;)</h1>'; // <========== удалить после рендера
-  // console.log(`Фильмы по запросу ${query}:`);
+  resetMarkup();
+  hidePagination();
+
   service.getFilmsByQuery({ query: query, language }).then(data => {
-    if (data.total_results === 0) {
-      // console.log('запросов не найдено');
-      hidePagination();
+    const totalResults = service.getTotalResults(data);
+
+    if (totalResults === 0) {
+      if (language === 'uk') {
+        Notify.failure(
+          'Нічого не знайдено. Введіть, будь ласка, правильну назву фільму та спробуйте ще раз',
+        );
+      }
+
+      if (language === 'en') {
+        Notify.failure('Search result not successful. Enter the correct movie name and try again');
+      }
+
       return;
     }
-    // console.log(data);
+
     const markup = showMovies(data);
     refs.galleryRef.insertAdjacentHTML('beforeend', markup);
-    showPagination(); // <========== подставить рендер renderFilmList(data)
-    createPagination(query, service.getTotalResults(data));
+    showPagination();
+    createPagination(query, totalResults);
   });
+  refs.containerQRef.innerHTML = '';
+  refs.containerWRef.innerHTML = '';
 }
 
 export function onSiteLoad(e) {
   resetMarkup();
-  // <========== удалить после рендера
-  // console.log('Фильмы, приходящие, при загрузке страницы');
-  let language = window.location.hash;
-  language = language.substring(1);
 
   service.getPopularFilms({ language }).then(data => {
     if (data.total_results === 0) {
-      // console.log('запросов не найдено');
       return;
     }
-    // console.log(data);
     const markup = showMovies(data);
-    refs.galleryRef.insertAdjacentHTML('beforeend', markup); // <========== подставить рендер renderFilmList(data)
+    refs.galleryRef.insertAdjacentHTML('beforeend', markup);
     createPagination('', service.getTotalResults(data));
   });
+  refs.containerQRef.innerHTML = '';
+  refs.containerWRef.innerHTML = '';
 }
 
 export function resetMarkup() {

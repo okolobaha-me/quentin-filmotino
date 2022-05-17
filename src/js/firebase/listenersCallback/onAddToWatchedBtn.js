@@ -7,12 +7,18 @@ import { Notify } from 'notiflix';
 
 const service = new ApiService();
 
-let language = window.location.hash;
-language = language.substring(1);
+const language = window.location.hash.substring(1);
 
 export async function onAddToWatchedBtn(e) {
   if (!auth.currentUser) {
-    Notify.failure('SignIn, please.');
+    if (language === 'uk') {
+      Notify.failure('Увійдіть в акаунт, будь ласка.');
+    }
+
+    if (language === 'en') {
+      Notify.failure('SignIn, please.');
+    }
+
     return;
   }
   const filmId = e.target.dataset.id;
@@ -28,7 +34,6 @@ export async function onAddToWatchedBtn(e) {
     update(ref(db), updates)
       .then(success => {
         e.target.removeEventListener('click', onAddToWatchedBtn);
-        // e.target.textContent = 'remove from watched';
         if (language === 'uk') {
           e.target.textContent = 'Видалити з переглянутих';
         }

@@ -1,5 +1,4 @@
 .modal-film {
-
   position: absolute;
   padding: 48px 19px;
   left: 50%;
@@ -12,24 +11,18 @@
   box-shadow: 5px 10px 15px 0 rgba(0, 0, 0, 0.6);
   background-color: aliceblue;
 
-  @media screen and (min-width:768px) {
+  @media screen and (min-width: 768px) {
     padding: 40px 36px;
 
     display: flex;
     justify-content: space-between;
     width: 704px;
-   
   }
 
-
-  @media screen and (min-width:1024px) {
+  @media screen and (min-width: 1024px) {
     padding: 35px 25px;
     width: 814px;
-  
-
-
   }
-
 }
 
 .modal__btn {
@@ -37,8 +30,6 @@
   top: 16px;
   right: 16px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
- 
 }
 
 .material-symbols-outlined {
@@ -57,12 +48,11 @@
   -webkit-font-smoothing: antialiased;
   color: getColor(second-text-color);
 
-    &:hover,
-      &:focus {
-       color: getColor(accent-color);
-      }
+  &:hover,
+  &:focus {
+    color: getColor(accent-color);
+  }
 }
-
 
 .modal__img-wrapper {
   margin-bottom: 20px;
@@ -127,7 +117,6 @@ tr {
   color: getColor(four-text-color);
   @include font(12px, 16px, 500);
   width: 105px;
-
 }
 
 .modal__param-value {
@@ -180,7 +169,7 @@ tr {
     justify-content: center;
     text-transform: uppercase;
     background: getColor(footer-background);
-    color: getColor(second-text-color)
+    color: getColor(second-text-color);
   }
 }
 
@@ -224,7 +213,7 @@ tr {
 .btn-orange {
   @include btnStyle(getColor(accent-color), transparent, 110px);
   color: getColor(primary-text-color);
-  padding: 6px 27px;
+  padding: 6px 6px;
 
   @media screen and (min-width: 768px) {
     padding: 13px 9px;
